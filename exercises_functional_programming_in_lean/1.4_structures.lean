@@ -21,8 +21,11 @@ def p := Point.mk 1.0 2.0
 #check p.x + p.y  -- Lean infers that p.x and p.y are Floats
 #check p.x + p.y = 3.0
 #eval p.x
+#eval Point.x p
 #eval p.y
 #eval p.x + p.y
+#check Point.x
+#check (Point.x)
 
 def origin : Point := { x:= 0.0, y := 0.0}
 #eval origin
