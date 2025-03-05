@@ -27,3 +27,12 @@ def origin : Point := { x:= 0.0, y := 0.0}
 #eval origin
 #eval origin.x
 #eval origin.y
+
+def addPoints (p1 p2 : Point) : Point := { x := p1.x + p2.x, y := p1.y + p2.y}
+#eval addPoints p origin
+#check (addPoints)
+
+def distance (p1 p2 : Point) : Float :=
+  Float.sqrt ((p1.x - p2.x)^2 + (p1.y - p2.y)^2)
+#eval distance p origin
+#check (distance)
