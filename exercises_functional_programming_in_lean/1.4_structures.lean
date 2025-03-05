@@ -11,6 +11,7 @@ deriving Repr
 
 #check Point
 #check Point.mk
+#check (Point.mk)
 #check Point.mk 1.0 2.0
 #eval Point.mk 1.0 2.0
 def p := Point.mk 1.0 2.0
