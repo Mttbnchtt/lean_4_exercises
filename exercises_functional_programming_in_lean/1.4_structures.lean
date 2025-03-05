@@ -36,3 +36,14 @@ def distance (p1 p2 : Point) : Float :=
   Float.sqrt ((p1.x - p2.x)^2 + (p1.y - p2.y)^2)
 #eval distance p origin
 #check (distance)
+#eval distance { x := 1.0, y := 2.0 } { x := 5.0, y := -1.0}
+#eval distance { x := 1, y := 2 } { x := 5, y := -1}
+#eval distance ({ x := 1.0, y := 2.0 } : Point) ({ x := 5.0, y := -1.0} : Point)
+
+def zeroX (p : Point) : Point := { x := 0.0, y := p.y}
+#eval zeroX p
+#eval zeroX ({ x := 5.0, y := 2.0 } : Point)
+
+def zeroX' (p : Point) : Point := { p with x := 0.0}
+#eval zeroX' p
+#eval p
