@@ -51,3 +51,11 @@ def zeroX (p : Point) : Point := { x := 0.0, y := p.y}
 def zeroX' (p : Point) : Point := { p with x := 0.0}
 #eval zeroX' p
 #eval p
+
+#eval "A".append "B"
+#eval "A" ++ "B"
+#eval "A".length
+#eval "A".length + "B".length
+#eval String.append "A" "B"
+
+def Point.modifyBoth
