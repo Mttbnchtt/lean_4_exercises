@@ -46,7 +46,8 @@ def even_v3 (n : Nat) : Bool :=
 #eval even_v3 0
 #eval even_v3 3
 
-def p (n m : Nat) : Nat :=
+def plus (n m : Nat) : Nat :=
   match m with
   | Nat.zero => n
-  | Nat.succ k => Nat.succ p n m
+  | Nat.succ k => Nat.succ (plus n k)
+#eval plus 2 3
