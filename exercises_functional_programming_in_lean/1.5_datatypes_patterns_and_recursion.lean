@@ -52,7 +52,15 @@ def plus (n m : Nat) : Nat :=
   | Nat.succ k => Nat.succ (plus n k)
 #eval plus 2 3
 
-def m (n m : Nat) : nat :=
+def mult (n m : Nat) : Nat :=
   match m with
   | Nat.zero => Nat.zero
-  | Nat.succ k => plus (m (n k) n)
+  | Nat.succ k => plus (mult n k) n
+#eval mult 2 3
+
+def sub (n m : Nat) : Nat :=
+  match m with
+  | Nat.zero => n
+  | Nat.succ k => pred (sub n k)
+#eval sub 2 3
+#eval sub 3 2
