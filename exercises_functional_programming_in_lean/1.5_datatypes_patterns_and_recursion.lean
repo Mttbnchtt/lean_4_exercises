@@ -70,5 +70,5 @@ def primesUnder10 : List Nat := [2, 3, 5, 7]
 #eval primesUnder10
 
 def divisors (n : Nat) : List Nat :=
-  List.filter (fun x => n % x = 0) (List.range (n+1))
+  List.filter (fun x => (¬ (x = 0)) ∧ (n % x = 0)) (List.range (n+1))
 #eval divisors 10
