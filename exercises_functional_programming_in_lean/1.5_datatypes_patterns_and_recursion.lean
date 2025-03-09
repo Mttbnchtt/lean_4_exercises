@@ -64,3 +64,7 @@ def sub (n m : Nat) : Nat :=
   | Nat.succ k => pred (sub n k)
 #eval sub 2 3
 #eval sub 3 2
+
+def primesUnder10 : List Nat := [2, 3, 5, 7]
+#check primesUnder10
+#eval primesUnder10
