@@ -9,7 +9,7 @@ def natOrigin : PPoint Nat :=
 #eval Nat.zero = 0
 #eval natOrigin
 
-def replaceX ( α : Type) (p : PPoint α) (newX : α) : PPoint α :=
+def replaceX (α : Type) (p : PPoint α) (newX : α) : PPoint α :=
   { p with x := newX}
 #check (replaceX)
 #check replaceX
@@ -39,3 +39,15 @@ def posOrNegThree (s : Sign) : match s with | Sign.pos => Nat | Sign.neg => Int 
 def d ( n : Nat) : List Nat :=
   List.filter (fun x => (¬ (x = 0)) ∧ (n % x = 0)) (List.range (n+1))
 #eval d 10
+
+#eval [2, 3, 5, 7].length
+#eval [2, 3, 5, 7].map (fun x => x + 1)
+#eval ([2, 3, 5, 7].map (fun x => x + 1)).length
+#eval [2, 3, 5, 7].map (fun x => x + 1)
+def primesUnder10 : List Nat := [2, 3, 5, 7]
+#eval primesUnder10.length
+#eval primesUnder10.head?
+#eval primesUnder10.head!
+#eval List.nil.head? (α := Nat)
+#eval [].head? (α := Nat)
+#eval ([] : List Nat).head?
