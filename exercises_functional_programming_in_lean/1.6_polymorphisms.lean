@@ -36,9 +36,9 @@ def posOrNegThree (s : Sign) : match s with | Sign.pos => Nat | Sign.neg => Int 
 #eval posOrNegThree Sign.neg
 #eval posOrNegThree Sign.zero
 
-def d ( n : Nat) : List Nat :=
+def divisors ( n : Nat) : List Nat :=
   List.filter (fun x => (¬ (x = 0)) ∧ (n % x = 0)) (List.range (n+1))
-#eval d 10
+#eval divisors 10
 
 #eval [2, 3, 5, 7].length
 #eval [2, 3, 5, 7].map (fun x => x + 1)
@@ -51,3 +51,13 @@ def primesUnder10 : List Nat := [2, 3, 5, 7]
 #eval List.nil.head? (α := Nat)
 #eval [].head? (α := Nat)
 #eval ([] : List Nat).head?
+
+#eval List.sum [2, 3]
+#eval [2, 3].sum
+
+def is_perfect (n : Nat) : Bool :=
+  (divisors n).sum = n
+#eval is_perfect 100
+
+def p (n : Nat) : List Nat :=
+  List.filter (fun x => (x ≤ n) ∧ (is_perfect x)) ()
