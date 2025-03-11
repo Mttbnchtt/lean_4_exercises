@@ -78,6 +78,8 @@ def primesUnder10 : List Nat := [2, 3, 5, 7]
 -- exercises
 -- exercise 1
 def list_last_element {α : Type} (xs : List α) : Option α :=
-  match cs with
-  | [] => none|
-  | - :: ys
+  xs.reverse.head?
+#eval list_last_element [1, 2, 3]
+#eval list_last_element [1, 2, 3, 4, 5]
+
+-- exercise 2
