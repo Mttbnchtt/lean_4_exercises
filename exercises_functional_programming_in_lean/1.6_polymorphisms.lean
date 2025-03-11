@@ -74,3 +74,10 @@ def primesUnder10 : List Nat := [2, 3, 5, 7]
 
 #eval is_perfect 100
 #eval perfect_numbers 0
+
+-- exercises
+-- exercise 1
+def list_last_element {α : Type} (xs : List α) : Option α :=
+  match cs with
+  | [] => none|
+  | - :: ys
