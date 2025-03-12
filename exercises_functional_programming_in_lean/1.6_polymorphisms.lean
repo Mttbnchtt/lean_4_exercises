@@ -84,13 +84,21 @@ def list_last_element {α : Type} (xs : List α) : Option α :=
 
 -- exercise 2
 
-
-def f {α : Type} (xs : List α) : List (List α) :=
+/--
+function that, for every list L,
+returns the list of exactly all the sublists of L
+-/
+def find_sublists {α : Type} (xs : List α) : List (List α) :=
   match xs with
+  -- the empty list has one sublist, the empty list
   | [] => [[]]
-  | y :: ys => (f ys) ++ (f ys).map (fun x => y :: x)
-  -- ++ [[y]]
--- if the list is empty, return [[]]
--- otherwise, concatenate the result of f applied to the tail and f applied to the reverse tail and
+  -- if the list is not empty,
+  -- find the sublists of the tail of the list
+  -- then concatenate the result with the result of mapping the sublists of the tail
+  -- by adding the head to each sublist
+  | y :: ys => (find_sublists ys) ++ (find_sublists ys).map (fun x => y :: x)
 
-#eval f [1, 2, 3]
+#eval find_sublists [1, 2, 3]
+
+
+theorem
