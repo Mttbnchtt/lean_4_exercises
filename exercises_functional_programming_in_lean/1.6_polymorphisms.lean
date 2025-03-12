@@ -104,3 +104,7 @@ def find_sublists {α : Type} (xs : List α) : List (List α) :=
 theorem lenght_list_of_subslists {α: Type} (xs : List α) :
   (find_sublists xs).length = 2^(xs.length) :=
 by
+  induction xs with
+  | [] =>
+    simp [find_sublists]
+  | y :: ys ih =>
