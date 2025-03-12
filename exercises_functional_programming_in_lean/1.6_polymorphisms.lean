@@ -101,4 +101,6 @@ def find_sublists {α : Type} (xs : List α) : List (List α) :=
 #eval find_sublists [1, 2, 3]
 
 
-theorem
+theorem lenght_list_of_subslists {α: Type} (xs : List α) :
+  (find_sublists xs).length = 2^(xs.length) :=
+by
