@@ -84,13 +84,23 @@ def list_last_element {α : Type} (xs : List α) : Option α :=
 #eval list_last_element [1, 2, 3, 4, 5]
 
 -- exercise 2
-def f {α : Type} (xs : List α) (predicate : α -> Bool) : Option α :=
+def List.findFirst? {α : Type} (xs : List α) (predicate : α -> Bool) : Option α :=
   match xs with
   | [] => none
-  | x :: xs' => if predicate x then some x else f xs' predicate
+  | x :: xs' => if predicate x then some x else findFirst? xs' predicate
+
+#eval List.findFirst? [1, 2, 3] (fun x => x > 1)  -- some 2
+#eval List.findFirst? [5, 3, 4] (fun x => x % 2 == 0)  -- some 4
+#eval List.findFirst? [1, 3, 5] (fun x => x % 2 == 0)  -- none
+#eval List.findFirst? [] (fun x => x > 1)  -- none
+-- #eval List.findFirst? [] (fun x => x == x)
+#eval List.findFirst? ([] : List Nat) (fun x => x == x)
+#eval List.findFirst? ([] : List Nat) (fun x => x = x)
 
 
+#print List
 
+-- exeercise 3
 
 
 
