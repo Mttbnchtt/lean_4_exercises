@@ -84,6 +84,7 @@ def list_last_element {α : Type} (xs : List α) : Option α :=
 #eval list_last_element [1, 2, 3, 4, 5]
 
 -- exercise 2
+def f {α : Type} (cs : List α) : Option α :=
 
 
 
