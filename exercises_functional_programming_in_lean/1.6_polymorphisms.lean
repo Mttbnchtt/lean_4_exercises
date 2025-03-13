@@ -1,3 +1,4 @@
+
 structure PPoint (α : Type) where
   x : α
   y : α
@@ -84,6 +85,25 @@ def list_last_element {α : Type} (xs : List α) : Option α :=
 
 -- exercise 2
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------
+
 /--
 function that, for every list L,
 returns the list of exactly all the sublists of L
@@ -100,17 +120,40 @@ def find_sublists {α : Type} (xs : List α) : List (List α) :=
 
 #eval find_sublists [1, 2, 3]
 
+-- theorem length_list_of_subslists {α: Type} (xs : List α) :
+--   (find_sublists xs).length = 2^(xs.length) :=
+-- by
+--   induction xs with
+--   | nil =>
+--     simp [find_sublists]
+--   | cons y ys ih =>
+--     simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
+--     <;> linarith
 
-theorem lenght_list_of_subslists {α: Type} (xs : List α) :
-  (find_sublists xs).length = 2^(xs.length) :=
-by
-  induction xs with
-  | [] =>
-    simp [find_sublists]
-  | y :: ys ih =>
-    simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
-    <;> linarith
+-- theorem length_list_of_sublists {α : Type} (xs : List α) :
+--   (find_sublists xs).length = 2^(xs.length) := by
+--   induction xs with
+--   | nil =>
+--     -- Base case: xs = []
+--     simp [find_sublists]  -- Simplifies to 1 = 2^0
+--   | cons y ys ih =>
+--     -- Inductive case: xs = y :: ys
+--     simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
+--     -- Combine lengths and use induction hypothesis
+--     linarith  -- Confirm arithmetic holds (2 * 2^ys.length = 2^(ys.length + 1))
 
-#check List.length_append
-#check List.length_map
-#check Nat.pow_succ
+
+-- theorem length_list_of_sublists {α : Type} (xs : List α) :
+--   (find_sublists xs).length = 2^(xs.length) := by
+--   induction xs with
+--   | nil =>
+--     simp [find_sublists]
+--   | cons y ys ih =>
+--     simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
+--     -- linarith
+
+
+-- #check List.length_append
+-- #check List.length_map
+-- #check Nat.pow_succ
+-- #check linarith
