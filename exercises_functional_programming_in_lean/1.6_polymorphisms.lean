@@ -108,19 +108,28 @@ def Prod.swap {α β : Type} (pair : α × β) : β × α :=
 
 #eval Prod.swap (1, 2)
 
-def insert_everywhere  {α : Type} (x : α) (xs : List α) : List (List α) :=
-  match xs with
+-- def insert_everywhere  {α : Type} (x : α) (xs : List α) : List (List α) :=
+--   match xs with
+--   | [] => [[x]]
+--   | y :: ys =>
+--     let r := insert_everywhere x ys
+--     [x :: xs] ++ (r.map (fun zs => y :: zs))
+
+def insert_everywhere {α : Type} (x : α) : List α → List (List α)
   | [] => [[x]]
-  | y :: ys =>
-    let r := insert_everywhere x ys
-    [x :: xs] ++ (r.map (fun zs => y :: zs))
+  | y :: ys => (x :: y :: ys) :: (insert_everywhere x ys).map (fun zs => y :: zs)
 
 #eval insert_everywhere 3 [1, 2]
 
-def f {α : Type} (xs: List α) : list (List α) :=
+def f {α : Type} (xs: List α) : List (List α) :=
   match xs with
   | [] => [[]]
   | y :: ys =>
+  let r := f ys
+  r.map (fun zs => insert_everywhere y zs)
+  -- insert_everywhere y (f ys)
+
+#eval f [1, 2, 3]
 
 -- [] => [[]]
 -- [1] => [[1]]
