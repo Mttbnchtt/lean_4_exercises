@@ -100,7 +100,7 @@ def List.findFirst? {α : Type} (xs : List α) (predicate : α -> Bool) : Option
 
 #print List
 
--- exeercise 3
+-- exercise 3
 
 
 
