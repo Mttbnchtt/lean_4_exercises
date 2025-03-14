@@ -121,15 +121,23 @@ def insert_everywhere {α : Type} (x : α) : List α → List (List α)
 
 #eval insert_everywhere 3 [1, 2]
 
-def f {α : Type} (xs: List α) : List (List α) :=
-  match xs with
+
+def list_permutations {α : Type} : List α → List (List α)
   | [] => [[]]
-  | y :: ys =>
-  let r := f ys
-  r.map (fun zs => insert_everywhere y zs)
+  | y :: ys => ((list_permutations ys).map (fun zs => insert_everywhere y zs)).flatten
+
+#eval list_permutations [1, 2, 3]
+
+
+-- def f {α : Type} (xs: List α) : List (List α) :=
+--   match xs with
+--   | [] => [[]]
+--   | y :: ys =>
+--   let r := f ys
+--   (r.map (fun zs => insert_everywhere y zs)).flatten
   -- insert_everywhere y (f ys)
 
-#eval f [1, 2, 3]
+#eval list_permutations [1, 2, 3]
 
 -- [] => [[]]
 -- [1] => [[1]]
