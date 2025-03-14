@@ -102,7 +102,11 @@ def List.findFirst? {α : Type} (xs : List α) (predicate : α -> Bool) : Option
 
 -- exercise 3
 
+def Prod.swap {α β : Type} (pair : α × β) : β × α :=
+  match pair with
+  | (a, b) => (b, a)
 
+#eval Prod.swap (1, 2)
 
 
 
