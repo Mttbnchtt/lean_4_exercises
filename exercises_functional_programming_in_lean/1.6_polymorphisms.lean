@@ -143,8 +143,6 @@ def list_permutations {α : Type} : List α → List (List α)
 
 
 
-
-
 def factorial (n : Nat) : Nat :=
   match n with
   | 0 => 1
@@ -155,11 +153,28 @@ def factorial (n : Nat) : Nat :=
 #eval factorial 2
 #eval factorial 3
 
-theorem
+theorem t : factorial 3 = 6 := by
+  simp [factorial]
+
+theorem t {α : Type} (xs : List α) :
+  (list_permutations xs).length = factorial xs.length := by
+  induction xs with
+  | nil =>
+    simp [list_permutations, factorial]
+  | cons y ys ih =>
+    simp [list_permutations, factorial, ih]
+    linarith
 
 
 
-
+theorem length_list_of_sublists {α : Type} (xs : List α) :
+  (find_sublists xs).length = 2^(xs.length) := by
+  induction xs with
+  | nil =>
+    simp [find_sublists]
+  | cons y ys ih =>
+    simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
+    linarith
 
 
 
