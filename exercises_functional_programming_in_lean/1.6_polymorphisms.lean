@@ -145,6 +145,17 @@ def list_permutations {α : Type} : List α → List (List α)
 
 
 
+def factorial (n : Nat) : Nat :=
+  match n with
+  | 0 => 1
+  | (n+1) => (n+1) * factorial n
+
+#eval factorial 0
+#eval factorial 1
+#eval factorial 2
+#eval factorial 3
+
+theorem
 
 
 
