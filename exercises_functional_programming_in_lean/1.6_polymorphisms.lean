@@ -162,7 +162,7 @@ theorem t {α : Type} (xs : List α) :
   | nil =>
     simp [list_permutations, factorial]
   | cons y ys ih =>
-    simp [list_permutations, factorial, ih]
+    simp [list_permutations, List.length, factorial, ih]
     linarith
 
 
