@@ -141,7 +141,25 @@ def list_permutations {α : Type} : List α → List (List α)
 
 -- exercise 4
 
+inductive PetName where
+| dogName : String → PetName
+| catName : String → PetName
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------
 
 def factorial (n : Nat) : Nat :=
   match n with
@@ -162,8 +180,9 @@ theorem t {α : Type} (xs : List α) :
   | nil =>
     simp [list_permutations, factorial]
   | cons y ys ih =>
-    simp [list_permutations, List.length, factorial, ih]
+    simp [list_permutations, List.length, factorial, List.length_map, List.length_flatten, ih]
     linarith
+
 
 
 
