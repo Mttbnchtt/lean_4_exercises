@@ -146,116 +146,27 @@ inductive PetName where
 | catName : String → PetName
 
 -- exercise 5
-def z {α β : Type} (xs : Llist α) (ys : List β) : List (α × β) :=
+def zip {α β : Type} (xs : List α) (ys : List β) : List (α × β) :=
   match xs, ys with
-  | xs, _ => []
-  | _, [] => []
+  | [], _                 => []
+  | _, []                 => []
+  | x' :: xs', y' :: ys'  => (x', y') :: zip xs' ys'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
----------------------------------------------------------------
-
-def factorial (n : Nat) : Nat :=
-  match n with
-  | 0 => 1
-  | (n+1) => (n+1) * factorial n
-
-#eval factorial 0
-#eval factorial 1
-#eval factorial 2
-#eval factorial 3
-
-theorem t : factorial 3 = 6 := by
-  simp [factorial]
-
-theorem t {α : Type} (xs : List α) :
-  (list_permutations xs).length = factorial xs.length := by
-  induction xs with
-  | nil =>
-    simp [list_permutations, factorial]
-  | cons y ys ih =>
-    simp [list_permutations, List.length, factorial, List.length_map, List.length_flatten, ih]
-    linarith
-
-
-
-
-theorem length_list_of_sublists {α : Type} (xs : List α) :
-  (find_sublists xs).length = 2^(xs.length) := by
-  induction xs with
-  | nil =>
-    simp [find_sublists]
-  | cons y ys ih =>
-    simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
-    linarith
-
-
-
-
-
--------------------------------------
+#eval zip [1, 2, 3] ["a", "b", "c"]
+#eval zip [1, 2] ["a", "b", "c"]
+#eval zip [1, 2, 3] ["a", "b"]
 
 /--
-function that, for every list L,
-returns the list of exactly all the sublists of L
+If one of the lists runs out of elements before the other,
+the function stops and returns the zipped list up to that point.
+The result is as long as the shorter of the two input lists.
+
+Here’s how it works:
+	•	If xs is shorter than ys,
+  then eventually xs will become [] while ys still has elements.
+  At that point, the pattern | [], _ => [] matches,
+  and the function returns [] (i.e., no more pairs are formed).
+	•	Similarly, if ys is shorter than xs,
+  then eventually ys becomes []
+  and the pattern | _, [] => [] matches.
 -/
-def find_sublists {α : Type} (xs : List α) : List (List α) :=
-  match xs with
-  -- the empty list has one sublist, the empty list
-  | [] => [[]]
-  -- if the list is not empty,
-  -- find the sublists of the tail of the list
-  -- then concatenate the result with the result of mapping the sublists of the tail
-  -- by adding the head to each sublist
-  | y :: ys => (find_sublists ys) ++ (find_sublists ys).map (fun x => y :: x)
-
-#eval find_sublists [1, 2, 3]
-
--- theorem length_list_of_subslists {α: Type} (xs : List α) :
---   (find_sublists xs).length = 2^(xs.length) :=
--- by
---   induction xs with
---   | nil =>
---     simp [find_sublists]
---   | cons y ys ih =>
---     simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
---     <;> linarith
-
--- theorem length_list_of_sublists {α : Type} (xs : List α) :
---   (find_sublists xs).length = 2^(xs.length) := by
---   induction xs with
---   | nil =>
---     -- Base case: xs = []
---     simp [find_sublists]  -- Simplifies to 1 = 2^0
---   | cons y ys ih =>
---     -- Inductive case: xs = y :: ys
---     simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
---     -- Combine lengths and use induction hypothesis
---     linarith  -- Confirm arithmetic holds (2 * 2^ys.length = 2^(ys.length + 1))
-
-
--- theorem length_list_of_sublists {α : Type} (xs : List α) :
---   (find_sublists xs).length = 2^(xs.length) := by
---   induction xs with
---   | nil =>
---     simp [find_sublists]
---   | cons y ys ih =>
---     simp [find_sublists, List.length_append, List.length_map, Nat.pow_succ, ih]
---     -- linarith
-
-
--- #check List.length_append
--- #check List.length_map
--- #check Nat.pow_succ
--- #check linarith
