@@ -145,6 +145,11 @@ inductive PetName where
 | dogName : String → PetName
 | catName : String → PetName
 
+-- exercise 5
+def z {α β : Type} (xs : Llist α) (ys : List β) : List (α × β) :=
+  match xs, ys with
+  | xs, _ => []
+  | _, [] => []
 
 
 
