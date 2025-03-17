@@ -187,3 +187,6 @@ def take {α : Type} (n : Nat) (xs : List α) : List α :=
 #eval take 0 ([] : List Nat)
 #eval take 1 ([] : List Nat)
 #eval take 2 ([] : List Nat)
+
+-- exercise 7
+def distribute (α × (β ⊕ γ) : Type) : (α ⊕ β) × (α ⊕ γ) :=
