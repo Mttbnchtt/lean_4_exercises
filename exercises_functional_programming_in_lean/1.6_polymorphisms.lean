@@ -189,4 +189,10 @@ def take {α : Type} (n : Nat) (xs : List α) : List α :=
 #eval take 2 ([] : List Nat)
 
 -- exercise 7
-def distribute (α × (β ⊕ γ) : Type) : (α ⊕ β) × (α ⊕ γ) :=
+def distribute {α β γ : Type} (p: α × (β ⊕ γ)) : (α × β) ⊕ (α × γ) :=
+  match p with
+  | (a, Sum.inl b) => Sum.inl (a, b)
+  | (a, Sum.inr c) => Sum.inr (a, c)
+
+#eval distribute (1, (2  3))
+#eval distribute ("a" × ("b" ⊕ "c"))
