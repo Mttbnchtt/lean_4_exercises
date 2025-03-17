@@ -170,3 +170,20 @@ Here’s how it works:
   then eventually ys becomes []
   and the pattern | _, [] => [] matches.
 -/
+
+-- exercise 6
+def take {α : Type} (n : Nat) (xs : List α) : List α :=
+  match n, xs with
+  | 0, _ => []
+  | _, [] => []
+  | m, y :: ys => y :: take (m-1) ys
+
+#eval take 2 [1, 2, 3, 4, 5]
+#eval take 0 [1, 2, 3, 4, 5]
+#eval take 3 [1, 2, 3, 4, 5]
+#eval take 5 [1, 2, 3, 4, 5]
+#eval take 6 [1, 2, 3, 4, 5]
+#eval take 1 [1, 2, 3, 4, 5]
+#eval take 0 ([] : List Nat)
+#eval take 1 ([] : List Nat)
+#eval take 2 ([] : List Nat)
