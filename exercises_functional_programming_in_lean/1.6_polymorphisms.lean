@@ -197,3 +197,5 @@ def distribute {α β γ : Type} (p: α × (β ⊕ γ)) : (α × β) ⊕ (α × 
   -- Specify α, β, γ explicitly
 #eval @distribute Nat Nat String (1, (Sum.inl 2))  -- Sum.inl (1, 2)
 #eval @distribute String String String ("a", (Sum.inr "c"))
+
+-- exercise 8
