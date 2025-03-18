@@ -194,8 +194,16 @@ def distribute {α β γ : Type} (p: α × (β ⊕ γ)) : (α × β) ⊕ (α × 
   | (a, Sum.inl b) => Sum.inl (a, b)
   | (a, Sum.inr c) => Sum.inr (a, c)
 
-  -- Specify α, β, γ explicitly
 #eval @distribute Nat Nat String (1, (Sum.inl 2))  -- Sum.inl (1, 2)
 #eval @distribute String String String ("a", (Sum.inr "c"))
 
 -- exercise 8
+def prod_to_sum {α : Type} (p: Bool × α) : (α ⊕ α) :=
+  match p with
+  | (true, a) => Sum.inr a
+  | (false, a) => Sum.inl a
+
+#eval @prod_to_sum Nat (true, 1)  -- Sum.inr 1
+#eval @prod_to_sum Nat (false, 1)  -- Sum.inl 1
+#eval prod_to_sum (true, 1)  -- Sum.inr 1
+#eval prod_to_sum (false, 1)  -- Sum.inl 1
