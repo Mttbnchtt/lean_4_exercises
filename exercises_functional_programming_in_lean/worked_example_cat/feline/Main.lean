@@ -25,3 +25,5 @@ partial def dump (stream : IO.FS.Stream) : IO Unit := do
     let stdout ← IO.getStdout
     stdout.write buf
     dump stream
+
+    --
