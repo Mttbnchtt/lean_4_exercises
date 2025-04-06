@@ -26,4 +26,31 @@ partial def dump (stream : IO.FS.Stream) : IO Unit := do
     stdout.write buf
     dump stream
 
-    --
+
+/--
+  Opens a file for reading and returns an IO stream wrapped in an Option.
+
+  The function first checks if the file at the given `filename` exists. If the file does not exist,
+  it writes an error message to the standard error stream and returns `none`. Otherwise, it opens the file
+  in read mode, obtains a file handle, converts it into an IO stream, and returns that stream wrapped in `some`.
+
+  Parameters:
+  - `filename` : The path to the file to be opened.
+
+  Returns:
+  - An IO action producing an `Option IO.FS.Stream`. If the file exists, the action returns `some stream`;
+    if not, it returns `none`.
+-/
+def fileStream (filename : System.FilePath) : IO (Option IO.FS.Stream) := do
+  let fileExists ← filename.pathExists
+  if not fileExists then
+    let stderr ← IO.getStderr
+    stderr.putStrLn s!"File not found: {filename}"
+    pure none
+  else
+    -- This line creates a file handle by calling IO.FS.Handle.mk with the filename and
+    -- the mode IO.FS.Mode.read, which opens the file for reading.
+    let handle ← IO.FS.Handle.mk filename IO.FS.Mode.read
+    -- The function then converts the file handle into an IO stream using IO.FS.Stream.ofHandle handle.
+    -- It wraps this stream in some to indicate success, and then returns it (again, using pure to lift it into the IO monad).
+    pure (some (IO.FS.Stream.ofHandle handle))
