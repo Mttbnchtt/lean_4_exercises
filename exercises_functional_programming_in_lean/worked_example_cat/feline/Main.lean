@@ -55,4 +55,4 @@ def fileStream (filename : System.FilePath) : IO (Option IO.FS.Stream) := do
     -- It wraps this stream in some to indicate success, and then returns it (again, using pure to lift it into the IO monad).
     pure (some (IO.FS.Stream.ofHandle handle))
 
-def process
+def process (exitCode : UInt32) (args : List String) : IO Uint32 := do
