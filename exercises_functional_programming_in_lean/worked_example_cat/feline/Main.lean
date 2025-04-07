@@ -54,3 +54,5 @@ def fileStream (filename : System.FilePath) : IO (Option IO.FS.Stream) := do
     -- The function then converts the file handle into an IO stream using IO.FS.Stream.ofHandle handle.
     -- It wraps this stream in some to indicate success, and then returns it (again, using pure to lift it into the IO monad).
     pure (some (IO.FS.Stream.ofHandle handle))
+
+def process
