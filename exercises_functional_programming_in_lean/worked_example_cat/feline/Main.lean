@@ -55,6 +55,43 @@ def fileStream (filename : System.FilePath) : IO (Option IO.FS.Stream) := do
     -- It wraps this stream in some to indicate success, and then returns it (again, using pure to lift it into the IO monad).
     pure (some (IO.FS.Stream.ofHandle handle))
 
+/--
+  Recursively processes command-line arguments to handle file and standard input.
+
+  The `process` function takes an initial exit code and a list of command-line arguments, then
+  processes each argument one at a time. Its behavior depends on the nature of the argument:
+
+  - **No Arguments (`[]`):**
+    When the list of arguments is empty, the function returns the current `exitCode` (wrapped in IO).
+
+  - **Standard Input (`"-" :: args`):**
+    If the first argument is the string `"-"`, the function:
+      1. Retrieves the standard input stream using `IO.getStdin`.
+      2. Calls the `dump` function to read and output the contents of standard input.
+      3. Recursively processes the remaining arguments with the current `exitCode`.
+
+  - **Filename (`filename :: args`):**
+    If the first argument is interpreted as a filename, the function:
+      1. Attempts to open the file by calling `fileStream filename`.
+      2. If the file is not found (i.e., `fileStream` returns `none`), it updates the exit code to `1`
+         to indicate an error, and then processes the remaining arguments.
+      3. If the file is found (i.e., `fileStream` returns `some stream`), it calls `dump stream` to
+         output the file's contents, then processes the rest of the arguments using the current `exitCode`.
+
+  Parameters:
+  - `exitCode` : A `UInt32` representing the initial exit code, which may be updated if an error occurs.
+  - `args` : A list of `String` values representing the command-line arguments. Each argument should be either
+             `"-"` (to indicate reading from standard input) or a filename.
+
+  Returns:
+  - An IO action producing a `UInt32` that represents the final exit code after processing all arguments.
+
+  Example:
+  ```lean
+  def main : IO Unit := do
+    let exitCode ← process 0 ["-", "file1.txt", "file2.txt"]
+    IO.exit exitCode
+  -/
 def process (exitCode : UInt32) (args : List String) : IO UInt32 := do
   match args with
   | [] => pure  exitCode
