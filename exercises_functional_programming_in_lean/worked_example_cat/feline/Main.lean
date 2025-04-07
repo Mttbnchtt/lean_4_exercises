@@ -56,3 +56,17 @@ def fileStream (filename : System.FilePath) : IO (Option IO.FS.Stream) := do
     pure (some (IO.FS.Stream.ofHandle handle))
 
 def process (exitCode : UInt32) (args : List String) : IO Uint32 := do
+  match args with
+  | [] => pure  exitCode
+  | "-" :: args =>
+    let stdin ← IO.getStdin
+    dump stdin
+    process exitCode args
+  | filename :: args =>
+    let stream ← fileStream (filename)
+    match stream with
+    | none =>
+      process 1 args
+    | some stream =>
+      dump stream
+      process exitCode args
