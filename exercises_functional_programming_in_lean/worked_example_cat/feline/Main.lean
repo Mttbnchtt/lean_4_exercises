@@ -107,3 +107,8 @@ def process (exitCode : UInt32) (args : List String) : IO UInt32 := do
     | some stream =>
       dump stream
       process exitCode args
+
+def main (args : List String) : IO UInt32 :=
+  match args with
+  | [] => process 0 ["-"]
+  | _ => process 0 args
