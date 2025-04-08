@@ -108,6 +108,33 @@ def process (exitCode : UInt32) (args : List String) : IO UInt32 := do
       dump stream
       process exitCode args
 
+/--
+  The main entry point of the program.
+
+  This function processes the command-line arguments supplied to the program and returns an exit
+  code wrapped in an IO action. Its behavior is as follows:
+
+  - If no arguments are provided (i.e., when `args` is an empty list), it defaults to reading
+    from standard input by invoking `process 0 ["-"]`. The string `"-"` is used as a conventional
+    indicator to read from stdin.
+
+  - If arguments are provided, it passes the list of arguments directly to the `process` function
+    by calling `process 0 args`.
+
+  Parameters:
+  - `args` : A list of strings representing the command-line arguments.
+
+  Returns:
+  - An IO action producing a `UInt32` exit code, which typically signals the success or failure
+    of the program execution.
+
+  Example:
+  ```lean
+  def main (args : List String) : IO UInt32 :=
+    match args with
+    | [] => process 0 ["-"]
+    | _ => process 0 args
+-/
 def main (args : List String) : IO UInt32 :=
   match args with
   | [] => process 0 ["-"]
