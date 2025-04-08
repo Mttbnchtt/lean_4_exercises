@@ -137,5 +137,9 @@ def process (exitCode : UInt32) (args : List String) : IO UInt32 := do
 -/
 def main (args : List String) : IO UInt32 :=
   match args with
+  | ("--help" :: _) => do
+    IO.println "feline: a simple file concatenation utility."
+    IO.println "Usage: feline [file ...]"
+    IO.println "If not files are provided, input is read from standard input."
   | [] => process 0 ["-"]
   | _ => process 0 args
