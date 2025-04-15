@@ -57,5 +57,3 @@ theorem andImplesOr_v3 : (A ∧ B) → (A ∨ B) :=
     | And.intro a b => Or.inl a
 
   #check andImplesOr_v3  -- Outputs: true
-
-  --
