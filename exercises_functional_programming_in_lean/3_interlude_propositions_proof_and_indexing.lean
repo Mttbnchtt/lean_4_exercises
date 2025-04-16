@@ -56,7 +56,16 @@ theorem andImplesOr_v3 : (A ∧ B) → (A ∨ B) :=
     match andEvidence with
     | And.intro a b => Or.inl a
 
-  #check andImplesOr_v3  -- Outputs: true
+#check andImplesOr_v3  -- Outputs: true
 
 theorem twoPlusThree : 2 + 3 = 5 := by
-  | rfl
+  rfl
+-- rfl: This tactic is used to prove goals that are equalities and can be resolved by reflexivity. It checks if both sides of the equality are definitionally equal. If they are, it automatically closes the goal.
+-- In this case, it proves that 2 + 3 is equal to 5 by checking if both sides are definitionally equal.
+-- The rfl tactic is particularly useful for proving equalities that are straightforward and can be resolved by reflexivity.
+-- It’s a powerful tool for simplifying proofs and reducing the amount of manual work required to prove simple equalities.
+-- The rfl tactic is often used in conjunction with other tactics to simplify proofs and make them more concise.
+-- It’s a common pattern in Lean to use rfl for simple equalities, as it allows for more concise and readable proofs.
+-- The rfl tactic is a powerful tool in Lean that allows for concise and efficient proofs of equalities.
+
+#check twoPlusThree  -- Outputs: true
