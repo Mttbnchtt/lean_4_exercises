@@ -72,3 +72,6 @@ theorem twoPlusThree : 2 + 3 = 5 := by
 
 theorem fifteenMinusEigth : 15 - 8 = 7 := by
   rfl
+
+theorem helloPlusWorld : "Hello, ".append "world" = "Hello, world" := by
+  rfl
