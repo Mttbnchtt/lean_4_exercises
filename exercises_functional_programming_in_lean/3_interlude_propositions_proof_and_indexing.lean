@@ -70,6 +70,9 @@ theorem twoPlusThree : 2 + 3 = 5 := by
 
 #check twoPlusThree  -- Outputs: true
 
+theorem twoPlusThree_v2 : 2 + 3 = 5 := by
+  simp
+
 theorem fifteenMinusEigth : 15 - 8 = 7 := by
   rfl
 
@@ -85,3 +88,13 @@ theorem eightIsLessThanFifteen : 8 < 15 := by
 -- The decide tactic is often used in conjunction with other tactics to simplify proofs and make them more concise.
 -- It’s a common pattern in Lean to use decide for simple inequalities, as it allows for more concise and readable proofs.
 -- The decide tactic is a powerful tool in Lean that allows for concise and efficient proofs of decidable propositions.
+
+
+theorem fifteenMinusEigth_v2 : 15 - 8 = 7 := by
+  simp
+
+theorem helloPlusWorld_v2 : "Hello, ".append "world" = "Hello, world" := by
+  decide
+
+theorem eightIsLessThanFifteen_v2 : 8 < 15 := by
+  simp
