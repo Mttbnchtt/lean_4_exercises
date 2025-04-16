@@ -75,3 +75,13 @@ theorem fifteenMinusEigth : 15 - 8 = 7 := by
 
 theorem helloPlusWorld : "Hello, ".append "world" = "Hello, world" := by
   rfl
+
+theorem eightIsLessThanFifteen : 8 < 15 := by
+  decide
+-- decide: This tactic is used to automatically prove goals that are decidable propositions. It’s especially useful for goals that can be resolved through computation, such as basic arithmetic equalities or inequalities.
+-- In this case, it proves that 8 is less than 15 by checking if the inequality holds.
+-- The decide tactic is particularly useful for proving inequalities, as it can handle a wide range of decidable propositions.
+-- It’s a powerful tool for simplifying proofs and reducing the amount of manual work required to prove simple inequalities.
+-- The decide tactic is often used in conjunction with other tactics to simplify proofs and make them more concise.
+-- It’s a common pattern in Lean to use decide for simple inequalities, as it allows for more concise and readable proofs.
+-- The decide tactic is a powerful tool in Lean that allows for concise and efficient proofs of decidable propositions.
