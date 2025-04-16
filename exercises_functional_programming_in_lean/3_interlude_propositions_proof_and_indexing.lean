@@ -69,3 +69,6 @@ theorem twoPlusThree : 2 + 3 = 5 := by
 -- The rfl tactic is a powerful tool in Lean that allows for concise and efficient proofs of equalities.
 
 #check twoPlusThree  -- Outputs: true
+
+theorem fifteenMinusEigth : 15 - 8 = 7 := by
+  rfl
