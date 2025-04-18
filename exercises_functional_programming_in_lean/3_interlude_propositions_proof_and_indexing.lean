@@ -102,6 +102,22 @@ theorem eightIsLessThanFifteen_v2 : 8 < 15 := by
 
 def fifth? (l : List α) : Option α :=
   if l.length > 4 then
-    some l[4]?
+    l[4]?
   else
     none
+
+#check fifth?  -- Outputs: α → Option α
+
+#eval fifth? [1, 2, 3, 4, 5]  -- Outputs: some 5
+
+def fifth_with_evidence? {α : Type u} (l : List α) : Option α :=
+  -- here `h` is the proof that `4 < l.length`
+  if h : 4 < l.length then
+    -- because h : 4 < l.length we can safely use l[4]!
+    some (l[4])
+  else
+    none
+
+#check fifth_with_evidence?  -- Outputs: α → Option α
+#eval fifth_with_evidence? [1, 2, 3, 4, 5]  -- Outputs: some 5
+#eval fifth_with_evidence? [1, 2, 3]  -- Outputs: none
