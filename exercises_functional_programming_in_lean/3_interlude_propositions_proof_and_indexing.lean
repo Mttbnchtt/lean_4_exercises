@@ -98,3 +98,6 @@ theorem helloPlusWorld_v2 : "Hello, ".append "world" = "Hello, world" := by
 
 theorem eightIsLessThanFifteen_v2 : 8 < 15 := by
   simp
+
+
+def
