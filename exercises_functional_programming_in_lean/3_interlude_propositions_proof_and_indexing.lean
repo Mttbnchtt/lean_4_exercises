@@ -100,4 +100,8 @@ theorem eightIsLessThanFifteen_v2 : 8 < 15 := by
   simp
 
 
-def
+def fifth? (l : List α) : Option α :=
+  if l.length > 4 then
+    some l[4]?
+  else
+    none
