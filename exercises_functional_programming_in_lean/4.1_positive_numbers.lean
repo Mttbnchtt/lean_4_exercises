@@ -1,3 +1,3 @@
-structure Pos where
-  succ ::
-  pred : Nat
+structure PositiveNumbers where
+  successor ::
+  predecessor : Nat
