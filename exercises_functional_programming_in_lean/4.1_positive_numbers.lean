@@ -6,3 +6,8 @@ def PositiveNumbers.add (x y : PositiveNumbers) : PositiveNumbers :=
   successor (x.predecessor + y.predecessor + 1)
 
 #eval PositiveNumbers.add (PositiveNumbers.successor 1) (PositiveNumbers.successor 2)
+
+def PositiveNumbers.mul (x y : PositiveNumbers) : PositiveNumbers :=
+
+
+  -- successor (x.predecessor * y.predecessor + x.predecessor +
