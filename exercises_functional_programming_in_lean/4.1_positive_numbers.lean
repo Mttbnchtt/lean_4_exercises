@@ -9,6 +9,6 @@ def PositiveNumbers.add (x y : PositiveNumbers) : PositiveNumbers :=
 
 def PositiveNumbers.mul (x y : PositiveNumbers) : PositiveNumbers :=
 
-  -- (PositiveNumbers.add (x.predecessor + 1) * y.predecessor + x.predecessor + y.predecessor) + 1
+  -- (PositiveNumbers.add (x.predecessor + 1) * y.predecessor + x.predecessor + y.predecessor) + 1`
 
   -- successor (x.predecessor * y.predecessor + x.predecessor +
