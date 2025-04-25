@@ -8,5 +8,9 @@
 # Libraries
 1. https://leanprover-community.github.io/mathlib4_docs/
 
+# git repositories
+1. https://github.com/madvorak/lean4-tactics
+Overview of tactics for beginners
+
 # Editor
 1. https://live.lean-lang.org/
