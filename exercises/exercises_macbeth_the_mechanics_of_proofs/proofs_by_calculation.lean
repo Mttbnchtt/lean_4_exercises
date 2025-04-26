@@ -42,3 +42,14 @@ theorem theorem_1_1_1
 
 
 -- -----------------------------
+theorem theorem_1_1_2 (
+  r s : ℝ)
+  (hyp_1 : r + 2*s = -1)
+  (hyp_2: s = 3)
+  : r = -7 := by
+  calc
+    r = r + 2*s - 2*s := by exact Eq.symm (add_sub_cancel_right r (2 * s))
+    _ = -1 - 2*s := by rw [hyp_1]
+    _ = -1 - 2*3 := by rw [hyp_2]
+    _ = -1 -6 := by ring
+    _ = -7 := by ring
