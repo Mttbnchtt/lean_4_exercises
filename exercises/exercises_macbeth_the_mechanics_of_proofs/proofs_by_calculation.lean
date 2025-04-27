@@ -56,8 +56,6 @@ theorem theorem_1_1_2 (
 
 
   -- -----------------------------
-import Mathlib
-
 theorem theorem_1_1_3
   (a b m n : ℤ)
   (hyp_1 : b^2 = 2*a^2)
@@ -68,5 +66,10 @@ theorem theorem_1_1_3
     _               = 2*2*a^2*n^2 + 4*a*n*b*m + b^2*m^2 := by ring
     _               = 2*(2*a^2)*n^2 + 4*a*n*b*m + b^2*m^2 := by ring
     _               = 2*b^2*n^2 + 4*a*n*b*m + b^2*m^2 := by rw [hyp_1]
-    _               = 2*b^2*n^2 + 4*a*n*b*m + 2*a^2*m^2 := by rw [hyp_2]
-    _               = 2*( b^2*n^2 + 2*a*n*b*m + a^2*m^2 ) := by apply?
+    _               = 2*b^2*n^2 + 4*a*n*b*m + 2*a^2*m^2 := by rw [hyp_1]
+    _               = 2*( b^2*n^2 + 2*a*n*b*m + a^2*m^2 ) := by ring
+    _               = 2*( b*n + a*m )^2 := by ring
+    _               = 2*( a*m + b*n )^2 := by ring
+    _               = 2*1^2 := by rw [hyp_2]
+    _               = 2*1 := by ring
+    _               = 2 := by ring
