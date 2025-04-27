@@ -56,4 +56,8 @@ theorem theorem_1_1_2 (
 
 
   -- -----------------------------
-  theorem
+theorem theorem_1_1_3
+  (a b m n : ℤ)
+  (hyp_1 : b^2 = 2*a^2)
+  (hyp_2 : a*m + b*n = 1)
+  : (2*a*n + b*m)^2 = 2 := by
