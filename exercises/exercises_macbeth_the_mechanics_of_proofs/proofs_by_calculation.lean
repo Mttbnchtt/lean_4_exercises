@@ -74,6 +74,7 @@ theorem theorem_1_1_3
     _               = 2*1 := by ring
     _               = 2 := by ring
 
+
   -- -----------------------------
 theorem theorem_1_1_4
   (a b c d e f : ℤ)
