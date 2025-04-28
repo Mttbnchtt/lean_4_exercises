@@ -75,3 +75,9 @@ theorem theorem_1_1_3
     _               = 2 := by ring
 
   -- -----------------------------
+theorem theorem_1_1_4
+  (a b c d e f : ℤ)
+  (hyp_1 : ad = bc)
+  (hyp_2 : cf = de)
+  : d*(a*f - b* c) = 0 := by
+  calc
