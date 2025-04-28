@@ -90,3 +90,6 @@ theorem theorem_1_1_4
     _             = b*d*e - d*b*e     := by ring
     _             = b*d*e - b*d*e     := by ring
     _             = 0                 := by ring
+
+
+  -- -----------------------------
