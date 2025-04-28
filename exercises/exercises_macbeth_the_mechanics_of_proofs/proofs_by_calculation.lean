@@ -77,7 +77,15 @@ theorem theorem_1_1_3
   -- -----------------------------
 theorem theorem_1_1_4
   (a b c d e f : ℤ)
-  (hyp_1 : ad = bc)
-  (hyp_2 : cf = de)
-  : d*(a*f - b* c) = 0 := by
+  (hyp_1 : a*d = b*c)
+  (hyp_2 : c*f = d*e)
+  : d*(a*f - b*e) = 0 := by
   calc
+    d*(a*f - b*e) = d*a*f - d*b*e     := by ring
+    _             = (a*d)*f - d*b*e   := by ring
+    _             = (b*c)*f - d*b*e   := by rw [hyp_1]
+    _             = b*(c*f) - d*b*e   := by ring
+    _             = b*(d*e) - d*b*e   := by rw [hyp_2]
+    _             = b*d*e - d*b*e     := by ring
+    _             = b*d*e - b*d*e     := by ring
+    _             = 0                 := by ring
