@@ -104,6 +104,7 @@ theorem theorem_1_3_1
     _ = 6 + 5 := by decide
     _ = 11 := by decide
 
+
 -- -----------------------------
   theorem theorem_1_3_2
     (x : ℤ)
