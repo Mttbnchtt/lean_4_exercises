@@ -103,3 +103,13 @@ theorem theorem_1_3_1
     _ = 2*3 + 5 := by rw [hyp_2]
     _ = 6 + 5 := by decide
     _ = 11 := by decide
+
+-- -----------------------------
+  theorem theorem_1_3_2
+    (x : ℤ)
+    (hyp_1 : x + 4 = 2)
+    : x = -2 := by
+    calc
+      x = x + 4 - 4 := by exact Eq.symm (Int.add_sub_cancel x 4)
+      _ = 2 - 4 := by rw [hyp_1]
+      _ = -2 := by decide
