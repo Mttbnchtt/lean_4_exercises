@@ -94,4 +94,13 @@ theorem theorem_1_1_4
 
   -- -----------------------------
 
-  -- theorem
+theorem theorem_1_3_1
+  (a b : ℤ)
+  (hyp_1 : a = 2*b + 5)
+  (hyp_2 : b = 3)
+  : a = 11 := by
+  calc
+    a = 2*b + 5 := by rw [hyp_1]
+    _ = 2*3 + 5 := by rw [hyp_2]
+    _ = 6 + 5 := by decide
+    _ = 11 := by decide
