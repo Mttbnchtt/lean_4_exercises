@@ -93,7 +93,6 @@ theorem theorem_1_1_4
 
 
   -- -----------------------------
-
 theorem theorem_1_3_1
   (a b : ℤ)
   (hyp_1 : a = 2*b + 5)
