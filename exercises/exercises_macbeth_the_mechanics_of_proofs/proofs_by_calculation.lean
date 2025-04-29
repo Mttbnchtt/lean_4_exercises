@@ -114,3 +114,20 @@ theorem theorem_1_3_1
       x = x + 4 - 4 := by exact Eq.symm (Int.add_sub_cancel x 4)
       _ = 2 - 4 := by rw [hyp_1]
       _ = -2 := by decide
+
+-- -----------------------------
+theorem theorem_1_3_3
+  (a b : ℝ)
+  (hyp_1 : a - 5*b = 4)
+  (hyp_2 : b + 2 = 3)
+  : a = 9 := by
+  calc
+    a = a - 5*b + 5*b := by exact Eq.symm (sub_add_cancel a (5 * b))
+    _ = 4 + 5*b := by rw [hyp_1]
+    _ = 4 + 5*(b + 2 - 2) := by ring
+    _ = 4 + 5*(b+2) + 5*(-2) := by ring
+    _ = 4 + 5*3 + 5*(-2) := by rw [hyp_2]
+    _ = 4 + 15 + 5*(-2) := by ring
+    _ = 19 + 5*(-2) := by ring
+    _ = 19 - 10 := by ring
+    _ = 9 := by ring
