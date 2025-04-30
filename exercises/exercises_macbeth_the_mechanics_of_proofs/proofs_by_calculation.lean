@@ -133,3 +133,13 @@ theorem theorem_1_3_3
     _ = 9 := by ring
 
 -- -----------------------------
+theorem theorem_1_3_4
+  (w : ℚ)
+  (hyp_1 : 3*w + 1 = 4)
+  : (w = 1) := by
+  calc
+    w = (3*w)/3 := by ring
+    _ = (3*w + 1 - 1)/3 := by ring
+    _ = (4 - 1)/3  := by rw [hyp_1]
+    _ = 3/3 := by ring
+    _ = 1 := by ring
