@@ -17,6 +17,19 @@ import Mathlib
 --            = 16 + 4      [by ab = 1]
 --            = 20
 
+
+
+theorem theorem_1_1_0
+  (a b : ℚ)
+  (hyp_1 : a - b = 4)
+  (hyp_2 : a*b = 1)
+  : (a + b)^2 = 20 := by
+
+    suffices h2: (a + b)^2 - (a-b)^2= 20 - (a-b)^2 by sorry
+
+    have h: (a+b)^2 - (a-b)^2 = 4*a*b := by ring_nf
+
+
 theorem theorem_1_1_1
   (a b : ℚ)
   (hyp_1 : a -b = 4)
