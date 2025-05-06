@@ -156,3 +156,16 @@ theorem theorem_1_3_4
     _ = (4 - 1)/3  := by rw [hyp_1]
     _ = 3/3 := by ring
     _ = 1 := by ring
+
+-- -----------------------------
+theorem theorem_1_3_5
+  (x : ℤ)
+  (hyp_1 : 2*x + 3 = x)
+  : x = -3 := by
+  calc
+    x = x + x - x := by ring
+    _ = x + x - x + 3 - 3 := by ring
+    _ = 2*x - x + 3 - 3 := by ring
+    _ = 2*x + 3 -x -3 := by ring
+    _ = x - x - 3 := by rw [hyp_1]
+    _ = -3 := by ring
