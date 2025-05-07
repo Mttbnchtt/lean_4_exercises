@@ -25,9 +25,19 @@ theorem theorem_1_1_0
   (hyp_2 : a*b = 1)
   : (a + b)^2 = 20 := by
 
-    suffices h2: (a + b)^2 - (a-b)^2= 20 - (a-b)^2 by sorry
+    suffices h2: (a + b)^2 - (a-b)^2 = 20 - (a-b)^2 by
+      simp at h2
+      exact h2
 
     have h: (a+b)^2 - (a-b)^2 = 4*a*b := by ring_nf
+    rw [h]
+
+    have h3: 4*a*b = 4*(a*b) := by ring
+    rw [h3]
+    rw [hyp_2]
+    simp
+    rw [hyp_1]
+    ring_nf
 
 
 theorem theorem_1_1_1
