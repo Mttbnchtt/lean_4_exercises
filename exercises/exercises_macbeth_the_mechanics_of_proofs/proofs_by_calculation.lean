@@ -179,3 +179,21 @@ theorem theorem_1_3_5
     _ = 2*x + 3 -x -3 := by ring
     _ = x - x - 3 := by rw [hyp_1]
     _ = -3 := by ring
+
+
+
+theorem theorem_1_3_6
+  (x y : ℤ)
+  (hyp_1: 2*x - y = 4)
+  (hyp_2 : y - x + 1 = 2)
+  : x = 5 := by
+  calc
+    x = x + x -x := by ring
+    _ = 2*x - x := by ring
+    _ = 2*x - x + y - y := by ring
+    _ = 2*x - y + y - x := by ring
+    _ = 4 + y - x := by rw [hyp_1]
+    _ = 4 + y -x + 1 - 1 := by ring
+    _ = 4 + (y -x + 1) -1 := by ring
+    _ = 4 + 2 - 1 := by rw [hyp_2]
+    _ = 5 := by exact
