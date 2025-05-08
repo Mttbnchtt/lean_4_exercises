@@ -196,6 +196,7 @@ theorem theorem_1_3_6
     _ = 4 + (y -x + 1) -1 := by ring
     _ = 4 + 2 - 1 := by rw [hyp_2]
     _ = 5 := by norm_num
+-- https://leanprover-community.github.io/mathlib_docs/tactic/norm_num.html
 
 theorem theorem_1_3_6_v2
   (x y : ℤ)
