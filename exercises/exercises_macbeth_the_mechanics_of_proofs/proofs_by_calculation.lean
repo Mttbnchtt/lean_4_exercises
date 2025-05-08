@@ -181,7 +181,7 @@ theorem theorem_1_3_5
     _ = -3 := by ring
 
 
-
+-- -----------------------------
 theorem theorem_1_3_6
   (x y : ℤ)
   (hyp_1: 2*x - y = 4)
