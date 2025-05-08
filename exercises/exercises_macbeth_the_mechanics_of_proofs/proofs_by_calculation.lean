@@ -180,7 +180,6 @@ theorem theorem_1_3_5
     _ = x - x - 3 := by rw [hyp_1]
     _ = -3 := by ring
 
-
 -- -----------------------------
 theorem theorem_1_3_6
   (x y : ℤ)
