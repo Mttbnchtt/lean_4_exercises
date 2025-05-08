@@ -195,7 +195,7 @@ theorem theorem_1_3_6
     _ = 4 + y -x + 1 - 1 := by ring
     _ = 4 + (y -x + 1) -1 := by ring
     _ = 4 + 2 - 1 := by rw [hyp_2]
-    _ = 5 := by exact
+    _ = 5 := by norm_num
 
 theorem theorem_1_3_6_v2
   (x y : ℤ)
@@ -203,3 +203,4 @@ theorem theorem_1_3_6_v2
   (hyp_2 : y - x + 1 = 2)
   : x = 5 := by
   linarith [hyp_1, hyp_2]
+-- https://leanprover-community.github.io/mathlib_docs/tactic/linarith/frontend.html
