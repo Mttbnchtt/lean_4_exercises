@@ -239,3 +239,6 @@ theorem theorem_1_3_8
     _ = (3*4 + (5*x - 3*y)) / 8 := by rw [hyp_1]
     _ = (3*4 + 4) / 8 := by rw [hyp_2]
     _ = 2 := by ring
+
+-- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
+-- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
