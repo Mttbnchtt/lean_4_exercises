@@ -205,3 +205,20 @@ theorem theorem_1_3_6_v2
   : x = 5 := by
   linarith [hyp_1, hyp_2]
 -- https://leanprover-community.github.io/mathlib_docs/tactic/linarith/frontend.html
+
+
+theorem theorem_1_3_7
+  (u v : ℚ)
+  (hyp_1 : u + 2*v = 4)
+  (hyp_2 : u - 2*v = 6)
+  : u = 5 := by
+  calc
+    u = (2*u) / 2 := by ring
+    _ = (u + u) / 2:= by ring
+    _ = (u + u + 2*v - 2*v) / 2 := by ring
+    _ = (u + 2*v + u - 2*v) / 2 := by ring
+    _ = (4 + u - 2*v) / 2 := by rw [hyp_1]
+    _ = (4 + (u - 2*v)) / 2 := by ring
+    _ = (4 + 6) / 2 := by rw [hyp_2]
+    _ = 10 / 2 := by ring
+    _ = 5 := by ring
