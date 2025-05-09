@@ -223,6 +223,7 @@ theorem theorem_1_3_7
     _ = 10 / 2 := by ring
     _ = 5 := by ring
 
+-- -----------------------------
 theorem theorem_1_3_8
   (x y : ℝ)
   (hyp_1 : x + y = 4)
