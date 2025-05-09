@@ -206,7 +206,7 @@ theorem theorem_1_3_6_v2
   linarith [hyp_1, hyp_2]
 -- https://leanprover-community.github.io/mathlib_docs/tactic/linarith/frontend.html
 
-
+-- -----------------------------
 theorem theorem_1_3_7
   (u v : ℚ)
   (hyp_1 : u + 2*v = 4)
