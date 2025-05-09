@@ -222,3 +222,19 @@ theorem theorem_1_3_7
     _ = (4 + 6) / 2 := by rw [hyp_2]
     _ = 10 / 2 := by ring
     _ = 5 := by ring
+
+theorem theorem_1_3_8
+  (x y : ℝ)
+  (hyp_1 : x + y = 4)
+  (hyp_2 : 5*x - 3*y = 4)
+  : x = 2 := by
+  calc
+    x = (8*x) / 8 := by ring
+    _ = (3*x + 5*x) /8 := by ring
+    _ = (3*x + 5*x - 3*y + 3*y) / 8 := by ring
+    _ = (3*x + 3*y + 5*x - 3*y) / 8 := by ring
+    _ = ((3*x + 3*y) + (5*x - 3*y)) / 8 := by ring
+    _ = (3*(x + y) + (5*x - 3*y)) / 8 := by ring
+    _ = (3*4 + (5*x - 3*y)) / 8 := by rw [hyp_1]
+    _ = (3*4 + 4) / 8 := by rw [hyp_2]
+    _ = 2 := by ring
