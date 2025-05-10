@@ -240,7 +240,7 @@ theorem theorem_1_3_8
     _ = (3*4 + 4) / 8 := by rw [hyp_2]
     _ = 2 := by ring
 
-
+-- -----------------------------
 theorem theorem_1_3_9
   (a b : ℚ)
   (hyp_1 : a - 3 = 2*b)
