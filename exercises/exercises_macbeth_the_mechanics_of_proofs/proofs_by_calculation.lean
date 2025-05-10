@@ -240,5 +240,22 @@ theorem theorem_1_3_8
     _ = (3*4 + 4) / 8 := by rw [hyp_2]
     _ = 2 := by ring
 
+
+theorem theorem_1_3_9
+  (a b : ℚ)
+  (hyp_1 : a - 3 = 2*b)
+  : a^2 - a + 3 = 4*b^2 +10*b + 9 := by
+  calc
+    a^2 - a + 3 = a^2 - (a - 3) := by ring
+    _           = a^2 - 2*b := by rw [hyp_1]
+    _           = a^2 - 9 + 9 - 2*b := by ring
+    _           = (a - 3) * (a + 3) + 9 - 2*b := by ring
+    _           = 2*b * (a + 3) + 9 - 2*b := by rw [hyp_1]
+    _           = 2*b * (a - 3 + 3 + 3) + 9 - 2*b := by ring
+    _           = 2*b * (a - 3 + 6) + 9 - 2*b := by ring
+    _           = 2*b * (2*b + 6) + 9 - 2*b := by rw [hyp_1]
+    _           = 4*b^2 + 12*b + 9 - 2*b := by ring
+    _           = 4*b^2 + 10*b + 9 := by ring
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
