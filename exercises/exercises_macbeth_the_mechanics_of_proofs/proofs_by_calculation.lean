@@ -308,7 +308,17 @@ theorem theorem_1_3_11_1
       _ = 5 + 3*3 := by rw [h2]
       _ = 14 := by ring
 
-
+-- -----------------------------
+theorem theorem_1_3_11_4
+  (p q : ℚ)
+  (h1 : p - 2*q = 1)
+  (h2 : q = -1)
+  : p = -1 := by
+  calc
+    p = p - 2*q + 2*q := by ring
+    _ = 1 + 2*q := by rw [h1]
+    _ = 1 - 2 := by rw [h2]
+    _ = -1 := by ring
 
 
 
