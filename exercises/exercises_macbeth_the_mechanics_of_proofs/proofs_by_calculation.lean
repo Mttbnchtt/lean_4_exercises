@@ -275,6 +275,16 @@ theorem theorem_1_3_10
     _                         = 3 - (z^2 - 2)                                 := by ring
     _                         = 3                                             := by rw [hyp_1]
 
+-- -----------------------------
+theorem theorem_1_3_11_1
+  (x y : ℝ)
+  (hyp_1 : x = 3)
+  (hyp_2 : y = 4*x -3)
+  : y = 9 := by
+  calc
+    y = 4*x - 3 := by rw [hyp_2]
+    _ = 4*3 - 3 := by rw [hyp_1]
+    _ = 9 := by ring
 
 
 
