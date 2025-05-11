@@ -275,5 +275,17 @@ theorem theorem_1_3_10
     _                         = 3 - (z^2 - 2)                                 := by ring
     _                         = 3                                             := by rw [hyp_1]
 
+
+
+
+
+
+
+
+
+
+
+
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
