@@ -257,5 +257,23 @@ theorem theorem_1_3_9
     _           = 4*b^2 + 12*b + 9 - 2*b := by ring
     _           = 4*b^2 + 10*b + 9 := by ring
 
+-- -----------------------------
+theorem theorem_1_3_10
+  (x : ℝ)
+  (hyp_1 : z^2 - 2 = 0)
+  : z^4 - z^3 - z^2 + 2*z +1 = 3 := by
+  calc
+    z^4 - z^3 - z^2 + 2*z +1  = z^4 - 4 + 4 - z^3 - z^2 + 2*z +1              := by ring
+    _                         = (z^2 - 2) * (z + 2) + 4 - z^3 - z^2 + 2*z +1  := by ring
+    _                         = 4 - z^3 - z^2 + 2*z + 1                       := by rw [hyp_1]
+    _                         = 5 - z^3 - z^2 + 2*z                           := by ring
+    _                         = 5 - z^3 + 2*z - z^2                           := by ring
+    _                         = 5 - z * (z^2 -2) - z^2                        := by ring
+    _                         = 5 - z^2                                       := by rw [hyp_1]
+    _                         = 5 - z^2 + 2 - 2                               := by ring
+    _                         = 3 - z^2 + 2                                   := by ring
+    _                         = 3 - (z^2 - 2)                                 := by ring
+    _                         = 3                                             := by rw [hyp_1]
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
