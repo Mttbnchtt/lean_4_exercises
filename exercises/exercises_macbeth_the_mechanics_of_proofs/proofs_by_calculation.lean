@@ -286,6 +286,7 @@ theorem theorem_1_3_11_1
     _ = 4*3 - 3 := by rw [hyp_1]
     _ = 9 := by ring
 
+-- -----------------------------
   theorem theorem_1_3_11_2
     (a b : ℤ)
     (h : a - b = 0)
@@ -295,6 +296,17 @@ theorem theorem_1_3_11_1
       _ = 0 + b := by rw [h]
       _ = b := by ring
 
+-- -----------------------------
+  theorem theorem_1_3_11_3
+    (x y : ℤ)
+    (h1 : x - 3*y = 5)
+    (h2 : y = 3)
+    : x = 14 := by
+    calc
+      x = x - 3*y + 3*y := by ring
+      _ = 5 + 3*y := by rw [h1]
+      _ = 5 + 3*3 := by rw [h2]
+      _ = 14 := by ring
 
 
 
