@@ -336,7 +336,7 @@ theorem theorem_1_3_11_5
     _ = 3 - 6 + 2 := by ring
     _ = -1 := by ring
 
-
+-- -----------------------------
 theorem theorem_1_3_11_6
   (p q : ℤ)
   (h1 : p + 4*q = 1)
