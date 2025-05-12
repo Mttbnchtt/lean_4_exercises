@@ -350,6 +350,7 @@ theorem theorem_1_3_11_6
     _ = 1 - 4*2 - 4 := by rw [h2]
     _ = -11 := by ring
 
+-- -----------------------------
 theorem theorem_1_3_11_7
   (a b c : ℝ)
   (h1 : a + 2*b + 3*c = 7)
