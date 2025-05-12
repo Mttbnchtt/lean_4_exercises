@@ -378,6 +378,17 @@ theorem theorem_1_3_11_7
   _ = 2 := by ring
 
 
+theorem theorem_1_3_11_8
+  (u v : ℚ)
+  (h1 : 4*u + v = 3)
+  (h2 : v = 2)
+  : u = 1/4 := by
+  calc
+    u = 4*u / 4 := by ring
+    _ = (4*u + v - v) / 4 := by ring
+    _ = (3 - v) / 4 := by rw [h1]
+    _ = (3 - 2) / 4 := by rw [h2]
+    _ = 1 / 4 := by ring
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
