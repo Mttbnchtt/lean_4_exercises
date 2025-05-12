@@ -350,7 +350,31 @@ theorem theorem_1_3_11_6
     _ = 1 - 4*2 - 4 := by rw [h2]
     _ = -11 := by ring
 
-
+theorem theorem_1_3_11_7
+  (a b c : ℝ)
+  (h1 : a + 2*b + 3*c = 7)
+  (h2 : b + 2*c = 3)
+  (h3 : c = 1)
+  : a = 2 := by
+  calc
+  a = a + 2*b - 2*b := by ring
+  _ = a + 2*b - 2*b + 3*c - 3*c := by ring
+  _ = a + 2*b + 3*c - 2*b - 3*c := by ring
+  _ = 7 - 2*b - 3*c := by rw [h1]
+  _ = 7 - 2*b - 2*c - c := by ring
+  _ = 7 - b - b - 2*c - c := by ring
+  _ = 7 - b - (b + 2*c) - c := by ring
+  _ = 7 -b - 3 - c := by rw [h2]
+  _ = 7 - 3 - b - c := by ring
+  _ = 4 -b - c := by ring
+  _ = 4 - b - 1 := by rw [ h3]
+  _ = 3 - b := by ring
+  _ = 3 - b - 2*c + 2*c := by ring
+  _ = 3 - (b + 2*c) + 2*c := by ring
+  _ = 3 - 3 + 2*c := by rw [h2]
+  _ = 2*c := by ring
+  _ = 2*1 := by rw [h3]
+  _ = 2 := by ring
 
 
 
