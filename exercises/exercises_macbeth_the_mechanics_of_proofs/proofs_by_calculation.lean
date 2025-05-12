@@ -337,6 +337,19 @@ theorem theorem_1_3_11_5
     _ = -1 := by ring
 
 
+theorem theorem_1_3_11_6
+  (p q : ℤ)
+  (h1 : p + 4*q = 1)
+  (h2 : q - 1 = 2)
+  : p = -11 := by
+  calc
+    p = p + 4*q - 4*q := by ring
+    _ = 1 - 4*q := by rw [h1]
+    _ = 1 - 4*q + 4 - 4 := by ring
+    _ = 1 - 4*(q - 1) - 4 := by ring
+    _ = 1 - 4*2 - 4 := by rw [h2]
+    _ = -11 := by ring
+
 
 
 
