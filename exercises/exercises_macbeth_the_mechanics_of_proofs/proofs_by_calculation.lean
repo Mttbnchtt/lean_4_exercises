@@ -321,6 +321,20 @@ theorem theorem_1_3_11_4
     _ = -1 := by ring
 
 
+theorem theorem_1_3_11_5
+  (x y : ℚ)
+  (h1 : y + 1 = 3)
+  (h2 : x + 2*y = 3)
+  : x = -1 := by
+  calc
+    x = x + 2*y - 2*y := by ring
+    _ = (x + 2*y) - 2*y := by ring
+    _ = 3 - 2*y := by rw [h1]
+    _ = 3 - 2*y - 2 + 2 := by ring
+    _ = 3 - 2*(y + 1) + 2 := by ring
+    _ = 3 - 2*3 + 2 := by rw [h2]
+    _ = 3 - 6 + 2 := by ring
+    _ = -1 := by ring
 
 
 
