@@ -377,7 +377,7 @@ theorem theorem_1_3_11_7
   _ = 2*1 := by rw [h3]
   _ = 2 := by ring
 
-
+-- -----------------------------
 theorem theorem_1_3_11_8
   (u v : ℚ)
   (h1 : 4*u + v = 3)
