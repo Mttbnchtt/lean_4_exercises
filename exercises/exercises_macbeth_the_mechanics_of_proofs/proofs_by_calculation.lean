@@ -441,7 +441,24 @@ theorem theorem_1_3_11_11
     _ = 4 - 1 := by rw [h2]
     _ = 3 := by ring
 
-
+-- -----------------------------
+theorem theorem_1_3_11_12
+  (a b : ℝ)
+  (h1 : a + 2*b = 4)
+  (h2 : a - b = 1)
+  : a = 2 := by
+  calc
+    a = ( 3*a ) / 3 := by ring
+    _ = ( 3*a + 2*b - 2*b ) / 3 := by ring
+    _ = ( 2*a + a + 2*b - 2*b ) / 3 := by ring
+    _ = ( 2*a + ( a + 2*b ) - 2*b ) / 3 := by ring
+    _ = ( 2*a + 4 - 2*b ) / 3 := by rw [h1]
+    _ = ( 2*a - 2*b + 4 ) / 3 := by ring
+    _ = ( 2* ( a - b ) + 4 ) / 3 := by ring
+    _ = ( 2* 1 + 4 ) / 3 := by rw [h2]
+    _ = ( 2 + 4 ) / 3 := by ring
+    _ = 6 / 3 := by ring
+    _ = 2 := by ring
 
 
 
