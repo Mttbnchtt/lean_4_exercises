@@ -406,6 +406,23 @@ theorem theorem_1_3_11_9
   theorem theorem_1_3_11_10
     (p : ℝ)
     (h1 : 5*p - 3 = 3*p + 1)
+    : p = 2 := by
+    calc
+      p = ( 2*p ) / 2 := by ring
+      _ = ( 2*p - 3 + 3 ) / 2 := by ring
+      _ = ( 2*p - 3 + 3 + 5*p - 5*p ) / 2 := by ring
+      _ = ( 2*p + 5*p - 3 + 3 - 5*p ) / 2 := by ring
+      _ = ( 2*p + ( 5*p - 3 ) + 3 - 5*p ) / 2 := by ring
+      _ = ( 2*p + ( 3*p + 1 ) + 3 - 5*p ) / 2 := by rw [h1]
+      _ = ( 2*p + 3*p + 1 + 3 - 5*p ) / 2 := by ring
+      _ = ( 5*p + 1 + 3 - 5*p ) / 2 := by ring
+      _ = ( 1 + 3 ) / 2 := by ring
+      _ = 4 / 2 := by ring
+      _ = 2 := by ring
+
+  theorem theorem_1_3_11_10_v2
+    (p : ℝ)
+    (h1 : 5*p - 3 = 3*p + 1)
     : p = 2 := by linarith [h1]
 
 
