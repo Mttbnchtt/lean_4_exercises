@@ -391,7 +391,16 @@ theorem theorem_1_3_11_8
     _ = 1 / 4 := by ring
 
 
-
+theorem theorem_1_3_11_9
+  (c : ℚ)
+  (h1 : 4*c + 1 = 3*c -2)
+  : c = -3 := by
+  calc
+    c = c + 1 - 1 := by ring
+    _ = 4*c + 1 - 1 - 3*c := by ring
+    _ = 3*c - 2 - 1 - 3*c := by rw [h1]
+    _ = - 2 - 1 := by ring
+    _ = - 3 := by ring
 
 
 
