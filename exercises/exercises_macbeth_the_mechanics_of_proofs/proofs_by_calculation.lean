@@ -390,5 +390,14 @@ theorem theorem_1_3_11_8
     _ = (3 - 2) / 4 := by rw [h2]
     _ = 1 / 4 := by ring
 
+
+
+
+
+
+
+
+
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
