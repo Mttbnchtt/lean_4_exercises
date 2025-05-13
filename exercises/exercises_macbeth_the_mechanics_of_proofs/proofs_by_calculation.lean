@@ -402,9 +402,11 @@ theorem theorem_1_3_11_9
     _ = - 2 - 1 := by ring
     _ = - 3 := by ring
 
-
-
-
+-- -----------------------------
+  theorem theorem_1_3_11_10
+    (p : ℝ)
+    (h1 : 5*p - 3 = 3*p + 1)
+    : p = 2 := by linarith [h1]
 
 
 
