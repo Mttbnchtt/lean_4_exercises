@@ -425,7 +425,21 @@ theorem theorem_1_3_11_9
     (h1 : 5*p - 3 = 3*p + 1)
     : p = 2 := by linarith [h1]
 
-
+-- -----------------------------
+theorem theorem_1_3_11_11
+  (x y : ℤ)
+  (h1 : 2*x + y = 4)
+  (h2 : x + y = 1)
+  : x = 3 := by
+  calc
+    x = x + x - x := by ring
+    _ = x + x - x + y - y := by ring
+    _ = 2*x - x + y - y := by ring
+    _ = 2*x + y - x - y := by ring
+    _ = 4 - x - y := by rw [h1]
+    _ = 4 - (x + y) := by ring
+    _ = 4 - 1 := by rw [h2]
+    _ = 3 := by ring
 
 
 
