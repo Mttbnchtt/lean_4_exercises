@@ -461,7 +461,25 @@ theorem theorem_1_3_11_12
     _ = 2 := by ring
 
 
-
+theorem theorem_1_3_11_13
+  (u v : ℝ)
+  (h1: u + 1 = v)
+  : u^2 + 3*u + 1 = v^2 + v - 1 := by
+  calc
+    u^2 + 3*u + 1 = u^2 + 3*u + 1 + 2 - 2 := by ring
+    _             = u^2 + 3*u + 3 - 2 := by ring
+    _             = u^2 + 3* ( u + 1 ) - 2 := by ring
+    _             = u^2 + 3*v - 2 := by rw [h1]
+    _             = u^2 + 3*v - 1 - 1 := by ring
+    _             = u^2 - 1 + 3*v - 1 := by ring
+    _             = (u - 1)*(u + 1) + 3*v - 1 := by ring
+    _             = (u - 1)*v + 3*v - 1 := by rw [h1]
+    _             = u*v - v + 3*v - 1 := by ring
+    _             = (u + 1 - 1)*v + 2*v - 1 := by ring
+    _             = (v - 1)*v + 2*v - 1 := by rw [h1]
+    _             = v*v - v + 2*v - 1 := by ring
+    _             = v*v + v - 1 := by ring
+    _             = v^2 + v - 1 := by ring
 
 
 
