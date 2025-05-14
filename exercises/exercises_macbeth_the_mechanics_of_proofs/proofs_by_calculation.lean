@@ -460,7 +460,7 @@ theorem theorem_1_3_11_12
     _ = 6 / 3 := by ring
     _ = 2 := by ring
 
-
+-- -----------------------------
 theorem theorem_1_3_11_13
   (u v : ℝ)
   (h1: u + 1 = v)
