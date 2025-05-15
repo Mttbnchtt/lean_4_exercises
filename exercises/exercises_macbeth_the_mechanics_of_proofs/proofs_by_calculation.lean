@@ -481,9 +481,7 @@ theorem theorem_1_3_11_13
     _             = v*v + v - 1 := by ring
     _             = v^2 + v - 1 := by ring
 
-
-
-
+-- -----------------------------
 theorem theorem_1_3_11_14
   (t : ℚ)
   (h1: t^2 - 4 = 0)
