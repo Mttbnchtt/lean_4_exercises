@@ -482,7 +482,34 @@ theorem theorem_1_3_11_13
     _             = v^2 + v - 1 := by ring
 
 
+import Mathlib
 
+theorem theorem_1_3_11_14
+  (t : ℚ)
+  (h1: t^2 - 4 = 0)
+  : t^4 + 3*t^3 - 3*t^2 - 2*t - 2 = 10*t + 2 := by
+  calc
+    t^4 + 3*t^3 - 3*t^2 - 2*t - 2 = t^2 * (t^2 + 3*t - 3) - 2*t - 2 := by ring
+    _                             = t^2 * (t^2 + 3*t - 3 -1 + 1) - 2*t - 2 := by ring
+    _                             = t^2 * (t^2 + 3*t - 4 + 1) - 2*t - 2 := by ring
+    _                             = t^2 * (t^2 - 4 + 3*t + 1) - 2*t - 2 := by ring
+    _                             = t^2 * ((t^2 - 4) + 3*t + 1) - 2*t - 2 := by ring
+    _                             = t^2 * (0 + 3*t + 1) - 2*t - 2 := by rw [h1]
+    _                             = t^2 * (3*t + 1) - 2*t - 2 := by ring
+    _                             = 3*t^3 + t^2 - 2*t - 2 := by ring
+    _                             = 3*t^3 + t^2 - 2*t - 2 - 2 + 2 := by ring
+    _                             = 3*t^3 + t^2 - 2*t - 4 + 2 := by ring
+    _                             = 3*t^3 + t^2 - 4 - 2*t + 2 := by ring
+    _                             = 3*t^3 + (t^2 - 4) - 2*t + 2 := by ring
+    _                             = 3*t^3 + 0 - 2*t + 2 := by rw [h1]
+    _                             = 3*t^3 - 2*t + 2 := by ring
+    _                             = t * (3*t^2 - 2) + 2 := by ring
+    _                             = t * (3*t^2 - 2 - 10 + 10) + 2 := by ring
+    _                             = t * (3*t^2 - 12 + 10) + 2 := by ring
+    _                             = t * (3* (t^2 - 4) + 10) + 2 := by ring
+    _                             = t * (3*0 + 10) + 2 := by rw [h1]
+    _                             = t * 10 + 2 := by ring
+    _                             = 10*t + 2 := by ring
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
