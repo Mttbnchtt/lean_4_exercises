@@ -482,7 +482,7 @@ theorem theorem_1_3_11_13
     _             = v^2 + v - 1 := by ring
 
 
-import Mathlib
+
 
 theorem theorem_1_3_11_14
   (t : ℚ)
