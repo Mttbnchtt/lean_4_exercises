@@ -509,7 +509,28 @@ theorem theorem_1_3_11_14
     _                             = t * 10 + 2 := by ring
     _                             = 10*t + 2 := by ring
 
-
+-- -----------------------------
+theorem theorem_1_3_133_15
+  (x y : ℝ)
+  (h1 : x + 3 = 5)
+  (h2 : 2*x - y*x = 0)
+  : y = 2 := by
+  calc
+    y = (y*x) / x := by ring
+    _ = (y*x +2*x - 2*x) / x := by ring
+    _ = -(-y*x - 2*x + 2*x) / x := by ring
+    _ = -(2*x -y*x - 2*x) / x := by ring
+    _ = -(- 2*x) / x := by rw [h2]
+    _ = ( 2*x) / x := by ring
+    _ = ( 2*x + 6 - 6) / x := by ring
+    _ = 2*( x + 3 - 3) / x := by ring
+    _ = 2*( 5 - 3) / x := by rw [h1]
+    _ = 2*( 2 ) / x := by ring
+    _ = 4 / x := by ring
+    _ = 4 / (x + 3 - 3) := by ring
+    _ = 4 / (5 - 3) := by rw [h1]
+    _ = 4 / 2 := by ring
+    _ = 2 := by ring
 
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
