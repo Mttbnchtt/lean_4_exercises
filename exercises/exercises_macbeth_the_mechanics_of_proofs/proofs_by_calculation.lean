@@ -509,5 +509,8 @@ theorem theorem_1_3_11_14
     _                             = t * 10 + 2 := by ring
     _                             = 10*t + 2 := by ring
 
+
+
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
