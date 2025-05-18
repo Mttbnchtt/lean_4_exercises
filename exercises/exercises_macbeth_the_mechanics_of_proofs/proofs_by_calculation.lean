@@ -532,6 +532,26 @@ theorem theorem_1_3_133_15
     _ = 4 / 2 := by ring
     _ = 2 := by ring
 
+-- -----------------------------
+theorem theorem_1_3_11_16
+  (p q r : ℚ)
+  (h1 : p + q + r = 0)
+  (h2 : p*q + p*r + q*r = 2)
+  : p^2 + q^2 + r^2 = -4 := by
+  calc
+    p^2 + q^2 + r^2 = p^2 + q^2 + r^2 + 2*p*q - 2*p*q := by ring
+    _               = p^2 + 2*p*q + q^2 + r^2 - 2*p*q := by ring
+    _               = (p + q)^2 + r^2 - 2*p*q := by ring
+    _               = (p + q)^2 + r^2 - 2*p*q + 2*(p + q)*r - 2*(p + q)*r := by ring
+    _               = (p + q)^2 + 2*(p + q)*r + r^2 - 2*p*q - 2*(p + q)*r := by ring
+    _               = (p + q + r)^2 - 2*p*q - 2*(p + q)*r := by ring
+    _               = (0)^2 - 2*p*q - 2*(p + q)*r := by rw [h1]
+    _               = 0 - 2*p*q - 2*(p + q)*r := by ring
+    _               = - 2*p*q - 2*(p + q)*r := by ring
+    _               = - 2*p*q - 2*p*r - 2*q*r := by ring
+    _               = -2*( p*q + p*r + q*r ) := by ring
+    _               = -2*2 := by rw [h2]
+    _               = -4 := by ring
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
