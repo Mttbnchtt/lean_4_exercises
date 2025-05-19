@@ -553,5 +553,23 @@ theorem theorem_1_3_11_16
     _               = -2*2 := by rw [h2]
     _               = -4 := by ring
 
+
+-- -----------------------------
+theorem theorem_1_4_1
+  (x y : ℤ)
+  (h1 : x + 3 ≤ 2)
+  (h2 : y + 2*x ≥ 3)
+  : y > 3 := by
+  calc
+    y = y + 2*x - 2*x := by ring
+    _ ≥ 3 - 2*x := by rel [h2]
+    _ = 3 - 2*x + 6 - 6 := by ring
+    _ = 9 - 2*x - 6 := by ring
+    _ = 9 - 2*(x + 3) := by ring
+    _ ≥ 9 - 2*(2) := by rel [h1]
+    _ = 9 - 4 := by ring
+    _ = 5 := by ring
+    _ > 3 := by linarith
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
