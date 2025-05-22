@@ -571,5 +571,22 @@ theorem theorem_1_4_1
     _ = 5 := by ring
     _ > 3 := by linarith
 
+-- -----------------------------
+
+  theorem theorem_1_4_2
+  (s r : ℚ)
+  (h1 : s + 3 ≥ r)
+  (h2 : s + r ≤ 3)
+  : r ≤ 3 := by
+  calc
+    r = (2*r) / 2 := by ring
+    _ = (r + r) / 2 := by ring
+    _ ≤ (r + (s + 3)) / 2 := by rel [h1]
+    _ = (r + s + 3) / 2 := by ring
+    _ = (s + r + 3) / 2 := by ring
+    _ ≤ (3 + 3) / 2 := by rel [h2]
+    _ = 6 / 2 := by ring
+    _ = 3 := by ring
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
