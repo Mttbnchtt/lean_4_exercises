@@ -588,5 +588,21 @@ theorem theorem_1_4_1
     _ = 6 / 2 := by ring
     _ = 3 := by ring
 
+
+  theorem theorem_1_4_3
+  (x y : ℝ)
+  (h1 : y ≤ x + 5)
+  (h2 : x ≤ -2)
+  : x + y < 2 := by
+  calc
+    x + y ≤ x + (x + 5) := by rel [h1]
+    _     = x + x + 5 := by ring
+    _     = 2*x + 5 := by ring
+    _     ≤ 2*(-2) + 5 := by rel [h2]
+    _     = 5 + 2*(-2) := by ring
+    _     = 5 - 4 := by ring
+    _     = 1 := by ring
+    _     < 2 := by linarith
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
