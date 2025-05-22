@@ -587,7 +587,7 @@ theorem theorem_1_4_1
     _ = 6 / 2 := by ring
     _ = 3 := by ring
 
-
+-- -----------------------------
   theorem theorem_1_4_3
   (x y : ℝ)
   (h1 : y ≤ x + 5)
