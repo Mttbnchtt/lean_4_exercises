@@ -572,7 +572,6 @@ theorem theorem_1_4_1
     _ > 3 := by linarith
 
 -- -----------------------------
-
   theorem theorem_1_4_2
   (s r : ℚ)
   (h1 : s + 3 ≥ r)
