@@ -603,5 +603,31 @@ theorem theorem_1_4_1
     _     = 1 := by ring
     _     < 2 := by linarith
 
+
+  import Mathlib
+
+theorem theorem_1_4_4
+ (u v x y A B : ℝ)
+ (h1 : 0 < A)
+ (h2 : A ≤ 1)
+ (h3 : 1 ≤ B)
+ (h4 : x ≤ B)
+ (h5 : y ≤ B)
+ (h6 : 0 ≤ u)
+ (h7 : u < A)
+ (h8 : 0 ≤ v)
+ (h9 : v < A)
+ : u*y + v*x + u*v < 3*A*B := by
+ calc
+  u*y + v*x + u*v ≤ u*B + v*x + u*v := by rel [h3, h5]
+  _               < A*B + v*x + u*v := by rel [h1, h6, h7]
+  _               ≤ A*B + v*B + u*v := by rel [h3, h4]
+  _               ≤ A*B + A*B + u*v := by rel [h1, h8, h9]
+  _               ≤ A*B + A*B + u*A := by rel [h1, h8, h9]
+  _               ≤ A*B + A*B + A*A := by rel [h1, h6, h7]
+  _               ≤ A*B + A*B + A*1 := by rel [h1, h2]
+  _               ≤ A*B + A*B + A*B := by rel [h3]
+  _               = 3*A*B := by ring
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
