@@ -628,7 +628,18 @@ theorem theorem_1_4_4
   _               = 3*A*B := by ring
 
 
-
+theorem theorem_1_4_5
+  (t : ℝ)
+  (h1 : t ≥ 10)
+  : t^2 - 3*t + 17 ≥ 5 := by
+  calc
+    t^2 - 3*t + 17 ≥ t*(t - 3) + 17 := by linarith
+    _              ≥ t*(10 - 3) + 17 := by rel [h1]
+    _              ≥ t*7 + 17 := by linarith
+    _              ≥ 10*7 + 17 := by rel [h1]
+    _              ≥ 70 + 17 := by linarith
+    _              ≥ 87 := by linarith
+    _              ≥ 5 := by linarith
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
