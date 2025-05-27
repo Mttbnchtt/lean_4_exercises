@@ -628,6 +628,7 @@ theorem theorem_1_4_4
   _               = 3*A*B := by ring
 
 
+-- -----------------------------
 theorem theorem_1_4_5
   (t : ℝ)
   (h1 : t ≥ 10)
