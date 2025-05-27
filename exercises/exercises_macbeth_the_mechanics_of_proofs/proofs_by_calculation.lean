@@ -603,9 +603,7 @@ theorem theorem_1_4_1
     _     = 1 := by ring
     _     < 2 := by linarith
 
-
-  import Mathlib
-
+-- -----------------------------
 theorem theorem_1_4_4
  (u v x y A B : ℝ)
  (h1 : 0 < A)
@@ -628,6 +626,9 @@ theorem theorem_1_4_4
   _               ≤ A*B + A*B + A*1 := by rel [h1, h2]
   _               ≤ A*B + A*B + A*B := by rel [h3]
   _               = 3*A*B := by ring
+
+
+
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
