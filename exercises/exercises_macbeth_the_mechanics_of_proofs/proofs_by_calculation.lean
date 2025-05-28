@@ -65,8 +65,8 @@ theorem theorem_1_1_1
 
 
 -- -----------------------------
-theorem theorem_1_1_2 (
-  r s : ℝ)
+theorem theorem_1_1_2
+  (r s : ℝ)
   (hyp_1 : r + 2*s = -1)
   (hyp_2: s = 3)
   : r = -7 := by
