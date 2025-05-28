@@ -642,5 +642,21 @@ theorem theorem_1_4_5
     _              ≥ 87 := by linarith
     _              ≥ 5 := by linarith
 
+
+  theorem theorem_1_4_6
+  (n : ℤ)
+  (h1 : n ≥ 5)
+  : n^2 > 2*n + 11 := by
+  calc
+    n^2 = n*n := by linarith
+    _   ≥ 5*n := by rel [h1]
+    _   = 2*n + 3*n := by linarith
+    _   = 2*n + 2*n + n := by linarith
+    _   ≥ 2*n + 2*n + 5 := by rel [h1]
+    _   > 2*n + 2*n + 1 := by linarith
+    _   ≥ 2*n + 2*5 + 1 := by rel [h1]
+    _   ≥ 2*n + 10 + 1 := by linarith
+    _   = 2*n + 11 := by linarith
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
