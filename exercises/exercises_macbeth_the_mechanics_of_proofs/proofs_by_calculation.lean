@@ -668,5 +668,20 @@ theorem theorem_1_4_7
     n ≤ m^2 + n := by nlinarith
     _ ≤ 2 := by rel [h1]
 
+-- -----------------------------
+theorem theorem_1_4_8
+  (x y :ℝ)
+  (h1 : x^2 + y^2 ≤ 1)
+  : (x + y)^2 < 3 := by
+  calc
+    (x + y)^2 ≤ (x + y)^2 + (x - y)^2 := by nlinarith
+    _         = x^2 + 2*x*y + y^2 + x^2 - 2*x*y + y^2 := by linarith
+    _         = x^2 + y^2 + x^2 + y^2 := by linarith
+    _         ≤ 1 + x^2 + y^2 := by linarith
+    _         ≤ 1 + 1 := by linarith
+    _         ≤ 2 := by linarith
+    _         < 3 := by linarith
+
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
