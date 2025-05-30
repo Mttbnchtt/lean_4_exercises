@@ -659,5 +659,14 @@ theorem theorem_1_4_5
     _   ≥ 2*n + 10 + 1 := by linarith
     _   = 2*n + 11 := by linarith
 
+-- -----------------------------
+theorem theorem_1_4_7
+  (m n : ℤ)
+  (h1 : m^2 + n ≤ 2)
+  : n ≤ 2 := by
+  calc
+    n ≤ m^2 + n := by nlinarith
+    _ ≤ 2 := by rel [h1]
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
