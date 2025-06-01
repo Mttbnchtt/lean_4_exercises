@@ -683,5 +683,33 @@ theorem theorem_1_4_8
     _         < 3 := by linarith
 
 
+import Mathlib
+
+theorem theorem_1_4_9
+  (a b : ℚ)
+  (h1 : a ≥ 0)
+  (h2 : b ≥ 0)
+  (h3 : a + b ≤ 8)
+  : 3*a*b + a ≤ 7*b + 72 := by
+  calc
+    3*a*b + a ≤ 3*a*b + a + 2*b^2 := by nlinarith [h2]
+    _         ≤ 3*a*b + a + 2*b^2 + a^2 := by nlinarith [h2]
+    _         = 3*a*b + 2*b^2 + a^2 + a := by ring
+    _         = 2*a*b + a*b + 2*b^2 + a^2 + a := by ring
+    _         = 2*a*b + 2*b^2 + a*b + a^2 + a := by ring
+    _         = 2*b*(a + b) + a*b + a^2 + a := by ring
+    _         = 2*b*(a + b) + a*(b + a) + a := by ring
+    _         = 2*b*(a + b) + a*(a + b) + a := by ring
+    _         ≤ 2*b*8 + a*(a + b) + a := by rel [ h3]
+    _         ≤ 2*b*8 + a*8 + a := by rel [ h3]
+    _         = 16*b + a*8 + a := by ring
+    _         = 16*b + a*9 := by ring
+    _         = 16*b + 9*a := by ring
+    _         = 7*b + 9*b + 9*a := by ring
+    _         = 7*b + 9*(b + a) := by ring
+    _         = 7*b + 9*(a + b) := by ring
+    _         ≤ 7*b + 9*8 := by rel [h3]
+    _         = 7*b + 72 := by ring
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
