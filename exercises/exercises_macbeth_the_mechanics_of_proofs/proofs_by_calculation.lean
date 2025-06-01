@@ -682,9 +682,7 @@ theorem theorem_1_4_8
     _         ≤ 2 := by linarith
     _         < 3 := by linarith
 
-
-import Mathlib
-
+-- -----------------------------
 theorem theorem_1_4_9
   (a b : ℚ)
   (h1 : a ≥ 0)
