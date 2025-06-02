@@ -709,5 +709,16 @@ theorem theorem_1_4_9
     _         ≤ 7*b + 9*8 := by rel [h3]
     _         = 7*b + 72 := by ring
 
+
+import Mathlib
+
+theorem theorem_1_4_10
+  (a b c : ℝ)
+  : a^2 * (a^6 + 8*b^3*c^3) ≤ (a^4 + b^4 + c^4)^2 := by
+  calc
+    a^2 * (a^6 + 8*b^3*c^3) ≤ 2 * (a ^ 2 * (b ^ 2 - c ^ 2)) ^ 2 + (b ^ 4 - c ^ 4) ^ 2
+                              + 4 * (a ^ 2 * b * c - b ^ 2 * c ^ 2) ^ 2
+                              + a ^ 2 * (a ^ 6 + 8 * b ^ 3 * c ^ 3) := by nlinarith
+                            = (a^4 + b^4 + c^4)^2 := by ring
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
