@@ -731,5 +731,26 @@ theorem theorem_1_4_11_1
     _ ≥ 2*1 - 3 := by rel [h2]
     _ = -1 := by linarith
 
+-- -----------------------------
+theorem theorem_1_4_11_2
+  (a b : ℚ)
+  (h1 : 3 ≤ a)
+  (h2 : a + 2*b ≥ 4)
+  : a + b ≥ 3 := by linarith [h1, h2]
+
+theorem theorem_1_4_11_2_v2
+  (a b : ℚ)
+  (h1 : 3 ≤ a)
+  (h2 : a + 2*b ≥ 4)
+  : a + b ≥ 3 := by
+  calc
+    a + b = 2*(a+b) / 2 := by ring
+    _     = (a + a + 2*b) / 2 := by ring
+    _     = (a + (a + 2*b)) / 2 := by ring
+    _     ≥ (a + 4) / 2 := by rel [h2]
+    _     ≥ (3 + 4) / 2 := by rel [h1]
+    _     = 7 / 2 := by linarith
+    _     ≥ 3 := by linarith
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
