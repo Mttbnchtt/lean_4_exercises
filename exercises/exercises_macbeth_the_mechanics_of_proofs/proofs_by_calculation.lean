@@ -720,7 +720,7 @@ theorem theorem_1_4_10
                             = (a^4 + b^4 + c^4)^2 := by ring
 
 -- -----------------------------
-theorem theorem_1_4_1
+theorem theorem_1_4_11_1
   (x y :ℤ)
   (h1 : x + 3 ≥ 2*y)
   (h2 : 1 ≤ y)
