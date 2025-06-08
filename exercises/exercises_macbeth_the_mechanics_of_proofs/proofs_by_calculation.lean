@@ -718,5 +718,18 @@ theorem theorem_1_4_10
                               + 4 * (a ^ 2 * b * c - b ^ 2 * c ^ 2) ^ 2
                               + a ^ 2 * (a ^ 6 + 8 * b ^ 3 * c ^ 3) := by nlinarith
                             = (a^4 + b^4 + c^4)^2 := by ring
+
+-- -----------------------------
+theorem theorem_1_4_1
+  (x y :ℤ)
+  (h1 : x + 3 ≥ 2*y)
+  (h2 : 1 ≤ y)
+  : x ≥ - 1 := by
+  calc
+    x = x + 3 - 3 := by ring
+    _ ≥ 2*y - 3 := by rel [h1]
+    _ ≥ 2*1 - 3 := by rel [h2]
+    _ = -1 := by linarith
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
