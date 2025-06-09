@@ -752,8 +752,7 @@ theorem theorem_1_4_11_2_v2
     _     = 7 / 2 := by linarith
     _     ≥ 3 := by linarith
 
-
-
+-- -----------------------------
 theorem theorem_1_4_11_3
   (x : ℤ)
   (h : x ≥ 9)
