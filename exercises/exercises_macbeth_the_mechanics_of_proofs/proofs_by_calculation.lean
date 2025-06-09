@@ -752,5 +752,16 @@ theorem theorem_1_4_11_2_v2
     _     = 7 / 2 := by linarith
     _     ≥ 3 := by linarith
 
+
+
+theorem theorem_1_4_11_3
+  (x : ℤ)
+  (h : x ≥ 9)
+  : x^3 - 8*x^2 + 2*x ≥ 3 := by
+  calc
+    x^3 - 8*x^2 + 2*x ≥ 9^3 - 8*9^2 + 2*9 := by nlinarith [h]
+    _                 = 99 := by linarith
+    _                 ≥ 3 := by linarith
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
