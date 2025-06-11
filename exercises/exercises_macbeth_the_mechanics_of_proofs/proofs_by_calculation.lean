@@ -762,5 +762,16 @@ theorem theorem_1_4_11_3
     _                 = 99 := by linarith
     _                 ≥ 3 := by linarith
 
+
+theorem theorem_1_4_11_5
+  (n : ℤ)
+  (h : n ≥ 5)
+  : n^2 - 2*n + 3 > 14 := by
+  calc
+    n^2 - 2*n + 3 ≥ 5^2 - 2*5 + 3 := by nlinarith [h]
+    _             = 18 := by linarith
+    _             > 14 := by nlinarith
+
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
