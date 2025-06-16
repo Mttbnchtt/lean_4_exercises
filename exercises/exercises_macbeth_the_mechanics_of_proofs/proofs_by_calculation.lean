@@ -772,6 +772,14 @@ theorem theorem_1_4_11_5
     _             = 18 := by linarith
     _             > 14 := by nlinarith
 
+-- -----------------------------
+theorem theorem_1_4_11_6
+ (x : ℚ)
+ : x^2 - 2*x ≥ -1 := by
+ calc
+  x^2 - 2*x = x^2 - 2*x + 1 - 1 := by ring
+  _         = (x - 1)^2 - 1 := by ring
+  _         ≥ -1 := by nlinarith
 
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
