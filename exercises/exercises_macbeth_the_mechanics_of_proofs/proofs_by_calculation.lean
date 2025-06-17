@@ -781,5 +781,15 @@ theorem theorem_1_4_11_6
   _         = (x - 1)^2 - 1 := by ring
   _         ≥ -1 := by nlinarith
 
+
+theorem theorem_1_4_11_7
+  (a b : ℝ)
+  : a^2 + b^2 ≥ 2*a*b := by
+  calc
+    a^2 + b^2 = a^2 + b^2 - 2*a*b + 2*a*b := by ring
+    _         = (a - b)^2 + 2*a*b := by ring
+    _         ≥ 2*a*b := by nlinarith
+
+
 -- •	Option + Shift + DownArrow (⌥⇧↓) to copy the line below
 -- •	Option + Shift + UpArrow (⌥⇧↑) to copy the line above  ￼
