@@ -12,8 +12,7 @@ theorem theorem_2_1
        _ = 4 + 5*1 := by rw [h3]
        _ = 9 := by linarith
 
-
-
+-- -----------------------------
 theorem theorem_2_1_2
   (m n :ℤ)
   (h1 : m + 3 ≤ 2*n - 1)
