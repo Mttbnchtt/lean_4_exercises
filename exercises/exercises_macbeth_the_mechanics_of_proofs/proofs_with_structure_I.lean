@@ -27,6 +27,7 @@ theorem theorem_2_1_2
     _ ≤ 2*5 - 4 := by rel [h2]
     _ = 6 := by linarith
 
+-- -----------------------------
 theorem theorem_2_1_3
   (r s :ℚ)
   (h1 : s + 3 ≥ r)
