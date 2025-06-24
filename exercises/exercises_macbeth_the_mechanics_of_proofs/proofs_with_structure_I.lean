@@ -26,3 +26,15 @@ theorem theorem_2_1_2
     m ≤ 2*n - 4 := by rel [h3]
     _ ≤ 2*5 - 4 := by rel [h2]
     _ = 6 := by linarith
+
+theorem theorem_2_1_3
+  (r s :ℚ)
+  (h1 : s + 3 ≥ r)
+  (h2 : s + r ≤ 3)
+  : r ≤ 3 := by
+  have h3 : r ≤ s + 3 := by nlinarith [h1]
+  have h4 : r ≤ 3 - s := by linarith [h2]
+  have h5 : r + r ≤ s + 3 + 3 - s := by linarith [h3, h4]
+  have h6 : 2 * r ≤ 6 := by nlinarith [h5]
+  calc
+    r ≤ 3 := by linarith [h6]
