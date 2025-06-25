@@ -39,3 +39,14 @@ theorem theorem_2_1_3
   have h6 : 2 * r ≤ 6 := by nlinarith [h5]
   calc
     r ≤ 3 := by linarith [h6]
+
+-- -----------------------------
+theorem theorem_2_1_4
+  (t : ℝ)
+  (h1 : t^2 = 3*t)
+  (h2 : t ≥ 1)
+  : t ≥ 2 := by
+  have h3 : t = 3 := by nlinarith [h1, h2]
+  calc
+    t = 3 := by rw [h3]
+    _ ≥ 2 := by nlinarith
