@@ -52,7 +52,6 @@ theorem theorem_2_1_4
     _ ≥ 2 := by nlinarith
 
 -- -----------------------------
-
 theorem theorem_2_1_5
   (a b : ℝ)
   (h1 : a^2 = b^2 + 1)
@@ -63,3 +62,20 @@ theorem theorem_2_1_5
     a = √ (a^2) := by simp [h2]
     _ = √ (b^2 + 1) := by rw [h1]
     _ ≥ 1 := by simp [h3]
+
+
+  theorem theorem_2_1_6
+    (x y : ℤ)
+    (h1 : x + 3 ≤ 2)
+    (h2 : y + 2*x ≥ 3)
+    : y > 3 := by
+    have h3 : x ≤ -1 := by
+      calc x = x + 3 - 3 := by ring
+           _ ≤ 2 - 3 := by rel [h1]
+           _ ≤ -1 := by nlinarith
+    have h4 : y ≥ 3 - 2*x := by nlinarith [h2]
+    calc
+      y ≥ 3 - 2*x := by rel [h4]
+      _ ≥ 3 - 2*(-1) := by rel [h3]
+      _ = 5 := by linarith
+      _ > 3 := by nlinarith
