@@ -63,7 +63,7 @@ theorem theorem_2_1_5
     _ = √ (b^2 + 1) := by rw [h1]
     _ ≥ 1 := by simp [h3]
 
-
+-- -----------------------------
   theorem theorem_2_1_6
     (x y : ℤ)
     (h1 : x + 3 ≤ 2)
