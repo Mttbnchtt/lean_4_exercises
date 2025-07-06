@@ -50,3 +50,16 @@ theorem theorem_2_1_4
   calc
     t = 3 := by rw [h3]
     _ ≥ 2 := by nlinarith
+
+-- -----------------------------
+
+theorem theorem_2_1_5
+  (a b : ℝ)
+  (h1 : a^2 = b^2 + 1)
+  (h2 : a ≥ 0)
+  : a ≥ 1 := by
+  have h3 : b^2 ≥ 0 := by nlinarith
+  calc
+    a = √ (a^2) := by simp [h2]
+    _ = √ (b^2 + 1) := by rw [h1]
+    _ ≥ 1 := by simp [h3]
