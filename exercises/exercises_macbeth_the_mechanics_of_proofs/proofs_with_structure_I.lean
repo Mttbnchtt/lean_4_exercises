@@ -79,3 +79,14 @@ theorem theorem_2_1_5
       _ ≥ 3 - 2*(-1) := by rel [h3]
       _ = 5 := by linarith
       _ > 3 := by nlinarith
+
+  theorem theorem_2_1_7
+  (a b : ℝ)
+  (h1 : -b ≤ a)
+  (h2 : a ≤ b)
+  : a^2 ≤ b^2 := by
+  -- have h3 :
+  calc
+    a^2 = a * a := by ring
+    _   ≤ b * b := by nlinarith [h2]
+    _   = b^2 := by ring
