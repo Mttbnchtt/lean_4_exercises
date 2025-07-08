@@ -86,8 +86,18 @@ theorem theorem_2_1_5
   (h1 : -b ≤ a)
   (h2 : a ≤ b)
   : a^2 ≤ b^2 := by
-  -- have h3 :
   calc
     a^2 = a * a := by ring
     _   ≤ b * b := by nlinarith [h2]
     _   = b^2 := by ring
+
+theorem theorem_2_1_7_v2
+  (a b : ℝ)
+  (h1 : -b ≤ a)
+  (h2 : a ≤ b)
+  : a^2 ≤ b^2 := by
+  have h3 : 0 ≤ b + a := by nlinarith [h1]
+  have h4 : 0 ≤ b - a := by nlinarith [h2]
+  have h5 : (b - a) * (b + a) = b^2 - a ^2 := by ring
+  have h6 : b^2 - a^2 ≥ 0 := by nlinarith [h3, h4, h5]
+  nlinarith [h6]
