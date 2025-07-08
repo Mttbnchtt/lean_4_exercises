@@ -101,3 +101,18 @@ theorem theorem_2_1_7_v2
   have h5 : (b - a) * (b + a) = b^2 - a ^2 := by ring
   have h6 : b^2 - a^2 ≥ 0 := by nlinarith [h3, h4, h5]
   nlinarith [h6]
+
+
+theorem theorem_2_1_8
+  (a b : ℝ)
+  (h1 : a ≤ b)
+  : a^3 ≤ b^3 := by
+  have h2 : 0 ≤ b - a := by nlinarith [h1]
+  have h3 : 0 ≤ (b-a)^2 := by nlinarith [h2]
+  have h4 : 0 ≤ (b-a)^3 := by nlinarith [h2]
+  have h5 : 0 ≤ (b-a)^3 + (b-a)*(b+a)^2 := by nlinarith [h3, h4]
+  have h6 : 0 ≤ (b-a)^3 + 3*(b-a)*(b+a)^2 := by nlinarith [h5]
+  have h7 : 0 ≤ ( (b-a)^3 + 3*(b-a)*(b+a)^2 ) / 4 := by nlinarith [65]
+  calc
+    a^3 ≤ a^3 + ( ( (b-a)^3 + 3*(b-a)*(b+a)^2 ) / 4 ) := by nlinarith [h7]
+    _   = b^3 := by ring
