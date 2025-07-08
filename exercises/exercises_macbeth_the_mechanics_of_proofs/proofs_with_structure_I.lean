@@ -102,7 +102,7 @@ theorem theorem_2_1_7_v2
   have h6 : b^2 - a^2 ≥ 0 := by nlinarith [h3, h4, h5]
   nlinarith [h6]
 
-
+-- -----------------------------
 theorem theorem_2_1_8
   (a b : ℝ)
   (h1 : a ≤ b)
