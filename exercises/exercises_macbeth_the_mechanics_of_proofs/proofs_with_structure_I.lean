@@ -116,3 +116,10 @@ theorem theorem_2_1_8
   calc
     a^3 ≤ a^3 + ( ( (b-a)^3 + 3*(b-a)*(b+a)^2 ) / 4 ) := by nlinarith [h7]
     _   = b^3 := by ring
+
+theorem theorem_2_1_9_1
+  (x : ℚ)
+  (h1 : x^2 = 4)
+  (h2 : x ≥ 1 )
+  : x = 2 := by
+  nlinarith [h1, h2]
