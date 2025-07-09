@@ -117,9 +117,25 @@ theorem theorem_2_1_8
     a^3 ≤ a^3 + ( ( (b-a)^3 + 3*(b-a)*(b+a)^2 ) / 4 ) := by nlinarith [h7]
     _   = b^3 := by ring
 
+-- -----------------------------
 theorem theorem_2_1_9_1
   (x : ℚ)
   (h1 : x^2 = 4)
   (h2 : x ≥ 1 )
   : x = 2 := by
   nlinarith [h1, h2]
+
+theorem theorem_2_1_9_1_v2
+  (x : ℚ)
+  (h1 : x^2 = 4)
+  (h2 : x > 1 )
+  : x = 2 := by
+  have h3 : x^2 + 2*x = 4 + 2*x := by rw [h1]
+  have h4 : x^2 + 2*x = x * (x + 2) := by ring
+  have h5 : 4 + 2*x = 2 * (x + 2) := by ring
+  have h6 : x * (x + 2) = 2 * (x + 2) := by linarith [h3, h4, h5]
+  have h7 : x + 2 > 0 := by nlinarith [h2]
+  calc
+    x = x * (x + 2) / (x + 2) := by field_simp [h7]
+    _ = 2 * (x + 2) / (x + 2) := by rw [h5]
+    _ = 2 := by field_simp
