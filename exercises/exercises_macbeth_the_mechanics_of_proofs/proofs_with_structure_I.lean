@@ -140,6 +140,7 @@ theorem theorem_2_1_9_1_v2
     _ = 2 * (x + 2) / (x + 2) := by rw [h5]
     _ = 2 := by field_simp
 
+-- -----------------------------
 theorem theorem_2_1_9_2
   (n : ℤ)
   (h1 : n^2 + 4 = 4*n)
