@@ -139,3 +139,11 @@ theorem theorem_2_1_9_1_v2
     x = x * (x + 2) / (x + 2) := by field_simp [h7]
     _ = 2 * (x + 2) / (x + 2) := by rw [h5]
     _ = 2 := by field_simp
+
+theorem theorem_2_1_9_2
+  (n : ℤ)
+  (h1 : n^2 + 4 = 4*n)
+  : n = 2 := by
+  have h2 : n^2 - (4*n) + 4 = 0 := by linarith [h1]
+  have h3 : (n - 2)^2 = 0 := by linarith [h2]
+  nlinarith [h3]
