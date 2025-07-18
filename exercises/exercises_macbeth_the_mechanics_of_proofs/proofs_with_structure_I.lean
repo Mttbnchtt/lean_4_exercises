@@ -148,3 +148,10 @@ theorem theorem_2_1_9_2
   have h2 : n^2 - (4*n) + 4 = 0 := by linarith [h1]
   have h3 : (n - 2)^2 = 0 := by linarith [h2]
   nlinarith [h3]
+
+  theorem theorem_2_1_9_3
+  (x y : ℚ)
+  (h1 : x*y = 1)
+  (h2 : x ≥ 1)
+  : y ≤ 1 := by
+  nlinarith
