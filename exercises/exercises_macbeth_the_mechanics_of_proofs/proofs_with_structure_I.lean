@@ -169,3 +169,18 @@ theorem theorem_2_1_9_3
     y = (x*y) / x := by field_simp [h4]
     _ = 1 / x := by rw [h1]
     _ ≤ 1 := by exact (div_le_one₀ h4).mpr h2
+
+
+theorem theorem_2_1_9_3_v2
+  (x y : ℚ)
+  (h1 : x*y = 1)
+  (h2 : x ≥ 1)
+  : y ≤ 1 := by
+  have h3 : 0 < x * y := by nlinarith [h1]
+  have h4 : 0 < x := by nlinarith [h3]
+  calc
+    y = (x*y) / x := by field_simp [h4]
+    _ = 1 / x := by rw [h1]
+    _ ≤ 1 := by exact (div_le_one₀ h4).2 h2
+
+-- -----------------------------
