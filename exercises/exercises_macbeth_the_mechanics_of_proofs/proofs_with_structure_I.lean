@@ -184,3 +184,13 @@ theorem theorem_2_1_9_3_v2
     _ ≤ 1 := by exact (div_le_one₀ h4).2 h2
 
 -- -----------------------------
+theorem theorem_2_1
+  (x : ℚ)
+  (h : 3*x = 2)
+  : x ≠ 1 := by
+  apply ne_of_lt
+  calc
+    x = x * (3 / 3) := by linarith
+    _ = (3 * x) / 3 := by field_simp
+    _ = 2 / 3 := by rw [h]
+    _ < 1 := by nlinarith
