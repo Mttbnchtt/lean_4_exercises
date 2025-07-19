@@ -184,7 +184,7 @@ theorem theorem_2_1_9_3_v2
     _ ≤ 1 := by exact (div_le_one₀ h4).2 h2
 
 -- -----------------------------
-theorem theorem_2_1
+theorem theorem_2_2
   (x : ℚ)
   (h : 3*x = 2)
   : x ≠ 1 := by
@@ -194,3 +194,14 @@ theorem theorem_2_1
     _ = (3 * x) / 3 := by field_simp
     _ = 2 / 3 := by rw [h]
     _ < 1 := by nlinarith
+
+-- -----------------------------
+theorem theorem_2_2_1
+  (y : ℝ)
+  : y^2 + 1 ≠ 0 := by
+  have h : y^2 ≥ 0 := by nlinarith
+  apply ne_of_gt
+  calc
+    y^2 + 1 ≥ 0 + 1 := by rel [h]
+    _       = 1 := by ring
+    _       > 0 := by nlinarith
