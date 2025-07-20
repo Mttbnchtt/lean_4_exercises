@@ -218,6 +218,7 @@ theorem theorem_2_2_3
   have h6 : a^2 = 0 := by linarith [h1, h5]
   apply h6
 
+-- -----------------------------
 theorem theorem_2_2_2_v2
   (a b : ℝ)
   (h1 : a^2 + b^2 = 0)
