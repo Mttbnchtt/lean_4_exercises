@@ -196,7 +196,7 @@ theorem theorem_2_2
     _ < 1 := by nlinarith
 
 -- -----------------------------
-theorem theorem_2_2_1
+theorem theorem_2_2_2
   (y : ℝ)
   : y^2 + 1 ≠ 0 := by
   have h : y^2 ≥ 0 := by nlinarith
@@ -206,7 +206,8 @@ theorem theorem_2_2_1
     _       = 1 := by ring
     _       > 0 := by nlinarith
 
-theorem theorem_2_2_2
+-- -----------------------------
+theorem theorem_2_2_3
   (a b : ℝ)
   (h1 : a^2 + b^2 = 0)
   : a^2 = 0 := by
