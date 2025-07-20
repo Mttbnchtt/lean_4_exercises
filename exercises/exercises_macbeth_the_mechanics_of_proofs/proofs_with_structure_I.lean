@@ -217,3 +217,14 @@ theorem theorem_2_2_3
   have h5 : a^2 = b^2 := by linarith [h1]
   have h6 : a^2 = 0 := by linarith [h1, h5]
   apply h6
+
+theorem theorem_2_2_2_v2
+  (a b : ℝ)
+  (h1 : a^2 + b^2 = 0)
+  : a^2 = 0 := by
+  have h2 : a^2 ≥ 0 := by nlinarith
+  have h3 : a^2 ≤ 0 := by
+    calc
+      a^2 ≤ a^2 + b^2 := by nlinarith
+      _   = 0 := by rw [h1]
+  apply le_antisymm h3 h2
