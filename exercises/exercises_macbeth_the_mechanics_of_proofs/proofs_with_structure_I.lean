@@ -205,3 +205,14 @@ theorem theorem_2_2_1
     y^2 + 1 ≥ 0 + 1 := by rel [h]
     _       = 1 := by ring
     _       > 0 := by nlinarith
+
+theorem theorem_2_2_2
+  (a b : ℝ)
+  (h1 : a^2 + b^2 = 0)
+  : a^2 = 0 := by
+  have h2 : a^2 ≥ 0 := by nlinarith
+  have h3 : b^2 ≥ 0 := by nlinarith
+  have h4 : a^2 = - b^2 := by linarith [h1]
+  have h5 : a^2 = b^2 := by linarith [h1]
+  have h6 : a^2 = 0 := by linarith [h1, h5]
+  apply h6
