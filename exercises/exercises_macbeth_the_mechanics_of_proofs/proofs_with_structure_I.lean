@@ -219,7 +219,7 @@ theorem theorem_2_2_3
   apply h6
 
 -- -----------------------------
-theorem theorem_2_2_2_v2
+theorem theorem_2_2_3_v2
   (a b : ℝ)
   (h1 : a^2 + b^2 = 0)
   : a^2 = 0 := by
