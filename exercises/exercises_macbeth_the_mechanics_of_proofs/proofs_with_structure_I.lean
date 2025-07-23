@@ -229,3 +229,14 @@ theorem theorem_2_2_3_v2
       a^2 ≤ a^2 + b^2 := by nlinarith
       _   = 0 := by rw [h1]
   apply le_antisymm h3 h2
+
+  theorem theorem_2_2_4
+  (m : ℤ)
+  (h1 : m + 1 = 5)
+  : 3*m ≠ 6 := by
+  calc
+    3 * m = 3 * m + 3 -3 := by ring
+    _     = 3* (m + 1) - 3:= by ring
+    _     = 3 * 5 - 3 := by rw [h1]
+    _     = 12 := by norm_num
+    _     ≠ 6 := by nlinarith
