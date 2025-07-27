@@ -254,7 +254,7 @@ theorem theorem_2_2_4
     _     = 12 := by norm_num
   apply ne_of_gt (by norm_num)
 
-
+-- -----------------------------
   theorem theorem_2_2_4_2
   (s : ℚ)
   (h1 : 3*s ≤ -6)
