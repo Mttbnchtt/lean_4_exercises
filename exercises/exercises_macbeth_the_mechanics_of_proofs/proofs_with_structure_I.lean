@@ -230,6 +230,7 @@ theorem theorem_2_2_3_v2
       _   = 0 := by rw [h1]
   apply le_antisymm h3 h2
 
+-- -----------------------------
   theorem theorem_2_2_4
   (m : ℤ)
   (h1 : m + 1 = 5)
@@ -240,3 +241,31 @@ theorem theorem_2_2_3_v2
     _     = 3 * 5 - 3 := by rw [h1]
     _     = 12 := by norm_num
     _     ≠ 6 := by nlinarith
+
+-- -----------------------------
+theorem theorem_2_2_4
+  (m : ℤ)
+  (h1 : m + 1 = 5)
+  : 3*m ≠ 6 := by
+  calc
+    3 * m = 3 * m + 3 -3 := by ring
+    _     = 3* (m + 1) - 3:= by ring
+    _     = 3 * 5 - 3 := by rw [h1]
+    _     = 12 := by norm_num
+  apply ne_of_gt (by norm_num)
+
+
+  theorem theorem_2_2_4_2
+  (s : ℚ)
+  (h1 : 3*s ≤ -6)
+  (h2 : 2*s ≥ -4)
+  : s = -2 := by
+  apply le_antisymm
+  calc
+    s = 3*s /3 := by linarith
+    _ ≤ -6 / 3 := by nlinarith [h1]
+    _ = -2 := by linarith
+  calc
+    s = 2*s / 2 := by linarith
+    _ ≥ -4 /2 := by nlinarith [h2]
+    _ = -2 := by linarith
