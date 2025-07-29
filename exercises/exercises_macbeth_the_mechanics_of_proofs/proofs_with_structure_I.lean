@@ -269,3 +269,19 @@ theorem theorem_2_2_4
     s = 2*s / 2 := by linarith
     _ ≥ -4 /2 := by nlinarith [h2]
     _ = -2 := by linarith
+
+    theorem theorem_2_3_1
+  (x y : ℝ)
+  (h1: x = 1 ∨ y = -1)
+  : x*y + x = y + 1 := by
+  obtain hx | hy := h1
+  calc
+    x*y + x = 1*y + 1 := by rw [hx]
+    _       = y + 1:= by ring
+  calc
+    x*y + x = x*(-1) + x := by rw [hy]
+    _       = x - x := by ring
+    _       = 0 := by linarith
+    _       = 1 + (-1) := by linarith
+    _       = 1 + y := by rw [hy]
+    _       = y + 1 := by ring
