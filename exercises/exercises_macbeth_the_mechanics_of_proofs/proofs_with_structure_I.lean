@@ -270,7 +270,8 @@ theorem theorem_2_2_4
     _ ≥ -4 /2 := by nlinarith [h2]
     _ = -2 := by linarith
 
-    theorem theorem_2_3_1
+-- -----------------------------
+theorem theorem_2_3_1
   (x y : ℝ)
   (h1: x = 1 ∨ y = -1)
   : x*y + x = y + 1 := by
