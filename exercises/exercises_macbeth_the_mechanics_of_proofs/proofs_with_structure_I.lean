@@ -286,3 +286,29 @@ theorem theorem_2_3_1
     _       = 1 + (-1) := by linarith
     _       = 1 + y := by rw [hy]
     _       = y + 1 := by ring
+
+
+theorem le_or_ge_succ
+  (a b : ℕ)
+  : a ≤ b ∨ b + 1 ≤ a := by
+  apply le_or_gt
+
+theorem theorem_2_3_2
+  (n : ℕ)
+  : n^2 ≠ 2 := by
+  have h := le_or_ge_succ n 1
+  obtain h1 | h2 := h
+
+  -- case 1
+  apply ne_of_lt
+  calc
+    n^2 ≤ 1^2 := by nlinarith
+    _   = 1 := by linarith
+    _   < 2 := by nlinarith
+
+  -- case 2
+  apply ne_of_gt
+  calc
+    n^2 ≥ 2^2 := by nlinarith
+    _   = 4 := by linarith
+    _   > 2 := by nlinarith
