@@ -287,7 +287,7 @@ theorem theorem_2_3_1
     _       = 1 + y := by rw [hy]
     _       = y + 1 := by ring
 
-
+-- -----------------------------
 theorem le_or_ge_succ
   (a b : ℕ)
   : a ≤ b ∨ b + 1 ≤ a := by
