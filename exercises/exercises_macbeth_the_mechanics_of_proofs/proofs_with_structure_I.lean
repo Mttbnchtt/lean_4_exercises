@@ -331,9 +331,7 @@ theorem theorem_2_3_3_v2
     _ = (5 -1) /2 := by rw [h1]
     _ = 2 := by linarith
 
-
-import Mathlib
-
+-- -----------------------------
 theorem theorem_2_3_4
   (x : ℝ)
   (h1 : x^2 - 3*x + 2 = 0)
