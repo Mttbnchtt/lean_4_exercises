@@ -313,9 +313,20 @@ theorem theorem_2_3_2
     _   = 4 := by linarith
     _   > 2 := by nlinarith
 
+-- -----------------------------
 theorem theorem_2_3_3
   (x : ℝ)
   (h1 : 2*x + 1 = 5)
   : x =1 ∨ x = 2 := by
   have h2 : x = 2 := by linarith [h1]
   exact Or.intro_right _ h2
+
+theorem theorem_2_3_3_v2
+  (x : ℝ)
+  (h1 : 2*x + 1 = 5)
+  : x =1 ∨ x = 2 := by
+  right
+  calc
+    x = (2 * x + 1 -1) / 2 := by ring
+    _ = (5 -1) /2 := by rw [h1]
+    _ = 2 := by linarith
