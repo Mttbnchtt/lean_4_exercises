@@ -317,16 +317,37 @@ theorem theorem_2_3_2
 theorem theorem_2_3_3
   (x : ℝ)
   (h1 : 2*x + 1 = 5)
-  : x =1 ∨ x = 2 := by
+  : x = 1 ∨ x = 2 := by
   have h2 : x = 2 := by linarith [h1]
   exact Or.intro_right _ h2
 
 theorem theorem_2_3_3_v2
   (x : ℝ)
   (h1 : 2*x + 1 = 5)
-  : x =1 ∨ x = 2 := by
+  : x = 1 ∨ x = 2 := by
   right
   calc
     x = (2 * x + 1 -1) / 2 := by ring
     _ = (5 -1) /2 := by rw [h1]
     _ = 2 := by linarith
+
+
+import Mathlib
+
+theorem theorem_2_3_4
+  (x : ℝ)
+  (h1 : x^2 - 3*x + 2 = 0)
+  : x = 1 ∨ x = 2 := by
+  have h2 : x^2 - 3*x +2 = (x - 1) * (x - 2) := by linarith
+  have h3 : (x - 1) * (x - 2) = 0 := by rw [← h1, h2]
+  have h4 : (x-1 = 0) ∨ (x-2 =0) := by
+    simp at h3
+    exact h3
+  obtain h_left | h_right := h4
+  .
+    left
+    exact eq_of_sub_eq_zero h_left
+
+  .
+    right
+    exact eq_of_sub_eq_zero h_right
