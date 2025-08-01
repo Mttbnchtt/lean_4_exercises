@@ -312,3 +312,10 @@ theorem theorem_2_3_2
     n^2 ≥ 2^2 := by nlinarith
     _   = 4 := by linarith
     _   > 2 := by nlinarith
+
+theorem theorem_2_3_3
+  (x : ℝ)
+  (h1 : 2*x + 1 = 5)
+  : x =1 ∨ x = 2 := by
+  have h2 : x = 2 := by linarith [h1]
+  exact Or.intro_right _ h2
