@@ -348,4 +348,15 @@ theorem theorem_2_3_4
 
   .
     right
-    exact eq_of_sub_eq_zero h_right
+
+  theorem theorem_2_3_5
+  (n : ℤ)
+  : n^2 ≠ 2 := by
+  -- CASES n < 2 ∨ 2 ≤ n
+  -- FIRST CASE 2 ≤ n
+  by_cases h_ge2 : 2 ≤ n
+  .
+    sorry
+  -- SECOND CASE n < 2
+  .
+    sorry
