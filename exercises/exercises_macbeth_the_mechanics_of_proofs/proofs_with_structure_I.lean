@@ -350,14 +350,15 @@ theorem theorem_2_3_4
     right
 
 -- -----------------------------
-  theorem theorem_2_3_5
+theorem theorem_2_3_5
   (n : ℤ)
   : n^2 ≠ 2 := by
   -- CASES n < 2 ∨ 2 ≤ n
   -- FIRST CASE 2 ≤ n
   by_cases h_ge2 : 2 ≤ n
-  .
-    sorry
+  ·
+    nlinarith
   -- SECOND CASE n < 2
-  .
+  ·
+    -- nlinarith
     sorry
