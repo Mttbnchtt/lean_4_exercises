@@ -350,6 +350,8 @@ theorem theorem_2_3_4
     right
 
 -- -----------------------------
+import Mathlib
+
 theorem theorem_2_3_5
   (n : ℤ)
   : n^2 ≠ 2 := by
@@ -357,8 +359,10 @@ theorem theorem_2_3_5
   -- FIRST CASE 2 ≤ n
   by_cases h_ge2 : 2 ≤ n
   ·
+    -- Here Lean knows h_ge2 : 2 ≤ n
     nlinarith
   -- SECOND CASE n < 2
   ·
-    -- nlinarith
-    sorry
+    -- Here Lean knows h_ge2 : ¬ (2 ≤ n)
+    nlinarith [sq_nonneg n]
+    -- sorry
