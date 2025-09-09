@@ -407,3 +407,5 @@ theorem theorem_2_3_6_1_v3
       x^2 = (-4)^2 := by rw [g1]
       _   = 16 := by norm_num
     exact
+
+-- -----------------------------
