@@ -350,8 +350,6 @@ theorem theorem_2_3_4
     right
 
 -- -----------------------------
-import Mathlib
-
 theorem theorem_2_3_5
   (n : ℤ)
   : n^2 ≠ 2 := by
