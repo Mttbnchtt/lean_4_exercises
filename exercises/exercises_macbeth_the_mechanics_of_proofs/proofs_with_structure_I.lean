@@ -366,3 +366,16 @@ theorem theorem_2_3_5
     -- sorry
 
     -- -----------------------------
+    theorem theorem_2_3_6_1
+  (x : ℚ)
+  (h : x=4 ∨ x=-4)
+  : x^2 + 1 = 17 := by
+  by_cases h1 : x=4
+  case pos =>
+    nlinarith
+  case neg =>
+    have g1 : x = -4 := Or.resolve_left h h1
+    have g2 : x^2 = 16 := by
+      rw [g1]
+      norm_num
+    nlinarith [g2]
