@@ -365,8 +365,8 @@ theorem theorem_2_3_5
     nlinarith [sq_nonneg n]
     -- sorry
 
-    -- -----------------------------
-    theorem theorem_2_3_6_1
+-- -----------------------------
+theorem theorem_2_3_6_1
   (x : ℚ)
   (h : x=4 ∨ x=-4)
   : x^2 + 1 = 17 := by
