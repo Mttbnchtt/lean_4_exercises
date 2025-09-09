@@ -379,3 +379,31 @@ theorem theorem_2_3_6_1
       rw [g1]
       norm_num
     nlinarith [g2]
+
+theorem theorem_2_3_6_1_v2
+  (x : ℚ)
+  (h : x=4 ∨ x=-4)
+  : x^2 + 1 = 17 := by
+  by_cases h1 : x=4
+  case pos =>
+    nlinarith
+  case neg =>
+    have g1 : x = -4 := Or.resolve_left h h1
+    have g2 : x^2 = 16 := by calc
+      x^2 = (-4)^2 := by rw [g1]
+      _   = 16 := by norm_num
+    nlinarith [g2]
+
+theorem theorem_2_3_6_1_v3
+  (x : ℚ)
+  (h : x=4 ∨ x=-4)
+  : x^2 + 1 = 17 := by
+  by_cases h1 : x=4
+  case pos =>
+    nlinarith
+  case neg =>
+    have g1 : x = -4 := Or.resolve_left h h1
+    have g2 : x^2 = 16 := by calc
+      x^2 = (-4)^2 := by rw [g1]
+      _   = 16 := by norm_num
+    exact
