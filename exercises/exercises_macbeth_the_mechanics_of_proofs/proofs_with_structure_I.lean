@@ -409,3 +409,13 @@ theorem theorem_2_3_6_1_v3
     exact
 
 -- -----------------------------
+example
+  {x : ℝ}
+  (h : x = 1 ∨ x = 2)
+  : x ^ 2 - 3 * x + 2 = 0 := by
+  by_cases g : x = 1
+  case pos =>
+    nlinarith
+  case neg =>
+    have i : x = 2 := Or.resolve_left h g
+    nlinarith
