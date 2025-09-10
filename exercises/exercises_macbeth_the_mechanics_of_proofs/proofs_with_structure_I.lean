@@ -431,3 +431,47 @@ example
   case neg =>
     have i : t = 3 := Or.resolve_left h g
     nlinarith
+
+-- -----------------------------
+example
+  {x y : ℝ}
+  (h : x = 2 ∨ y = -2)
+  : x*y + 2*x = 2*y + 4 := by
+  by_cases h1 : x = 2
+  case pos => -- x = 2
+    rw [h1]
+    ring
+  case neg => -- ¬ x = 2
+    have h2 : y = -2 := Or.resolve_left h h1 -- y = -2
+    rw [h2]
+    ring
+
+example
+  {x y : ℝ}
+  (h : x = 2 ∨ y = -2)
+  : x*y + 2*x = 2*y + 4 := by
+  cases h with
+  | inl hx =>
+      -- case x = 2
+      rw [hx]; ring
+  | inr hy =>
+      -- case y = -2
+      rw [hy]; ring
+
+example
+  {x y : ℝ}
+  (h : x = 2 ∨ y = -2)
+  : x*y + 2*x = 2*y + 4 := by
+  cases' h with hx hy
+  -- x = 2
+  rw [hx]
+  ring
+  -- y = -2
+  rw [hy]
+  ring
+
+example {x y : ℝ} (h : x = 2 ∨ y = -2) :
+    x*y + 2*x = 2*y + 4 := by
+  cases' h with hx hy
+  · rw [hx]; ring
+  · rw [hy]; ring
