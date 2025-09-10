@@ -419,3 +419,15 @@ example
   case neg =>
     have i : x = 2 := Or.resolve_left h g
     nlinarith
+
+-- -----------------------------
+example
+  {t : ℚ}
+  (h : t = -2 ∨ t = 3)
+  : t^2 - t - 6 = 0 := by
+  by_cases g : t = -2
+  case pos =>
+    nlinarith
+  case neg =>
+    have i : t = 3 := Or.resolve_left h g
+    nlinarith
