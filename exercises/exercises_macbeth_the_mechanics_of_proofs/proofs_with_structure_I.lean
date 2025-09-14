@@ -475,3 +475,14 @@ example {x y : ℝ} (h : x = 2 ∨ y = -2) :
   cases' h with hx hy
   · rw [hx]; ring
   · rw [hy]; ring
+
+-- -----------------------------
+example
+  {s t : ℚ}
+  (h : s = 3 - t)
+  : s + t = 3 ∨ s + t = 5 := by
+  have h1 : s + t = 3 := by
+    calc
+      s + t = 3 - t + t := by rw [h]
+      _     = 3 := by ring
+    exact Or.inl h1
