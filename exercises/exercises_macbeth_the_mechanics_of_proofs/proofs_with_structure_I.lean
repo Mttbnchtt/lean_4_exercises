@@ -496,7 +496,7 @@ example
     nlinarith [h]
   exact Or.inr h1
 
-
+-- -----------------------------
 example
   {x y : ℝ}
   (h : y = 2 * x + 1)
