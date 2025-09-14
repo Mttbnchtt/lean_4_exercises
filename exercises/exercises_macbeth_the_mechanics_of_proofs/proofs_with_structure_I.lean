@@ -485,4 +485,4 @@ example
     calc
       s + t = 3 - t + t := by rw [h]
       _     = 3 := by ring
-    exact Or.inl h1
+  exact Or.inl h1
