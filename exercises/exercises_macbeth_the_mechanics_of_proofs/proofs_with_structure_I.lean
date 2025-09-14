@@ -495,3 +495,20 @@ example
   have h1 : b < - a / 2 := by
     nlinarith [h]
   exact Or.inr h1
+
+
+example
+  {x y : ℝ}
+  (h : y = 2 * x + 1)
+  : x < y / 2 ∨ x > y / 2 := by
+  -- y - 1 = 2*x
+  -- (y-1) / 2 = x
+  -- y/2 - 1/2 = x
+  -- y/2 = x + (1/2)
+  have h1 : y/2 > x := by
+    calc
+      y / 2 = (2*x + 1) / 2 := by rw [h]
+      _     = x + 1/2 := by ring
+      _     > x := by nlinarith
+  have h2 : x < y/2 := by nlinarith [h1]
+  exact Or.inl h2
