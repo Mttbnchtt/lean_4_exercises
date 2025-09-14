@@ -486,3 +486,12 @@ example
       s + t = 3 - t + t := by rw [h]
       _     = 3 := by ring
   exact Or.inl h1
+
+-- -----------------------------
+example
+  {a b : ℚ}
+  (h : a + 2 * b < 0)
+  : b < a / 2 ∨ b < - a / 2 := by
+  have h1 : b < - a / 2 := by
+    nlinarith [h]
+  exact Or.inr h1
