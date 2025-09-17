@@ -512,3 +512,21 @@ example
       _     > x := by nlinarith
   have h2 : x < y/2 := by nlinarith [h1]
   exact Or.inl h2
+
+example
+  {x : ℝ}
+  (h : x ^ 2 + 2 * x - 3 = 0)
+  : x = -3 ∨ x = 1 := by
+  have h1 : (x+3) * (x-1) = 0 := by
+    calc
+      (x+3) * (x-1) = x^2 + 2*x - 3 := by ring
+      _             = 0             := by rw [h]
+  have h2 : x+3 = 0 ∨ x-1 = 0 := by apply mul_eq_zero.mp h1
+  by_cases h3 : x+3 = 0
+  case pos =>
+    left
+    linarith [h3]
+  case neg =>
+    right
+    have h4: x-1 = 0 := Or.resolve_left h2 h3
+    linarith [h4]
