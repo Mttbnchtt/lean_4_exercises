@@ -513,6 +513,7 @@ example
   have h2 : x < y/2 := by nlinarith [h1]
   exact Or.inl h2
 
+-- -----------------------------
 example
   {x : ℝ}
   (h : x ^ 2 + 2 * x - 3 = 0)
@@ -530,3 +531,28 @@ example
     right
     have h4: x-1 = 0 := Or.resolve_left h2 h3
     linarith [h4]
+
+
+-- -----------------------------
+example
+  {a b : ℝ}
+  (h : a ^ 2 + 2 * b ^ 2 = 3 * a * b)
+  : a = b ∨ a = 2 * b := by
+  have h1 : a^2 + 2*b^2 - 3*a*b = 0 := by
+    calc
+      a^2 + 2*b^2 - 3*a*b = 3*a*b - 3*a*b := by rw [h]
+      _                   = 0 := by ring
+  have h2 : a^2 + 2*b^2 - 3*a*b = (a-b) * (a-2*b) := by ring
+  have h3 : (a-b) * (a-2*b) = 0 := by
+    calc
+      (a-b) * (a-2*b) = a^2 + 2*b^2 - 3*a*b := by rw [h2]
+      _               = 0                   := by rw [h1]
+  have h4 : a-b = 0 ∨ a-2*b = 0 := by apply mul_eq_zero.mp h3
+  by_cases h5: a - b = 0
+  case pos =>
+    left
+    linarith [h5]
+  case neg =>
+    right
+    have h6 : a-2*b = 0:= Or.resolve_left h4 h5
+    linarith [h6]
