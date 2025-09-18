@@ -557,7 +557,7 @@ example
     have h6 : a-2*b = 0:= Or.resolve_left h4 h5
     linarith [h6]
 
-
+-- -----------------------------
 example
   {t : ℝ}
   (h : t ^ 3 = t ^ 2)
