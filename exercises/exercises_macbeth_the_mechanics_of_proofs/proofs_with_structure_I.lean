@@ -573,5 +573,5 @@ example
   have h3 : t^2 = 0 ∨ t - 1 = 0 := by apply mul_eq_zero.mp h2
   have h4 : t = 0 ∨ t -1 =0 := by apply Or.imp_left sq_eq_zero_iff.mp h3
   cases h4 with
-  | inl h4 => right; exact h4
-  | inr h4 => left; linarith
+  | inl h4_l => right; exact h4_l
+  | inr h4_r => left; linarith
