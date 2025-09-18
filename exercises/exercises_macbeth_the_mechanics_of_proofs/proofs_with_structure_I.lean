@@ -556,3 +556,22 @@ example
     right
     have h6 : a-2*b = 0:= Or.resolve_left h4 h5
     linarith [h6]
+
+
+example
+  {t : ℝ}
+  (h : t ^ 3 = t ^ 2)
+  : t = 1 ∨ t = 0 := by
+  have h1 : t^3 - t^2 = 0 := by
+    calc
+      t^3 - t^2 = t^2 - t^2 := by rw [h]
+      _         = 0         := by ring
+  have h2 : t^2 * (t - 1) = 0 := by
+    calc
+      t^2 * (t - 1) = t^3 - t^2 := by ring
+      _             = 0         := by rw [h1]
+  have h3 : t^2 = 0 ∨ t - 1 = 0 := by apply mul_eq_zero.mp h2
+  have h4 : t = 0 ∨ t -1 =0 := by apply Or.imp_left sq_eq_zero_iff.mp h3
+  cases h4 with
+  | inl h4 => right; exact h4
+  | inr h4 => left; linarith
