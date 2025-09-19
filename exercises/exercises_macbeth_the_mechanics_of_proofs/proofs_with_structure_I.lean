@@ -576,8 +576,7 @@ example
   | inl h4_l => right; exact h4_l
   | inr h4_r => left; linarith
 
-import Mathlib
-
+-- -----------------------------
 example
 {n : ℕ}
 : n ^ 2 ≠ 7 := by
