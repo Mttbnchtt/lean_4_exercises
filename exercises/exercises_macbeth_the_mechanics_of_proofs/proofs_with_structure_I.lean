@@ -575,3 +575,54 @@ example
   cases h4 with
   | inl h4_l => right; exact h4_l
   | inr h4_r => left; linarith
+
+import Mathlib
+
+example
+{n : ℕ}
+: n ^ 2 ≠ 7 := by
+-- CASE 1: n < 2 ∨ n ≥ 2
+by_cases h : n < 2
+
+-- CASE 1 left: n < 2. Therefore: n = 0 ∨ n = 1.
+-- Reason by cases again.For n = 0, use calc. For n = 1, use calc.
+case pos =>
+  have hp_fact : n ≤ 1 := by apply Nat.lt_succ_iff.mp h
+  have hp : n=0 ∨ n=1 := by apply Nat.le_one_iff_eq_zero_or_eq_one.mp hp_fact
+  cases hp with
+  | inl hp_0 =>
+    calc
+      n^2 = 0^2 := by rw [hp_0]
+      _   = 0   := by norm_num
+      _   ≠ 7   := by norm_num
+  | inr hp_1 =>
+    calc
+      n^2 = 1^2 := by rw [hp_1]
+      _   = 1   := by norm_num
+      _   ≠ 7   := by norm_num
+
+-- CASE 1 right: 2 ≤ n. Therefore: 2 = n ∨ 2 < n
+-- For 2 = n, use calc.
+-- For 2 < n, reason by cases again: 3 = n ∨ 3 < n. See below.
+case neg =>
+  have hn1 : 2 ≤ n := by apply not_lt.mp h
+  have hn2 : 2 = n ∨ 2 < n := by apply eq_or_lt_of_le hn1
+  cases hn2 with
+  | inl hn_Eq =>
+    -- simp [hn_Eq]
+    -- norm_num
+    calc
+      n^2 = 2^2 := by rw [hn_Eq]
+      _   = 4   := by norm_num
+      _   ≠ 7   := by norm_num
+  | inr hn_Lt =>
+  -- From 2 < n, derive 3 ≤ n. Then use calc.
+    have hn_Lt1 : 3 ≤ n := by apply Nat.succ_le_of_lt hn_Lt
+    have hn_Lt2 : 9 ≤ n^2 := by
+      calc
+          9 = 3^2 := by norm_num
+          _ ≤ n^2 := by rel [hn_Lt1]
+    have hn_Lt3 : 7 < 9 := by decide
+    have hn_Lt4 : 7 < n^2 := by apply lt_of_lt_of_le hn_Lt3 hn_Lt2
+    have hn_Lt5 : n^2 ≠ 7 := by apply ne_of_gt hn_Lt4
+    exact hn_Lt5
