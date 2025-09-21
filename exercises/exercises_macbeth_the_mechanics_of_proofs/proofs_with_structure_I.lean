@@ -627,6 +627,7 @@ case neg =>
     exact hn_Lt5
 
 -- -----------------------------
+-- NOT FINISHED
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by
@@ -656,3 +657,17 @@ example
         _   ≠ 3 := by norm_num
     | inr g1_gt =>
       sorry
+
+-- TRY AGAIN using:  2*x is an even integer and 3 is an odd integer and, therefore, 2*x \neq 3
+-- NOT FINISHED
+example
+  {x : ℤ}
+  : 2 * x ≠ 3 := by
+  have h : Even (2 : ℤ) := by norm_num
+  have h0 : Even (2 : ℤ) ∨ Even x := by
+    left
+    exact h
+  have h1 : Even (2*x) := by apply Int.even_mul.mpr h0
+  have h2: Odd (3) := by norm_num
+  have h3 : 2*x ≠ 3 := by simpa [h1, h2]
+  exact h3
