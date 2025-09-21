@@ -625,3 +625,34 @@ case neg =>
     have hn_Lt4 : 7 < n^2 := by apply lt_of_lt_of_le hn_Lt3 hn_Lt2
     have hn_Lt5 : n^2 ≠ 7 := by apply ne_of_gt hn_Lt4
     exact hn_Lt5
+
+-- -----------------------------
+example
+  {x : ℤ}
+  : 2 * x ≠ 3 := by
+  by_cases h : x < 0
+
+  case pos =>
+    -- show that  2*x < 0
+    have h1 : (0 :ℤ) < 2 := by norm_num
+    have h2 : 2*x < 0 := by apply mul_neg_of_pos_of_neg h1 h
+    -- show that 2*x < 3
+    have h3 : 2*x < 3 := by
+      calc
+        2*x < 0 := by rel [h2]
+        _   < 3 := by norm_num
+    -- show that 2*x ≠ 3
+    have h4 : 2*x ≠ 3 := by apply ne_of_lt h3
+    exact h4
+
+  case neg =>
+    have g : x ≥ 0 := by sorry
+    have g1 : x = 0 ∨ x > 0 := by sorry
+    cases g1 with
+    | inl g1_eq =>
+      calc
+        2*x = 2*0 := by rw [g1_eq]
+        _   = 0 := by norm_num
+        _   ≠ 3 := by norm_num
+    | inr g1_gt =>
+      sorry
