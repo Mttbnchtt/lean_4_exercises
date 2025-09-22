@@ -631,6 +631,7 @@ case neg =>
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by
+
   by_cases h : x < 0
 
   case pos =>
