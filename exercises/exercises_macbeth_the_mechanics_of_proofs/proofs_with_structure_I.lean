@@ -628,12 +628,15 @@ case neg =>
 
 -- -----------------------------
 -- NOT FINISHED
+import Mathlib
+
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by
 
   by_cases h : x < 0
 
+  -- x < 0
   case pos =>
     -- show that  2*x < 0
     have h1 : (0 :ℤ) < 2 := by norm_num
@@ -647,8 +650,9 @@ example
     have h4 : 2*x ≠ 3 := by apply ne_of_lt h3
     exact h4
 
+  -- ¬ (x < 0)
   case neg =>
-    have g : x ≥ 0 := by sorry
+    have g : x ≥ 0 := by apply not_lt.mp h
     have g1 : x = 0 ∨ x > 0 := by sorry
     cases g1 with
     | inl g1_eq =>
