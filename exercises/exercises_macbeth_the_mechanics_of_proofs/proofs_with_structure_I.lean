@@ -628,8 +628,6 @@ case neg =>
 
 -- -----------------------------
 -- NOT FINISHED
-import Mathlib
-
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by
