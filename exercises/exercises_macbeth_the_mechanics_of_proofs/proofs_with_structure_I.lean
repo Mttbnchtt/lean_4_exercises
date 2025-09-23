@@ -628,6 +628,8 @@ case neg =>
 
 -- -----------------------------
 -- NOT FINISHED
+import Mathlib
+
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by
@@ -650,16 +652,37 @@ example
 
   -- ¬ (x < 0)
   case neg =>
-    have g : x ≥ 0 := by apply not_lt.mp h
-    have g1 : x = 0 ∨ x > 0 := by sorry
+    have g : 0 ≤ x := by apply not_lt.mp h
+    have g1 : 0 = x ∨ 0 < x := by apply eq_or_lt_of_le g
     cases g1 with
+    -- x = 0
     | inl g1_eq =>
       calc
         2*x = 2*0 := by rw [g1_eq]
         _   = 0 := by norm_num
         _   ≠ 3 := by norm_num
+    -- x > 0
     | inr g1_gt =>
-      sorry
+      by_cases g1_gt_cases : x < 3
+      case pos =>
+        have g1_gt_cases_p1 : x = 1 ∨ x = 2 := by sorry
+      case neg =>
+        have g1_gt_cases_n1 : 3 ≤ x :=by apply not_lt.mp g1_gt_cases
+        have g1_gt_cases_n2 : 3 = x ∨ 3 < x :=by apply eq_or_lt_of_le g1_gt_cases_n1
+        by_cases g1_gt_cases_n2_cases : x = 3
+        case pos =>
+          calc
+            2*x = 2*3 := by rw[g1_gt_cases_n2_cases]
+            _   = 6   := by linarith
+            _   ≠ 3   := by linarith
+        case neg =>
+          have g1_gt_cases_n2_cases_n1 : ¬ (x ≤ 3) := by sorry
+          have g1_gt_cases_n2_cases_n2 : 3 < x := by apply not_le.mp g1_gt_cases_n2_cases_n1
+          have g1_gt_cases_n2_cases_n3 : 2*x > 6 := by
+            calc
+              2*x > 2*3 := by rel[g1_gt_cases_n2_cases_n2]
+              _   = 6   := by linarith
+          have g1_gt_cases_n2_cases_n4 : 2*x ≠ 3 := by sorry
 
 -- TRY AGAIN using:  2*x is an even integer and 3 is an odd integer and, therefore, 2*x \neq 3
 -- NOT FINISHED
