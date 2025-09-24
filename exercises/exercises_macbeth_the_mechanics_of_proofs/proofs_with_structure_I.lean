@@ -684,16 +684,17 @@ example
               _   = 6   := by linarith
           have g1_gt_cases_n2_cases_n4 : 2*x ≠ 3 := by sorry
 
--- TRY AGAIN using:  2*x is an even integer and 3 is an odd integer and, therefore, 2*x \neq 3
--- NOT FINISHED
+-- 2*x is an even integer and 3 is an odd integer
+-- and, therefore, 2*x \neq 3
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by
-  have h : Even (2 : ℤ) := by norm_num
-  have h0 : Even (2 : ℤ) ∨ Even x := by
+  by_contra g
+  have h : Even (2 : ℤ ) := by norm_num
+  have h0 : Even (2 : ℤ ) ∨ Even x := by
     left
     exact h
   have h1 : Even (2*x) := by apply Int.even_mul.mpr h0
   have h2: Odd (3) := by norm_num
-  have h3 : 2*x ≠ 3 := by simpa [h1, h2]
-  exact h3
+  rewrite [g] at h1
+  contradiction
