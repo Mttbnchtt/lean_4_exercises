@@ -698,3 +698,7 @@ example
   have h2: Odd (3) := by norm_num
   rewrite [g] at h1
   contradiction
+
+example
+  {x : ℤ}
+  : 2 * x ≠ 3 := by grind
