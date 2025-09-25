@@ -700,26 +700,55 @@ example
   contradiction
 
 
+-- solution suggested on Zulip by user
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by grind
 
+-- solution suggested on Zulip by user
 example {x : ℤ} : 2 * x ≠ 3 := by
   intro g
   replace g := congr_arg Even g
   norm_num at g
 
+-- solution suggested on Zulip by user
 example {x : ℤ} : 2 * x ≠ 3 := by
   apply ne_of_apply_ne Even
   norm_num
 
-  example {x : ℤ} : 2 * x ≠ 3 := by
+-- solution suggested on Zulip by user
+example {x : ℤ} : 2 * x ≠ 3 := by
   by_contra g
   have h1 : Even (2 * x) := by
     rw [Int.even_mul]
     left
     norm_num
   have h2 : Odd 3 := by
+    norm_num
+  rw [g] at h1
+  contradiction
+
+-- solution suggested on Zulip by user
+example {x : ℤ} : 2 * x ≠ 3 := by
+  by_contra g
+  have h1 : Even (2 * x) := by
+    rw [Int.even_mul]
+    left
+    norm_num
+  have h2 : Odd 3 := by
+    norm_num
+  rw [g, ← Int.not_odd_iff_even] at h1
+  contradiction
+
+-- solution suggested on Zulip by user
+-- no mention of Odd
+  example {x : ℤ} : 2 * x ≠ 3 := by
+  by_contra g
+  have h1 : Even (2 * x) := by
+    rw [Int.even_mul]
+    left
+    norm_num
+  have h2 : ¬ Even 3 := by
     norm_num
   rw [g] at h1
   contradiction
