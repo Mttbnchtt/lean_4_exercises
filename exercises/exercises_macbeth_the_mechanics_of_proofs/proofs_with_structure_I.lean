@@ -699,6 +699,27 @@ example
   rewrite [g] at h1
   contradiction
 
+
 example
   {x : ℤ}
   : 2 * x ≠ 3 := by grind
+
+example {x : ℤ} : 2 * x ≠ 3 := by
+  intro g
+  replace g := congr_arg Even g
+  norm_num at g
+
+example {x : ℤ} : 2 * x ≠ 3 := by
+  apply ne_of_apply_ne Even
+  norm_num
+
+  example {x : ℤ} : 2 * x ≠ 3 := by
+  by_contra g
+  have h1 : Even (2 * x) := by
+    rw [Int.even_mul]
+    left
+    norm_num
+  have h2 : Odd 3 := by
+    norm_num
+  rw [g] at h1
+  contradiction
