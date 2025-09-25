@@ -752,3 +752,20 @@ example {x : ℤ} : 2 * x ≠ 3 := by
     norm_num
   rw [g] at h1
   contradiction
+
+-- -----------------------------
+example
+  {t : ℤ}
+  : 5 * t ≠ 18 := by
+  grind
+
+-- NOT FINISHED
+example
+  {t : ℤ}
+  : 5 * t ≠ 18 := by
+  by_cases h : t > 4
+  case pos =>
+    linarith
+  case neg =>
+    -- have g : t ≤ 4 := by  apply Nat.le_of_not_gt.mp h
+    sorry
