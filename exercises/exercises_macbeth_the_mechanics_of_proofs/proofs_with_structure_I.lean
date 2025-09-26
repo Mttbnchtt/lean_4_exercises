@@ -764,8 +764,31 @@ example
   {t : ℤ}
   : 5 * t ≠ 18 := by
   by_cases h : t > 4
+
+  -- Here Lean knows that t > 4
   case pos =>
     linarith
+
+  -- Here Lean knows that ¬ (t > 4)
   case neg =>
-    -- have g : t ≤ 4 := by  apply Nat.le_of_not_gt.mp h
-    sorry
+    have g1 : t ≤ 4 := by apply Int.le_of_not_gt h
+    have g2 : t < 4 ∨ t = 4 := by apply Int.le_iff_lt_or_eq.mp g1
+    cases g2 with
+
+    -- Here Lean know that t = 4
+    | inr g2_right =>
+        calc
+          5 * t = 5 * 4 := by rw [g2_right]
+          _     = 20    := by linarith
+          _     ≠ 18    := by linarith
+
+    -- Here Lean know that t < 4
+    | inl g2_left =>
+      have g3 : t ≤ 3 := by nlinarith
+      have g4 : 5 * t < 18 := by
+        calc
+          5 * t ≤ 5 * 3 := by rel [g3]
+          _     = 15    := by linarith
+          _     < 18    := by nlinarith
+      have g5 : 5 * t ≠ 18 := by linarith [g4]
+      exact g5
