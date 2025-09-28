@@ -742,7 +742,7 @@ example {x : ℤ} : 2 * x ≠ 3 := by
 
 -- solution suggested on Zulip by user
 -- no mention of Odd
-  example {x : ℤ} : 2 * x ≠ 3 := by
+example {x : ℤ} : 2 * x ≠ 3 := by
   by_contra g
   have h1 : Even (2 * x) := by
     rw [Int.even_mul]
