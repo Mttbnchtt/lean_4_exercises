@@ -791,3 +791,23 @@ example
           _     < 18    := by nlinarith
       have g5 : 5 * t ≠ 18 := by linarith [g4]
       exact g5
+
+-- -----------------------------
+example
+  {m : ℕ}
+  : m ^ 2 + 4 * m ≠ 46 := by
+  intro h
+  have h1 : 46 % 4 = 2 := by norm_num
+  have h2 : (m^2 + 4*m) % 4 = 0 ∨ (m^2 + 4*m) % 4 = 1 := by
+    by_cases g : Even m
+    case pos =>
+      left
+      have gp_1 : (m^2 + 4*m) % 4 = 0 := by sorry
+      sorry
+    case neg =>
+      right
+      have gp_2 : Odd m := by apply Nat.not_even_iff_odd.mp g
+      have gp_3 : (m^2 + 4*m) % 4 = 1 := by sorry
+      sorry
+  have h3 : (m^2 + 4*m) % 4 = 2 := by simp [h, h1]
+  sorry
