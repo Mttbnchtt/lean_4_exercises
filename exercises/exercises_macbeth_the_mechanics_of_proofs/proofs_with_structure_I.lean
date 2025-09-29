@@ -759,7 +759,6 @@ example
   : 5 * t ≠ 18 := by
   grind
 
--- NOT FINISHED
 example
   {t : ℤ}
   : 5 * t ≠ 18 := by
