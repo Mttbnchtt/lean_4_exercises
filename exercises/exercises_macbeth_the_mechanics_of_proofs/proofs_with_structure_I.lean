@@ -793,6 +793,8 @@ example
       exact g5
 
 -- -----------------------------
+import Mathlib
+
 example
   {m : ℕ}
   : m ^ 2 + 4 * m ≠ 46 := by
@@ -802,12 +804,22 @@ example
     by_cases g : Even m
     case pos =>
       left
-      have gp_1 : (m^2 + 4*m) % 4 = 0 := by sorry
-      sorry
+      rcases g with ⟨k, hk⟩
+      have gp_1 : m^2 + 4*m = 4*(k^2 + 2*k) := by
+        calc
+          m^2 + 4*m = (k+k)^2 + 4*(k+k)   := by rw [hk]
+          _         = (2*k)^2 + 4*(2*k) := by ring
+          _         = 4*k^2 + 4 *(2*k)  := by ring
+          _         = 4*(k^2 + 2*k)     := by ring
+
+      have gp_2 : (m^2 + 4*m) % 4 = 0 := by
+        rw [gp_1]
+        omega
+      exact gp_2
     case neg =>
       right
-      have gp_2 : Odd m := by apply Nat.not_even_iff_odd.mp g
-      have gp_3 : (m^2 + 4*m) % 4 = 1 := by sorry
+      have gn_1 : Odd m := by apply Nat.not_even_iff_odd.mp g
+      have gn_2 : (m^2 + 4*m) % 4 = 1 := by sorry
       sorry
-  have h3 : (m^2 + 4*m) % 4 = 2 := by simp [h, h1]
-  sorry
+  rw [h] at h2
+  contradiction
