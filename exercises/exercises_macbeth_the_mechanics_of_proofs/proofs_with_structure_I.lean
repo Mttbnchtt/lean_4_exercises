@@ -793,8 +793,6 @@ example
       exact g5
 
 -- -----------------------------
-import Mathlib
-
 example
   {m : ℕ}
   : m ^ 2 + 4 * m ≠ 46 := by
