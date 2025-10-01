@@ -796,37 +796,56 @@ example
 example
   {m : ℕ}
   : m ^ 2 + 4 * m ≠ 46 := by
+  -- Assume, for contradiction, that m² + 4m = 46
   intro h
+
+  -- Compute remainder of 46 modulo 4: 46 % 4 = 2
   have h1 : 46 % 4 = 2 := by norm_num
+
+  -- Show that (m² + 4m) % 4 can only be 0 or 1
   have h2 : (m^2 + 4*m) % 4 = 0 ∨ (m^2 + 4*m) % 4 = 1 := by
+    -- Split into two cases: m is even or odd
     by_cases g : Even m
+
     case pos =>
+      -- Case 1: m is even
       left
+      -- Extract k such that m = 2k
       rcases g with ⟨k, hk⟩
+      -- Express m² + 4m in terms of k and factor
       have gp_1 : m^2 + 4*m = 4*(k^2 + 2*k) := by
         calc
           m^2 + 4*m = (k+k)^2 + 4*(k+k) := by rw [hk]
           _         = (2*k)^2 + 4*(2*k) := by ring
-          _         = 4*k^2 + 4 *(2*k)  := by ring
+          _         = 4*k^2 + 4*(2*k)   := by ring
           _         = 4*(k^2 + 2*k)     := by ring
-
+      -- Conclude divisibility by 4, so remainder is 0
       have gp_2 : (m^2 + 4*m) % 4 = 0 := by
         rw [gp_1]
         omega
       exact gp_2
+
     case neg =>
+      -- Case 2: m is not even, hence odd
       right
       have gn_1 : Odd m := by apply Nat.not_even_iff_odd.mp g
+      -- Extract k such that m = 2k + 1
       rcases gn_1 with ⟨k, hk⟩
+      -- Express m² + 4m in terms of k
       have gn_2 : (m^2 + 4*m) = 4*(k^2 + 3*k + 1) + 1 := by
         calc
           m^2 + 4*m = (2*k+1)^2 + 4*(2*k+1)     := by rw [hk]
           _         = 4*k^2 + 4*k + 1 + 8*k + 4 := by ring
           _         = 4*k^2 + 12*k + 4 + 1      := by ring
           _         = 4*(k^2 + 3*k + 1) + 1     := by ring
+      -- So remainder is 1
       have gn_3 : (m^2 + 4*m) % 4 = 1 := by
         rw [gn_2]
         omega
       exact gn_3
+
+  -- Now substitute h (m² + 4m = 46) into h2
   rw [h] at h2
+
+  -- Contradiction: left side remainder must be 2 (from h1), but h2 says 0 or 1
   contradiction
