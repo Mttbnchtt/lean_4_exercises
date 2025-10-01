@@ -805,7 +805,7 @@ example
       rcases g with ⟨k, hk⟩
       have gp_1 : m^2 + 4*m = 4*(k^2 + 2*k) := by
         calc
-          m^2 + 4*m = (k+k)^2 + 4*(k+k)   := by rw [hk]
+          m^2 + 4*m = (k+k)^2 + 4*(k+k) := by rw [hk]
           _         = (2*k)^2 + 4*(2*k) := by ring
           _         = 4*k^2 + 4 *(2*k)  := by ring
           _         = 4*(k^2 + 2*k)     := by ring
@@ -817,7 +817,16 @@ example
     case neg =>
       right
       have gn_1 : Odd m := by apply Nat.not_even_iff_odd.mp g
-      have gn_2 : (m^2 + 4*m) % 4 = 1 := by sorry
-      sorry
+      rcases gn_1 with ⟨k, hk⟩
+      have gn_2 : (m^2 + 4*m) = 4*(k^2 + 3*k + 1) + 1 := by
+        calc
+          m^2 + 4*m = (2*k+1)^2 + 4*(2*k+1)     := by rw [hk]
+          _         = 4*k^2 + 4*k + 1 + 8*k + 4 := by ring
+          _         = 4*k^2 + 12*k + 4 + 1      := by ring
+          _         = 4*(k^2 + 3*k + 1) + 1     := by ring
+      have gn_3 : (m^2 + 4*m) % 4 = 1 := by
+        rw [gn_2]
+        omega
+      exact gn_3
   rw [h] at h2
   contradiction
