@@ -849,3 +849,5 @@ example
 
   -- Contradiction: left side remainder must be 2 (from h1), but h2 says 0 or 1
   contradiction
+
+-- -----------------------------
