@@ -851,3 +851,8 @@ example
   contradiction
 
 -- -----------------------------
+example
+  (x y : ℤ)
+  (h : 2*x - y = 4 ∧ y - x + 1 = 2)
+  : x = 5 := by
+  linarith [h]
