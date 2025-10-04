@@ -851,6 +851,8 @@ example
   contradiction
 
 -- -----------------------------
+-- PROOFS WITH AND
+-- -----------------------------
 example
   (x y : ℤ)
   (h : 2*x - y = 4 ∧ y - x + 1 = 2)
@@ -868,3 +870,9 @@ example
     _ = (4) -1 + (y - x + 1) := by rw [h1]
     _ = (4) -1 + (2) := by rw [h2]
     _ = 5 := by linarith
+
+-- -----------------------------
+example
+  (p :ℚ)
+  (h : p^2 ≤ 8)
+  : p ≥ -5 := by nlinarith
