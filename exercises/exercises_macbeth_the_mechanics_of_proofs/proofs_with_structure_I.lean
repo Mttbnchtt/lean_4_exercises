@@ -882,12 +882,16 @@ example
   (p : ℚ)
   (h : p^2 ≤ 8)
   : p ≥ -5 := by
-  have g : (0 : ℝ) ≤ √8 := by sorry
-  have g0 : p^2 ≤ (√8)^2 := by sorry
-  have g1 : -√8 ≤ p ∧  p ≤ √8 := abs_le_of_sq_le_sq' g0 g
-  obtain ⟨g2, List.getLast.hcongr_3⟩:= g1
-  have g4 : p ≥ -5 := by nlinarith
-    -- calc
-    --   p ≥ -√8 := by rel [g2]
-    --   _ ≥ -5  := by nlinarith
-  exact g4
+  have g : (0 : ℝ) ≤ √8 := by norm_num
+  have g0 : (p^2 : ℝ) ≤ (√8 : ℝ )^2 := by
+    calc
+      (p^2 : ℝ) ≤ (8 : ℝ) := by exact_mod_cast h
+      _   = (√8)^2 := by norm_num
+  have g1 : -√8 ≤ p ∧  p ≤ √8 := by apply abs_le_of_sq_le_sq' g0 g
+  have g2 : -√8 ≤ p := by apply g1.left
+  have g3 : 8 ≤ (-5)^2 := by nlinarith
+  have g4 : (p : ℝ) ≥ -5 := by
+    calc
+      p ≥ -√8 := by rel [g2]
+      _ ≥ -5 := sorry
+  exact_mod_cast g4
