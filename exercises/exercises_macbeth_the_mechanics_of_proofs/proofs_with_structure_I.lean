@@ -896,6 +896,29 @@ example
       _ ≥ -5 := sorry
   exact_mod_cast g4
 
+example
+  (p : ℚ)
+  (h : p^2 ≤ 8)
+  : p ≥ -5 := by
+  have g : (0 : ℝ) ≤ √8 := by norm_num
+  have g0 : (p^2 : ℝ) ≤ (√8 : ℝ )^2 := by
+    calc
+      (p^2 : ℝ) ≤ (8 : ℝ) := by exact_mod_cast h
+      _   = (√8)^2 := by norm_num
+  have g1 : -√8 ≤ p ∧  p ≤ √8 := by apply abs_le_of_sq_le_sq' g0 g
+  have g2 : -√8 ≤ p := by apply g1.left
+  have g3 : (8 : ℝ) ≤ (5^2 : ℝ) := by nlinarith
+  have g3_1 : √8 ≤ √(5^2) := Real.sqrt_le_sqrt g3
+  have g3_1_1 : √(5^2) = (|5| : ℝ) := by sorry
+  -- Real.sqrt_sq_eq_abs g3_1
+  have g3_2 : √8 ≤ 5 := by sorry
+  have g3_3 : -5 ≤ -√8 := neg_le_neg_iff.mpr g3_2
+  have g4 : (p : ℝ) ≥ -5 := by
+    calc
+      p ≥ -√8 := by rel [g2]
+      _ ≥ -5 := by apply g3_3
+  exact_mod_cast g4
+
 example : √8 ≤ 5 := by
   have g : (0 : ℝ) ≤ 5 ∧ (8 : ℝ) ≤ 5^2 := by norm_num
   apply Real.sqrt_le_iff.mpr g
