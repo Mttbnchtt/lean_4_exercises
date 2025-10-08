@@ -895,3 +895,7 @@ example
       p ≥ -√8 := by rel [g2]
       _ ≥ -5 := sorry
   exact_mod_cast g4
+
+example : √8 ≤ 5 := by
+  have g : (0 : ℝ) ≤ 5 ∧ (8 : ℝ) ≤ 5^2 := by norm_num
+  apply Real.sqrt_le_iff.mpr g
