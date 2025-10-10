@@ -878,8 +878,6 @@ example
   : p ≥ -5 := by nlinarith
 
 -- ----------------------------- d
-import Mathlib
-
 example
   (p : ℚ)
   (h : p^2 ≤ 8)
@@ -899,6 +897,7 @@ example
       p ≥ -√8 := by rel [g2]
       _ ≥ -5 := by apply g5
   exact_mod_cast g6
+
 example : √8 ≤ 5 := by
   have g : (0 : ℝ) ≤ 5 ∧ (8 : ℝ) ≤ 5^2 := by norm_num
   apply Real.sqrt_le_iff.mpr g
