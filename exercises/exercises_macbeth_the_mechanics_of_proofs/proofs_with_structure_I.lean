@@ -901,3 +901,21 @@ example
 example : √8 ≤ 5 := by
   have g : (0 : ℝ) ≤ 5 ∧ (8 : ℝ) ≤ 5^2 := by norm_num
   apply Real.sqrt_le_iff.mpr g
+
+
+-- -----------------------------
+
+example
+  {a b : ℝ}
+  (h1 : a - 5 * b = 4)
+  (h2 : b + 2 = 3)
+  : a = 9 ∧ b = 1 := by
+  -- constructor
+  have g1 : b = 1 := by linarith [h2]
+  have g2 : a = 9 := by
+    calc
+      a = a - 5*b + 5*b := by ring
+      _ = 4 + 5*b       := by rw [h1]
+      _ = 4 + 5*1       := by rw [g1]
+      _ = 9             := by linarith
+  exact ⟨g2, g1⟩
