@@ -904,13 +904,11 @@ example : √8 ≤ 5 := by
 
 
 -- -----------------------------
-
 example
   {a b : ℝ}
   (h1 : a - 5 * b = 4)
   (h2 : b + 2 = 3)
   : a = 9 ∧ b = 1 := by
-  -- constructor
   have g1 : b = 1 := by linarith [h2]
   have g2 : a = 9 := by
     calc
@@ -919,3 +917,17 @@ example
       _ = 4 + 5*1       := by rw [g1]
       _ = 9             := by linarith
   exact ⟨g2, g1⟩
+
+example
+  {a b : ℝ}
+  (h1 : a - 5 * b = 4)
+  (h2 : b + 2 = 3)
+  : a = 9 ∧ b = 1 := by
+  have g1 : b = 1 := by linarith [h2]
+  constructor
+  · calc
+      a = a - 5*b + 5*b := by ring
+      _ = 4 + 5*b       := by rw [h1]
+      _ = 4 + 5*1       := by rw [g1]
+      _ = 9             := by linarith
+  · apply g1
