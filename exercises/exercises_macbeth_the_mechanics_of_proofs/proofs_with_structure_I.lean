@@ -931,3 +931,20 @@ example
       _ = 4 + 5*1       := by rw [g1]
       _ = 9             := by linarith
   · apply g1
+
+
+import Mathlib
+
+example
+  (a b : ℝ)
+  (h : a^2 + b^2 = 0)
+  : a=0 ∧ b=0 := by
+  have g1 : a^2 = - b^2 := by nlinarith [h]
+  have g2 : a^2 ≥ 0 := by nlinarith
+  have g3 : -b^2 ≤ 0 := by nlinarith
+  have g4 : a^2 = 0 := by nlinarith [g1, g2, g3]
+  have g5 : a = 0 := by nlinarith [g4]
+  have g6 : b = 0 := by nlinarith [g1, g4]
+  constructor
+  . apply g5
+  . apply g6
