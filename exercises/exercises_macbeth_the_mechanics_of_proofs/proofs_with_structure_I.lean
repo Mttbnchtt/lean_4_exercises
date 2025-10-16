@@ -932,9 +932,7 @@ example
       _ = 9             := by linarith
   · apply g1
 
-
-import Mathlib
-
+-- -----------------------------
 example
   (a b : ℝ)
   (h : a^2 + b^2 = 0)
@@ -948,3 +946,11 @@ example
   constructor
   . apply g5
   . apply g6
+
+example
+  (a b : ℝ)
+  (h : a^2 + b^2 = 0)
+  : a = 0 ∧ b = 0 := by
+  have ha : a = 0 := by nlinarith
+  have hb : b = 0 := by nlinarith
+  exact ⟨ha, hb⟩
