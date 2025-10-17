@@ -955,7 +955,7 @@ example
   have hb : b = 0 := by nlinarith
   exact ⟨ha, hb⟩
 
-
+-- -----------------------------
 example
  (a b : ℚ)
  (h : a ≤ 1 ∧ a + b ≤ 3)
@@ -967,3 +967,16 @@ example
   _       = 1 + (a + b) := by ring
   _       ≤ 1 + 3       := by rel[h2]
   _       = 4           := by nlinarith
+
+-- -----------------------------
+example
+  (r s : ℝ)
+  (h : r + s ≤ 1 ∧ r - s ≤ 5)
+  : 2*r ≤ 6 := by
+  obtain ⟨ h1, h2 ⟩ := h
+  calc
+    2*r = r + s + r - s := by ring
+    _   ≤ 1 + r - s     := by rel[h1]
+    _   = 1 + (r - s)   := by ring
+    _   ≤ 1 + 5         := by rel[h2]
+    _   = 6             := by nlinarith
