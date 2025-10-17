@@ -954,3 +954,16 @@ example
   have ha : a = 0 := by nlinarith
   have hb : b = 0 := by nlinarith
   exact ⟨ha, hb⟩
+
+
+example
+ (a b : ℚ)
+ (h : a ≤ 1 ∧ a + b ≤ 3)
+ : 2*a + b ≤ 4 := by
+ obtain ⟨ h1, h2 ⟩ := h
+ calc
+  2*a + b = a + a +b    := by ring
+  _       ≤ 1 + a + b   := by rel[h1]
+  _       = 1 + (a + b) := by ring
+  _       ≤ 1 + 3       := by rel[h2]
+  _       = 4           := by nlinarith
