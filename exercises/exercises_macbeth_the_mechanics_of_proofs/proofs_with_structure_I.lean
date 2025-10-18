@@ -981,8 +981,7 @@ example
     _   ≤ 1 + 5         := by rel[h2]
     _   = 6             := by nlinarith
 
-import Mathlib
-
+-- -----------------------------
 example
   (m n : ℤ)
   (h : n ≤ 8 ∧ m + 5 ≤ n)
