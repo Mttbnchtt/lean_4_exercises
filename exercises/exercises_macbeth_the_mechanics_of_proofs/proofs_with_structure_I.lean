@@ -980,3 +980,16 @@ example
     _   = 1 + (r - s)   := by ring
     _   ≤ 1 + 5         := by rel[h2]
     _   = 6             := by nlinarith
+
+import Mathlib
+
+example
+  (m n : ℤ)
+  (h : n ≤ 8 ∧ m + 5 ≤ n)
+  : m ≤ 3 := by
+  obtain ⟨ h1, h2 ⟩ := h
+  calc
+    m = m + 5 - 5 := by ring
+    _ ≤ n - 5     := by rel[h2]
+    _ ≤ 8 - 5     := by rel[h1]
+    _ = 3         := by nlinarith
