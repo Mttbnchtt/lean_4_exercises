@@ -992,3 +992,11 @@ example
     _ ≤ n - 5     := by rel[h2]
     _ ≤ 8 - 5     := by rel[h1]
     _ = 3         := by nlinarith
+
+example
+  {p : ℤ}
+  (h : p + 2 ≥ 9)
+  : p ^ 2 ≥ 49 ∧ 7 ≤ p := by
+  have g1 : p^2 ≥ 49 := by nlinarith
+  have g2 : 7 ≤ p := by nlinarith
+  exact ⟨ g1, g2 ⟩
