@@ -1010,3 +1010,13 @@ example
   have g1 : a ≥ 6 := by nlinarith
   have g2 : 3*a ≥ 10 := by nlinarith
   exact ⟨ g1, g2 ⟩
+
+example
+  {x y : ℚ}
+  (h : x + y = 5 ∧ x + 2 * y = 7)
+  : x = 3 ∧ y = 2 := by
+  obtain ⟨g1, g2 ⟩ := h
+  have g3 : x = 5 - y := by linarith [g1]
+  have g4 : y = 2 := by linarith [g2, g3]
+  have g5 : x = 3 := by linarith [g3, g4]
+  exact ⟨ g5, g4 ⟩
