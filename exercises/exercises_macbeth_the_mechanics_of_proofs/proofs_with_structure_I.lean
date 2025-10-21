@@ -1011,6 +1011,7 @@ example
   have g2 : 3*a ≥ 10 := by nlinarith
   exact ⟨ g1, g2 ⟩
 
+-- -----------------------------
 example
   {x y : ℚ}
   (h : x + y = 5 ∧ x + 2 * y = 7)
