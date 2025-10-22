@@ -1021,3 +1021,19 @@ example
   have g4 : y = 2 := by linarith [g2, g3]
   have g5 : x = 3 := by linarith [g3, g4]
   exact ⟨ g5, g4 ⟩
+
+
+import Mathlib
+
+example
+  {a : ℚ}
+  (h : ∃ b : ℚ, a = b ^ 2 + 1)
+  : a > 0 := by
+  obtain ⟨b, hb⟩ := h
+  -- intro b
+  have g1 : b^2 ≥ 0 := by nlinarith
+  have g2 : a > 0 := by
+    calc
+      a = b^2 + 1 := by rw [hb]
+      _ > 0       := by nlinarith [g1]
+  exact g2
