@@ -1022,9 +1022,7 @@ example
   have g5 : x = 3 := by linarith [g3, g4]
   exact ⟨ g5, g4 ⟩
 
-
-import Mathlib
-
+-- -----------------------------
 example
   {a : ℚ}
   (h : ∃ b : ℚ, a = b ^ 2 + 1)
