@@ -1023,6 +1023,29 @@ example
   exact ⟨ g5, g4 ⟩
 
 -- -----------------------------
+
+import Mathlib
+
+example
+  {a b : ℝ}
+  (h1 : a * b = a)
+  (h2 : a * b = b)
+  : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+  by_cases g : a > 0
+  case pos =>
+    right
+    have pos_1 : a = 1 ∧ b = 1 := by sorry
+    exact pos_1
+  case neg =>
+    left
+    have neg_1 : a ≤ 0 := by nlinarith [g]
+    have neg_2 : a = 0 ∧ b = 0 := by sorry
+    exact neg_2
+
+
+-- -----------------------------
+-- PROOFS WITH EXISTS
+-- -----------------------------
 example
   {a : ℚ}
   (h : ∃ b : ℚ, a = b ^ 2 + 1)
