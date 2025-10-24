@@ -1028,7 +1028,6 @@ example
   (h : ∃ b : ℚ, a = b ^ 2 + 1)
   : a > 0 := by
   obtain ⟨b, hb⟩ := h
-  -- intro b
   have g1 : b^2 ≥ 0 := by nlinarith
   have g2 : a > 0 := by
     calc
