@@ -1028,16 +1028,36 @@ example
   (h1 : a * b = a)
   (h2 : a * b = b)
   : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+  have eq_a_b : a = b := by
+    calc
+      a = a*b := by rw [h1]
+      _ = b   := by rw [h2]
   by_cases g : a > 0
   case pos =>
     right
-    have pos_1 : a = 1 ∧ b = 1 := by sorry
-    exact pos_1
+    have pos_0 : a = 1 := by nlinarith
+    have pos_1 : b = 1:= by
+      calc
+        b = a := by rw [eq_a_b]
+        _ = 1 := by rw [pos_0]
+    have pos_2 : a = 1 ∧ b = 1 := by
+      constructor
+      . exact pos_0
+      . exact pos_1
+    exact pos_2
   case neg =>
     left
-    have neg_1 : a ≤ 0 := by nlinarith [g]
-    have neg_2 : a = 0 ∧ b = 0 := by sorry
-    exact neg_2
+    have neg_0 : a ≤ 0 := by nlinarith [g]
+    have neg_1 : a = 0 := by nlinarith
+    have neg_2 : b = 0 := by
+      calc
+        b = a := by rw [eq_a_b]
+        _ = 0 := by rw [neg_1]
+    have neg_3 : a = 0 ∧ b = 0 := by
+      constructor
+      . exact neg_1
+      . exact neg_2
+    exact neg_3
 
 
 -- -----------------------------
