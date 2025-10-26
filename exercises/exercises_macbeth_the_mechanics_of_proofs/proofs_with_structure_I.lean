@@ -1023,9 +1023,6 @@ example
   exact ⟨ g5, g4 ⟩
 
 -- -----------------------------
-
-import Mathlib
-
 example
   {a b : ℝ}
   (h1 : a * b = a)
