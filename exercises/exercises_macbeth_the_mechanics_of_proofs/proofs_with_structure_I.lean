@@ -1075,7 +1075,7 @@ example
       _ > 0       := by nlinarith [g1]
   exact g2
 
-
+-- -----------------------------
 example
   (t : ℝ)
   (h : ∃ a : ℝ, a*t < 0)
