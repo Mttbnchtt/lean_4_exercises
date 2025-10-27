@@ -1074,3 +1074,17 @@ example
       a = b^2 + 1 := by rw [hb]
       _ > 0       := by nlinarith [g1]
   exact g2
+
+
+example
+  (t : ℝ)
+  (h : ∃ a : ℝ, a*t < 0)
+  : t ≠ 0 := by
+  by_contra g
+  obtain ⟨ a, ha ⟩ := h
+  have g_contra_1 : a*t = 0 := by
+    calc
+      a*t = a*0 := by rw [g]
+      _   = 0   := by linarith
+  have g_contra_2 : ¬ (a*t < 0) := by nlinarith [g_contra_1]
+  contradiction
