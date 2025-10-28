@@ -1101,8 +1101,7 @@ example
   have g_contra_2 : ¬ (a*t < 0) := by nlinarith [g_contra_1]
   contradiction
 
-import Mathlib
-
+-- -----------------------------
 example
   : ∃ n : ℤ, (12*n = 84) := by
   use 7
