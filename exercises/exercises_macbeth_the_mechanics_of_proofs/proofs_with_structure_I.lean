@@ -1107,8 +1107,7 @@ example
   use 7
   linarith
 
-import Mathlib
-
+-- -----------------------------
 example
   (x : ℝ)
   : ∃ y : ℝ, (y > x) := by
