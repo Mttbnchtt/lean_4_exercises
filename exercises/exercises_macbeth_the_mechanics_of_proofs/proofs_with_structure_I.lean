@@ -1106,3 +1106,11 @@ example
   : ∃ n : ℤ, (12*n = 84) := by
   use 7
   linarith
+
+import Mathlib
+
+example
+  (x : ℝ)
+  : ∃ y : ℝ, (y > x) := by
+  use x + 1
+  nlinarith
