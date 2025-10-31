@@ -1113,3 +1113,11 @@ example
   : ∃ y : ℝ, (y > x) := by
   use x + 1
   nlinarith
+
+  import Mathlib
+
+example
+  : ∃ m n : ℤ, m^2 - n^2 = 12 := by
+  use 4
+  use 2
+  nlinarith
