@@ -1114,10 +1114,18 @@ example
   use x + 1
   nlinarith
 
-  import Mathlib
-
+-- -----------------------------
 example
   : ∃ m n : ℤ, m^2 - n^2 = 12 := by
   use 4
   use 2
   nlinarith
+
+-- -----------------------------
+example
+  : ∃ m n : ℤ, m^2 - n^2 = 11 := by
+  use 6
+  use 5
+  nlinarith
+
+  
