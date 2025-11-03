@@ -1128,4 +1128,11 @@ example
   use 5
   nlinarith
 
+-- -----------------------------
+example 
+  (a : ℤ)
+  : ∃ m n : ℤ, m^2 - n^2 = 2*a + 1 := by
+  use a + 1
+  use a
+  nlinarith
   
