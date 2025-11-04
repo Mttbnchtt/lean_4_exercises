@@ -1136,6 +1136,7 @@ example
   use a
   nlinarith
   
+-- -----------------------------
 
   example
   (p q : ℝ)
