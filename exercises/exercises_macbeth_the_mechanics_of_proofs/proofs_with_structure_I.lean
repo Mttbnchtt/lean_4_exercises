@@ -1136,3 +1136,12 @@ example
   use a
   nlinarith
   
+
+  example
+  (p q : ℝ)
+  (h : p < q)
+  : ∃ x : ℝ, (p < x) ∧  (x < q) := by
+  use (p+q)/2
+  constructor
+  . nlinarith
+  . nlinarith
