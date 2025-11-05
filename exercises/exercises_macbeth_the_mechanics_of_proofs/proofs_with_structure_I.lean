@@ -1137,7 +1137,6 @@ example
   nlinarith
   
 -- -----------------------------
-
   example
   (p q : ℝ)
   (h : p < q)
@@ -1147,7 +1146,7 @@ example
   . nlinarith
   . nlinarith
 
-
+-- -----------------------------
   example : 
   ∃ a b c d : ℕ, (a^3 + b^3 = 1729 ∧ c^3 + d^3 = 1729 ∧ a ≠ c ∧ a ≠ d) := by
   use 1, 12, 9, 10
