@@ -1165,7 +1165,15 @@ example
   repeat (constructor ; nlinarith)
   nlinarith
 
+-- -----------------------------
   example 
   : ∃ t : ℚ, t^2 = 1.69 := by
   use 1.3
   nlinarith 
+
+-- -----------------------------
+  example 
+  : ∃ m n : ℤ, m^2 + n^2 = 85 := by
+  use 6
+  use 7
+  nlinarith
