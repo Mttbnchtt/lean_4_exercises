@@ -1164,3 +1164,8 @@ example
   use 1, 12, 9, 10
   repeat (constructor ; nlinarith)
   nlinarith
+
+  example 
+  : ∃ t : ℚ, t^2 = 1.69 := by
+  use 1.3
+  nlinarith 
