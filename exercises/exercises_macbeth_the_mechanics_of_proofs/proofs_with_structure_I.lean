@@ -1178,6 +1178,7 @@ example
   use 7
   nlinarith
 
+-- -----------------------------
   example 
   : ∃ x : ℝ, x < 0 ∧ x ^ 2 < 1 := by
   use -1/2
