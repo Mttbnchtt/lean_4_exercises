@@ -1177,3 +1177,10 @@ example
   use 6
   use 7
   nlinarith
+
+  example 
+  : ∃ x : ℝ, x < 0 ∧ x ^ 2 < 1 := by
+  use -1/2
+  constructor
+  norm_num
+  norm_num
