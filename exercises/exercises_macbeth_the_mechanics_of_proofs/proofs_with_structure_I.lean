@@ -1187,3 +1187,30 @@ example
   . norm_num
 
 -- -----------------------------
+example
+  : ∃ a b : ℕ, 2 ^ a = 5 * b + 1 := by
+  use 4, 3
+  norm_num
+
+example
+  (x : ℚ)
+  : ∃ y : ℚ, y ^ 2 > x := by
+  use x + 1
+  nlinarith
+
+example
+  {t : ℝ}
+  (h : ∃ a : ℝ, a * t + 1 < a + t)
+  : t ≠ 1 := by
+  by_contra g
+  rewrite [g] at h
+  -- from rewrite we get: a + 1 < a + 1
+  -- ∃ a (1 < 1) iff 1 < 1
+  -- 1 < 1
+  simp at h
+
+example
+  {t : ℝ}
+  (h : ∃ a b : ℝ, t + 1 < t + b)
+  : t ≠ 1 := by
+  simp at h
