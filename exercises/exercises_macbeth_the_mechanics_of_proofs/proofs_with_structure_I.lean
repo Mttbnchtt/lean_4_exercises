@@ -1129,13 +1129,13 @@ example
   nlinarith
 
 -- -----------------------------
-example 
+example
   (a : ℤ)
   : ∃ m n : ℤ, m^2 - n^2 = 2*a + 1 := by
   use a + 1
   use a
   nlinarith
-  
+
 -- -----------------------------
   example
   (p q : ℝ)
@@ -1159,29 +1159,31 @@ example
   contradiction
 
 -- -----------------------------
-  example : 
+  example :
   ∃ a b c d : ℕ, (a^3 + b^3 = 1729 ∧ c^3 + d^3 = 1729 ∧ a ≠ c ∧ a ≠ d) := by
   use 1, 12, 9, 10
   repeat (constructor ; nlinarith)
   nlinarith
 
 -- -----------------------------
-  example 
+  example
   : ∃ t : ℚ, t^2 = 1.69 := by
   use 1.3
-  nlinarith 
+  nlinarith
 
 -- -----------------------------
-  example 
+  example
   : ∃ m n : ℤ, m^2 + n^2 = 85 := by
   use 6
   use 7
   nlinarith
 
 -- -----------------------------
-  example 
+  example
   : ∃ x : ℝ, x < 0 ∧ x ^ 2 < 1 := by
   use -1/2
   constructor
   . norm_num
   . norm_num
+
+-- -----------------------------
