@@ -1214,3 +1214,10 @@ example
   (h : ∃ a b : ℝ, t + 1 < t + b)
   : t ≠ 1 := by
   simp at h
+
+
+example
+  {m : ℤ}
+  (h : ∃ a, 2 * a = m)
+  : m ≠ 5 := by
+  grind
