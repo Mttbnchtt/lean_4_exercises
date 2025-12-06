@@ -1223,8 +1223,7 @@ example
   grind
 
 
-import Mathlib
-
+-- -----------------------------
 example
   {n : ℤ}
   : ∃ a, 2 * (a^3) ≥ (n * a) + 7 := by
@@ -1251,3 +1250,13 @@ example
   have h5 : m ≥ n := by grind
   have h6 : m*|m| + 7 ≥ n*m + 7 := by nlinarith
   grind
+
+-- proof suggested by Quinn Culver
+example
+  {n : ℤ}
+  : ∃ a, 2 * (a^3) ≥ (n * a) + 7 := by
+  by_cases hn: n ≥ 2
+  use n
+  nlinarith
+  use 2
+  nlinarith
