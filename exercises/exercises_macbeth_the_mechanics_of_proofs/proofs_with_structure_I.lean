@@ -1221,3 +1221,33 @@ example
   (h : ∃ a, 2 * a = m)
   : m ≠ 5 := by
   grind
+
+
+import Mathlib
+
+example
+  {n : ℤ}
+  : ∃ a, 2 * (a^3) ≥ (n * a) + 7 := by
+  set m : ℤ := max |n| 2 with ha
+  have h0 : m ≥ 2 := by grind
+  have h1 : 2*m^3 ≥ m^2 + 7 := by nlinarith [h0]
+  have h2 : |m| ≥ m := by grind
+  have h3 : |m|^2 ≥ m*|m| := by
+    by_cases h_case : m ≥ 0
+    case pos =>
+      calc
+        |m|^2 = |m| * |m| := by ring
+        _     = m * |m|   := by grind
+        _     ≥ m * |m|   := by grind
+    case neg =>
+      calc
+        |m|^2 = |m| * |m| := by ring
+        _     = m * m   := by grind
+        _     ≥ m * |m| := by grind
+  have h4 : m^2 + 7 ≥ m*|m| + 7 := by
+    calc
+      m^2 + 7 = |m|^2 + 7 := by grind
+      _       ≥ m*|m| + 7 := by grind
+  have h5 : m ≥ n := by grind
+  have h6 : m*|m| + 7 ≥ n*m + 7 := by nlinarith
+  grind
