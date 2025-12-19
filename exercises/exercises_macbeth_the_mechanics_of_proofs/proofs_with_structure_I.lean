@@ -1261,6 +1261,7 @@ example
   use 2
   nlinarith
 
+-- -----------------------------
 example
   {a b c : ℝ}
   (ha : a ≤ b + c)
