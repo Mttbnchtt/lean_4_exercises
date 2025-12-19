@@ -1260,3 +1260,20 @@ example
   nlinarith
   use 2
   nlinarith
+
+example
+  {a b c : ℝ}
+  (ha : a ≤ b + c)
+  -- (-a + b +c)/2 ≥  0
+  (hb : b ≤ a + c)
+  (hc : c ≤ a + b)
+  : ∃ x y z, x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ a = y + z ∧ b = x + z ∧ c = x + y := by
+  use (-a+b+c)/2 , (a-b+c)/2 , (a+b-c)/2
+  grind
+
+
+example
+  {a b c : ℝ}
+  : ∃ x y z, a = y + z ∧ b = x + z ∧ c = x + y := by
+  use (-a+b+c)/2 , (a-b+c)/2 , (a+b-c)/2
+  grind
