@@ -7,3 +7,13 @@ example : Odd (-3 : ℤ) := by
   dsimp [Odd]
   use -2
   simp
+
+
+import Mathlib
+
+example
+  (n : ℕ)
+  (h : Odd n)
+  : Odd (3*n + 2) := by
+  dsimp [Odd]
+  sorry
