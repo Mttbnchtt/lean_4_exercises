@@ -8,9 +8,6 @@ example : Odd (-3 : ℤ) := by
   use -2
   simp
 
-
-import Mathlib
-
 example
   (n : ℕ)
   (h : Odd n)
