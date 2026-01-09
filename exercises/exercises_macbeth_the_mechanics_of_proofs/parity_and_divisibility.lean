@@ -16,4 +16,6 @@ example
   (h : Odd n)
   : Odd (3*n + 2) := by
   dsimp [Odd]
-  sorry
+  rcases h with ⟨ k', hk'⟩
+  use ( 3*k' + 2 )
+  linarith
