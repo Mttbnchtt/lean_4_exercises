@@ -16,3 +16,25 @@ example
   rcases h with ⟨ k', hk'⟩
   use ( 3*k' + 2 )
   linarith
+
+
+example
+  (n : ℤ)
+  (h : Odd n)
+  : Odd (3*n + 2) := by
+  dsimp [Odd]
+  rcases h with ⟨ k', hk'⟩
+  use ( 3*k' + 2 )
+  linarith
+
+
+example
+  (n : ℤ)
+  (hn : Odd n)
+  : Odd (3 * n + 2) := by
+  dsimp [Odd] at *
+  obtain ⟨k, hk⟩ := hn
+  use 3 * k + 2
+  calc
+    3 * n + 2 = 3 * (2 * k + 1) + 2 := by rw [hk]
+    _ = 2 * (3 * k + 2) + 1 := by ring
