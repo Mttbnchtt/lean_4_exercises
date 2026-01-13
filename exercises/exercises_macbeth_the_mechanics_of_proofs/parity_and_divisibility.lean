@@ -60,3 +60,14 @@ example
   rcases hn with ⟨ k, hk ⟩
   use (7*k + 1)
   linarith
+
+example
+  {x y : ℤ}
+  (hx : Odd x)
+  (hy : Odd y)
+  : Odd (x + y + 1) := by
+  dsimp [Odd] at *
+  rcases hx with ⟨ x', hxk ⟩
+  rcases hy with ⟨ y', hyk ⟩
+  use x' + y' + 1
+  nlinarith
