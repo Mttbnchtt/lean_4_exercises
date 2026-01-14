@@ -71,3 +71,14 @@ example
   rcases hy with ⟨ y', hyk ⟩
   use x' + y' + 1
   nlinarith
+
+example
+  {x y : ℤ}
+  (hx : Odd x)
+  (hy : Odd y)
+  : Odd (x * y + 2 * y) := by
+  dsimp [Odd] at *
+  rcases hx with ⟨ x', hx' ⟩
+  rcases hy with ⟨ y', hy' ⟩
+  use (2*x'*y' + x' + y' + 2*y' + 1)
+  grind
