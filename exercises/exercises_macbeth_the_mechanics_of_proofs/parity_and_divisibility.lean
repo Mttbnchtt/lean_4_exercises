@@ -82,3 +82,14 @@ example
   rcases hy with ⟨ y', hy' ⟩
   use (2*x'*y' + x' + y' + 2*y' + 1)
   grind
+
+
+example
+  {m : ℤ}
+  (hm : Odd m)
+  : Even (3*m - 5) := by
+  dsimp [Odd] at hm
+  dsimp [Even]
+  rcases hm with ⟨ k, hk ⟩
+  use (3*k -1)
+  nlinarith
