@@ -93,3 +93,14 @@ example
   rcases hm with ⟨ k, hk ⟩
   use (3*k -1)
   nlinarith
+
+example
+  {n : ℤ}
+  (hn : Even n)
+  : Odd (n ^ 2 + 2 * n - 5) := by
+  dsimp [Even] at hn
+  dsimp [Odd] at *
+  rcases hn with ⟨ k, hk ⟩
+  rw [hk]
+  use 2*k^2 + 2*k - 3
+  nlinarith
