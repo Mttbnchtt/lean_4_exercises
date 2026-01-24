@@ -104,3 +104,27 @@ example
   rw [hk]
   use 2*k^2 + 2*k - 3
   nlinarith
+
+example
+  (n : ℤ)
+  : Even (n ^ 2 + n + 4) := by
+  -- CASES: Even(n) ∨ Odd(n)
+  rcases Int.even_or_odd n with ⟨ k, hk ⟩ | ⟨ k, hk ⟩
+  -- CASE 1: Even(n)
+  -- suppose that n = 2k
+  -- (2k)^2 + 2k + 4 = 4k^2 + 2k + 4
+  -- = 4k^2 + 2k + 4 = 2 (2k^2 + k + 2)
+  · dsimp [Even] at *
+    rw[hk]
+    use (2*k^2 + k + 2)
+    grind
+
+  -- CASE 2: ¬Even(n), i.e. Odd(n)
+  -- suppose that n = 2k + 1
+  -- (2k+1)^2 + 2k + 1 + 4 =
+  -- = 4k^2 + 4k + 1 + 2k + 1 + 4 =
+  -- = 4k^2 +6k + 6 = 2(2k^2 + 3k + 3)
+  · dsimp [Even] at *
+    rw[hk]
+    use (2*k^2 + 3*k + 3)
+    grind
