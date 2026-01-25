@@ -134,3 +134,33 @@ example
   dsimp [Odd] at *
   use -5
   nlinarith
+
+example
+  : Even (26 : ℤ) := by
+  dsimp [Even] at *
+  use 13
+  nlinarith
+
+example
+  {m n : ℤ}
+  (hm : Odd m)
+  (hn : Even n)
+  : Odd (n + m) := by
+  dsimp [Odd] at *
+  dsimp [Even] at *
+  rcases hm with ⟨ k, hk ⟩
+  rcases hn with ⟨ k', hk' ⟩
+  use k + k'
+  nlinarith
+
+example
+  {p q : ℤ}
+  (hp : Odd p)
+  (hq : Even q)
+  : Odd (p - q - 4) := by
+  dsimp [Odd] at *
+  dsimp [Even] at *
+  rcases hp with ⟨ k, hk ⟩
+  rcases hq with ⟨ k', hk' ⟩
+  use k - k' -2
+  nlinarith
