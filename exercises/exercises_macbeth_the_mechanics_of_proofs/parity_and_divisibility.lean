@@ -128,3 +128,9 @@ example
     rw[hk]
     use (2*k^2 + 3*k + 3)
     grind
+
+example
+  : Odd (-9 : ℤ) := by
+  dsimp [Odd] at *
+  use -5
+  nlinarith
