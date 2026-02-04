@@ -164,3 +164,86 @@ example
   rcases hq with ⟨ k', hk' ⟩
   use k - k' -2
   nlinarith
+
+
+import Mathlib
+
+example
+  {a b : ℤ}
+  (ha : Even a)
+  (hb : Odd b)
+  : Even (3 * a + b - 3) := by
+  dsimp [Even, Odd] at *
+  rcases ha with ⟨ k, hk ⟩
+  rcases hb with ⟨ k', hk' ⟩
+  use 3*k + k' -1
+  nlinarith
+
+example
+  {r s : ℤ}
+  (hr : Odd r)
+  (hs : Odd s)
+  : Even (3 * r - 5 * s) := by
+  dsimp [Even, Odd] at *
+  rcases hr with ⟨ k, hk ⟩
+  rcases hs with ⟨ k', hk' ⟩
+  use 3*k - 5*k' -1
+  nlinarith
+
+example
+  {x : ℤ}
+  (hx : Odd x)
+  : Odd (x ^ 3) := by
+  dsimp [Odd] at *
+  rcases hx with ⟨ k, hk ⟩
+  rw [hk]
+  use 4*k^3 + 6*k^2 + 3*k
+  nlinarith
+  -- grind
+
+example
+  {n : ℤ}
+  (hn : Odd n)
+  : Even (n ^ 2 - 3 * n + 2) := by
+  dsimp [Even, Odd] at *
+  rcases hn with ⟨ k, hk ⟩
+  use 2*k^2 - k
+  nlinarith
+
+example
+  {a : ℤ}
+  (ha : Odd a)
+  : Odd (a ^ 2 + 2 * a - 4) := by
+  dsimp [Odd] at *
+  rcases ha with ⟨ z, hz ⟩
+  -- (2z+1)^2 + 2(2z+1) -4 =
+  -- 4z +4z + 1 + 4k + 2 -4
+  use 2*z^2 + 4*z -1
+  nlinarith
+
+
+example
+  {p : ℤ}
+  (hp : Odd p)
+  : Odd (p ^ 2 + 3 * p - 5) := by
+  dsimp [Odd] at *
+  rcases hp with ⟨ z, hz ⟩
+  -- (2z + 1)^2 + 3(2z+1) - 5 =
+  -- 4z^2 +4z +1 + 6z +3 -5 =
+  -- 4z^2 + 10z -1
+  -- 2(2z^2 + 5z -1) + 1
+  use 2*z^2 + 5*z - 1
+  grind
+
+example
+  {x y : ℤ}
+  (hx : Odd x)
+  (hy : Odd y)
+  : Odd (x * y) := by
+  dsimp [Odd] at *
+  rcases hx with ⟨ z, hz ⟩
+  rcases hy with ⟨ w, hw ⟩
+  -- (2z+1)(2w+1) =
+  -- 4zw +2z +2w +1
+  use 2*z*w + z + w
+  grind
