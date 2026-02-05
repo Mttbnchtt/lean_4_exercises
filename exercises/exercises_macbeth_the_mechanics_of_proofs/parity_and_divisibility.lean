@@ -165,9 +165,6 @@ example
   use k - k' -2
   nlinarith
 
-
-import Mathlib
-
 example
   {a b : ℤ}
   (ha : Even a)
@@ -247,3 +244,30 @@ example
   -- 4zw +2z +2w +1
   use 2*z*w + z + w
   grind
+
+example
+  (n : ℤ)
+  : Odd (3 * n ^ 2 + 3 * n - 1) := by
+  dsimp [Odd] at *
+  rcases Int.even_or_odd n with hk | hk
+  -- CASE 1: n is even
+  ·
+    rcases hk with ⟨ z, hz ⟩
+    use 6*z^2 + 3*z - 1
+    grind
+  -- CASE 2: n is odd
+  ·
+    rcases hk with ⟨ z, hz ⟩
+    use 6*z^2 + 9*z + 2
+    grind
+
+example
+  (n : ℤ)
+  : ∃ m ≥ n, Odd m := by
+  rcases Int.even_or_odd n with hk | hk
+  · rcases hk with ⟨ z, hz ⟩
+    use n + 1
+    grind
+  · rcases hk with ⟨ z, hz ⟩
+    use n
+    grind
