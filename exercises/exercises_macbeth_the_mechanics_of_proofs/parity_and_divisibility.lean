@@ -271,3 +271,18 @@ example
   · rcases hk with ⟨ z, hz ⟩
     use n
     grind
+
+
+example 
+  (a b c : ℤ) 
+  : Even (a - b) ∨ Even (a + c) ∨ Even (b - c) := by
+  dsimp [Even] at *
+  -- Suppose Even(a): 
+  --  if Even(b), then Even(a-b); 
+  --  otherwise: if Even(c), then Even(a+c);
+  --    otherwise Even (b-c)
+  -- Otherwise:
+  --  if Odd(b), then Even(a-b);
+  --  otherwise: if Odd(c), then Even(a+c)
+  --    otherwise: Even(a+c)
+  sorry
