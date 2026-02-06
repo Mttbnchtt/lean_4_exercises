@@ -286,8 +286,33 @@ example
   --    otherwise: Even(b-c)
   rcases Int.even_or_odd a with ha | ha
   · rcases Int.even_or_odd b with hb | hb
-    · rcases Int.even_or_odd c with hc | hc
-      · grind
-      · grind
+    · grind 
     · grind
+  · grind
+
+example 
+  (a b c : ℤ) 
+  : Even (a - b) ∨ Even (a + c) ∨ Even (b - c) := by
+  -- INFORMAL PROOF:
+  -- Suppose Even(a): 
+  --  if Even(b), then Even(a-b); 
+  --  otherwise: if Even(c), then Even(a+c);
+  --    otherwise Even (b-c)
+  -- Otherwise:
+  --  if Odd(b), then Even(a-b);
+  --  otherwise: if Odd(c), then Even(a+c)
+  --    otherwise: Even(b-c)
+
+  rcases Int.even_or_odd a with ha | ha
+    -- case 1: ha: Even(a)
+  · rcases Int.even_or_odd b with hb | hb
+      -- case 1.1: hb: Even(b)
+    · exact Or.inl (ha.sub hb)
+      -- case 1.2: hb: Odd(b)
+    · rcases Int.even_or_odd c with hc | hc
+        -- case 1.2.1: hc: Even(c)
+      · exact Or.inr (Or.inl (ha.add hc))
+        -- case 1.2.2: hc: Odd(c)
+      · exact Or.inr (Or.inr (hb.sub_odd hc))
+    -- case 2: ha: Odd(a)
   · grind
