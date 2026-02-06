@@ -276,7 +276,6 @@ example
 example 
   (a b c : ℤ) 
   : Even (a - b) ∨ Even (a + c) ∨ Even (b - c) := by
-  dsimp [Even] at *
   -- Suppose Even(a): 
   --  if Even(b), then Even(a-b); 
   --  otherwise: if Even(c), then Even(a+c);
@@ -284,5 +283,11 @@ example
   -- Otherwise:
   --  if Odd(b), then Even(a-b);
   --  otherwise: if Odd(c), then Even(a+c)
-  --    otherwise: Even(a+c)
-  sorry
+  --    otherwise: Even(b-c)
+  rcases Int.even_or_odd a with ha | ha
+  · rcases Int.even_or_odd b with hb | hb
+    · rcases Int.even_or_odd c with hc | hc
+      · grind
+      · grind
+    · grind
+  · grind
