@@ -315,4 +315,12 @@ example
         -- case 1.2.2: hc: Odd(c)
       · exact Or.inr (Or.inr (hb.sub_odd hc))
     -- case 2: ha: Odd(a)
-  · grind
+  · rcases Int.even_or_odd b with hb | hb
+      -- case 2.1: hb: Even(b)
+    · rcases Int.even_or_odd c with hc | hc
+        -- case 2.1.1: hc: Even(c)
+      · exact Or.inr (Or.inr (hb.sub hc))
+        -- case 2.1.2: hc: Odd(c)
+      · exact Or.inr (Or.inl (ha.add_odd hc))
+      -- case 2.2: hb: Odd(b)
+    · exact Or.inl (ha.sub_odd hb)
