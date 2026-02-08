@@ -330,3 +330,33 @@ example
   : (11 : ℕ) ∣ 88 := by
   dsimp[(·  ∣ · )]
   use 8
+
+example
+  : (11 : ℕ) ∣ 88 := by
+  use 8
+
+example 
+  : (-2 : ℤ) ∣ 6 := by
+  use -3
+  nlinarith
+
+
+example 
+  {a b : ℤ} 
+  (hab : a ∣ b) 
+  : a ∣ b ^ 2 + 2 * b := by
+  rcases hab with ⟨k, hk⟩
+  use a*k^2 + 2*k
+  calc
+    b^2 +2*b = (a*k)^2 + 2*(a*k) := by rw [hk]
+    _        = a*(a*k^2 + 2*k) := by nlinarith
+
+
+example 
+  {a b : ℤ} 
+  (hab : a ∣ b) 
+  : a ∣ b ^ 2 + 2 * b := by
+  dsimp [(· ∣ · )]
+  rcases hab with ⟨k, hk⟩
+  use a*k^2 + 2*k
+  grind
