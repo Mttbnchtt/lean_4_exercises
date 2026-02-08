@@ -324,3 +324,9 @@ example
       · exact Or.inr (Or.inl (ha.add_odd hc))
       -- case 2.2: hb: Odd(b)
     · exact Or.inl (ha.sub_odd hb)
+
+
+example
+  : (11 : ℕ) ∣ 88 := by
+  dsimp[(·  ∣ · )]
+  use 8
