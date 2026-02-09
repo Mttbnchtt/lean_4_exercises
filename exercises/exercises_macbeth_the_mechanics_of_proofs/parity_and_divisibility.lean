@@ -273,11 +273,11 @@ example
     grind
 
 
-example 
-  (a b c : ℤ) 
+example
+  (a b c : ℤ)
   : Even (a - b) ∨ Even (a + c) ∨ Even (b - c) := by
-  -- Suppose Even(a): 
-  --  if Even(b), then Even(a-b); 
+  -- Suppose Even(a):
+  --  if Even(b), then Even(a-b);
   --  otherwise: if Even(c), then Even(a+c);
   --    otherwise Even (b-c)
   -- Otherwise:
@@ -286,16 +286,16 @@ example
   --    otherwise: Even(b-c)
   rcases Int.even_or_odd a with ha | ha
   · rcases Int.even_or_odd b with hb | hb
-    · grind 
+    · grind
     · grind
   · grind
 
-example 
-  (a b c : ℤ) 
+example
+  (a b c : ℤ)
   : Even (a - b) ∨ Even (a + c) ∨ Even (b - c) := by
   -- INFORMAL PROOF:
-  -- Suppose Even(a): 
-  --  if Even(b), then Even(a-b); 
+  -- Suppose Even(a):
+  --  if Even(b), then Even(a-b);
   --  otherwise: if Even(c), then Even(a+c);
   --    otherwise Even (b-c)
   -- Otherwise:
@@ -335,15 +335,15 @@ example
   : (11 : ℕ) ∣ 88 := by
   use 8
 
-example 
+example
   : (-2 : ℤ) ∣ 6 := by
   use -3
   nlinarith
 
 
-example 
-  {a b : ℤ} 
-  (hab : a ∣ b) 
+example
+  {a b : ℤ}
+  (hab : a ∣ b)
   : a ∣ b ^ 2 + 2 * b := by
   rcases hab with ⟨k, hk⟩
   use a*k^2 + 2*k
@@ -352,11 +352,22 @@ example
     _        = a*(a*k^2 + 2*k) := by nlinarith
 
 
-example 
-  {a b : ℤ} 
-  (hab : a ∣ b) 
+example
+  {a b : ℤ}
+  (hab : a ∣ b)
   : a ∣ b ^ 2 + 2 * b := by
   dsimp [(· ∣ · )]
   rcases hab with ⟨k, hk⟩
   use a*k^2 + 2*k
+  grind
+
+example
+  {a b c : ℕ}
+  (hab : a ∣ b)
+  (hbc : b ^ 2 ∣ c)
+  : a ^ 2 ∣ c := by
+  dsimp [· ∣ · ] at *
+  rcases hab with ⟨ k, hk ⟩
+  rcases hbc with ⟨ k', hk' ⟩
+  use k^2*k'
   grind
