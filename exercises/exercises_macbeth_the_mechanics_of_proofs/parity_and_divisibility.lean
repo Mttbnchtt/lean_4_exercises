@@ -380,3 +380,21 @@ example
   rcases h with ⟨ k, hk ⟩
   use y*k
   nlinarith
+
+example
+  : ¬(5 : ℤ) ∣ 12 := by
+  grind
+
+
+  : ¬(5 : ℤ) ∣ 12 := by
+  -- h : ¬5 ∣ 12 ↔ ∃ k, 5*k < 12 ∧ 12 < 5*(k+1)
+  have h :=
+    Int.not_dvd_iff_lt_mul_succ
+      (n := (5 : ℤ))
+      (m := (12 : ℤ))
+      (by norm_num)
+  apply h.mpr
+  use 2
+  constructor
+  · nlinarith
+  · nlinarith
