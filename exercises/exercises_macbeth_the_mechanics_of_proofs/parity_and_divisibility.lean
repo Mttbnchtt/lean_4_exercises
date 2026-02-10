@@ -371,3 +371,12 @@ example
   rcases hbc with ⟨ k', hk' ⟩
   use k^2*k'
   grind
+
+example
+  {x y z : ℕ}
+  (h : x * y ∣ z)
+  : x ∣ z := by
+  dsimp [· ∣ ·] at *
+  rcases h with ⟨ k, hk ⟩
+  use y*k
+  nlinarith
