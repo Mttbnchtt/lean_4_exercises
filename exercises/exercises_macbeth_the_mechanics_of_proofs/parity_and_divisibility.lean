@@ -410,3 +410,12 @@ example
   rw [hk]
   have h : 0 < (k : ℕ) := by grind
   nlinarith
+
+example
+  {a b : ℕ}
+  (hb : 0 < b)
+  (hab : a ∣ b)
+  : a ≤ b := by
+  rcases hab with ⟨ k, hk ⟩
+  have h : 0 < (k : ℕ) := by grind
+  nlinarith
