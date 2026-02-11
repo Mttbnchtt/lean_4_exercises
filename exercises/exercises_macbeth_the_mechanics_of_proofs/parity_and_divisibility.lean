@@ -398,3 +398,15 @@ example
   constructor
   · nlinarith
   · nlinarith
+
+
+example
+  {a b : ℕ}
+  (hb : 0 < b)
+  (hab : a ∣ b)
+  : a ≤ b := by
+  dsimp [· ∣ ·] at *
+  rcases hab with ⟨ k, hk ⟩
+  rw [hk]
+  have h : 0 < (k : ℕ) := by grind
+  nlinarith
