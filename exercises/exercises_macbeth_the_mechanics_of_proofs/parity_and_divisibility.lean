@@ -419,3 +419,28 @@ example
   rcases hab with ⟨ k, hk ⟩
   have h : 0 < (k : ℕ) := by grind
   nlinarith
+
+example
+  (t : ℤ)
+  : t ∣ 0 := by
+  dsimp [· ∣ · ] at *
+  use 0
+  nlinarith
+
+example
+  : ¬(3 : ℤ) ∣ -10 := by
+  grind
+
+example
+  : ¬(3 : ℤ) ∣ -10 := by
+  -- h : ¬(3 ∣ 12) ↔ ∃ k, 3*k < -10 ∧ -10 < 3*(k+1)
+  have h :=
+    Int.not_dvd_iff_lt_mul_succ
+      (n := (3 : ℤ))
+      (m := (-10 : ℤ))
+      (by norm_num)
+  apply h.mpr
+  use -4
+  constructor
+  · nlinarith
+  · nlinarith
