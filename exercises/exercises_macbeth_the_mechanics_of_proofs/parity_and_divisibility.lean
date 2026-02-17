@@ -452,3 +452,5 @@ example
   rcases h with ⟨ k, hk ⟩
   use 3*k - 4*x*k^2
   grind
+
+-- next: exercise 4 in section 3.2.9
