@@ -444,3 +444,11 @@ example
   constructor
   · nlinarith
   · nlinarith
+
+example
+  {x y : ℤ}
+  (h : x ∣ y)
+  : x ∣ 3 * y - 4 * y ^ 2 := by
+  rcases h with ⟨ k, hk ⟩
+  use 3*k - 4*x*k^2
+  grind
