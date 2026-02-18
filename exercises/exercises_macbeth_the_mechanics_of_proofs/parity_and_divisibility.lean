@@ -453,4 +453,23 @@ example
   use 3*k - 4*x*k^2
   grind
 
--- next: exercise 4 in section 3.2.9
+
+example
+  {a b : ℤ}
+  (hab : a ∣ b)
+  : a ∣ 2 * b ^ 3 - b ^ 2 + 3 * b := by
+  rcases hab with ⟨ k, hk ⟩
+  -- b(2b^2 - b + 3)
+  use k*(2*b^2 - b + 3)
+  ring_nf
+
+
+
+example
+  {a b : ℤ}
+  (hab : a ∣ b)
+  : a ∣ 2 * b ^ 3 - b ^ 2 + 3 * b := by
+  have hbc : a ∣ b * (2*b^2 - b + 3) := dvd_mul_of_dvd_left hab (2*b^2 - b + 3)
+  have p :  b * (2*b^2 - b + 3) = 2 * b ^ 3 - b ^ 2 + 3 * b:= by ring_nf
+  rewrite [<- p]
+  exact hbc
