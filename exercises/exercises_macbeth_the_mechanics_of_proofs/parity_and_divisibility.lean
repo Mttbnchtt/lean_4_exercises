@@ -464,7 +464,6 @@ example
   ring_nf
 
 
-
 example
   {a b : ℤ}
   (hab : a ∣ b)
@@ -473,3 +472,14 @@ example
   have p :  b * (2*b^2 - b + 3) = 2 * b ^ 3 - b ^ 2 + 3 * b:= by ring_nf
   rewrite [<- p]
   exact hbc
+
+
+example
+  {k l m : ℤ}
+  (h1 : k ∣ l)
+  (h2 : l ^ 3 ∣ m)
+  : k ^ 3 ∣ m := by
+  rcases h1 with ⟨ p, hp ⟩
+  rcases h2 with ⟨ q, hq ⟩
+  use q * p^3
+  grind
