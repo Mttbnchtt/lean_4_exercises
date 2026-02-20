@@ -483,3 +483,14 @@ example
   rcases h2 with ⟨ q, hq ⟩
   use q * p^3
   grind
+
+
+example
+  {p q r : ℤ}
+  (hpq : p ^ 3 ∣ q)
+  (hqr : q ^ 2 ∣ r)
+  : p ^ 6 ∣ r := by
+  rcases hpq with ⟨ x, hx ⟩
+  rcases hqr with ⟨ y, hy ⟩
+  use x^2*y
+  grind
