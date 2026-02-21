@@ -494,3 +494,8 @@ example
   rcases hqr with ⟨ y, hy ⟩
   use x^2*y
   grind
+
+example
+  : ∃ n : ℕ, 0 < n ∧ 9 ∣ (2 ^ n) - 1 := by
+  use 6
+  grind
