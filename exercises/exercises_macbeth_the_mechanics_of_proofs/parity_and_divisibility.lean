@@ -499,3 +499,8 @@ example
   : ∃ n : ℕ, 0 < n ∧ 9 ∣ (2 ^ n) - 1 := by
   use 6
   grind
+
+example
+  : ∃ a b : ℤ, 0 < b ∧ b < a ∧ a - b ∣ a + b := by
+  use 2, 1
+  grind
