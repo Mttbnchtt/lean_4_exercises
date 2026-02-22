@@ -500,6 +500,7 @@ example
   use 6
   grind
 
+
 example
   : ∃ a b : ℤ, 0 < b ∧ b < a ∧ a - b ∣ a + b := by
   use 2, 1
@@ -511,4 +512,11 @@ example
   -- show that 4 ∣ (11 - 3)
   -- i.e. find an integer k such that 4k = 8
   use 2
+  grind
+
+
+example
+  : -5 ≡ 1 [ZMOD 3] := by
+  -- find an integer k such that 3k = -6
+  use -2
   grind
