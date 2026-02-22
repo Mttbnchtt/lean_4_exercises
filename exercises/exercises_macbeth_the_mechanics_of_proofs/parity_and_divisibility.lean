@@ -504,3 +504,11 @@ example
   : ∃ a b : ℤ, 0 < b ∧ b < a ∧ a - b ∣ a + b := by
   use 2, 1
   grind
+
+
+example
+  : 11 ≡ 3 [ZMOD 4] := by
+  -- show that 4 ∣ (11 - 3)
+  -- i.e. find an integer k such that 4k = 8
+  use 2
+  grind
