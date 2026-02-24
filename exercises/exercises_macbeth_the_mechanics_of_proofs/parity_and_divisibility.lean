@@ -520,3 +520,15 @@ example
   -- find an integer k such that 3k = -6
   use -2
   grind
+
+theorem Int.ModEq.add_1
+  {n a b c d : ℤ}
+  (h1 : a ≡ b [ZMOD n])
+  (h2 : c ≡ d [ZMOD n])
+  : a + c ≡ b + d [ZMOD n] := by
+  -- From h1, a = nx + p and b = nx' + p (for some integer x, x', p)
+  -- From h2, c = ny + q and d = ny' + q (for some integer y, y', q)
+  -- Therefore, a + c = n(x+y) + p + q and
+  -- b + d = n(x'+y') + p + q.
+  -- Therefore a+c ≡ b+ d (mod n)
+  exact h1.add h2
