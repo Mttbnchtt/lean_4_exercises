@@ -532,3 +532,28 @@ theorem Int.ModEq.add_1
   -- b + d = n(x'+y') + p + q.
   -- Therefore a+c ≡ b+ d (mod n)
   exact h1.add h2
+
+
+import Mathlib
+
+theorem Int.ModEq.sub_1
+  {n a b c d : ℤ}
+  (h1 : a ≡ b [ZMOD n])
+  (h2 : c ≡ d [ZMOD n]) :
+  a - c ≡ b - d [ZMOD n] := by
+  -- Convert each ModEq to a divisibility statement in the correct orientation.
+  have h1' : n ∣ (b - a) := (Int.modEq_iff_dvd).mp h1
+  have h2' : n ∣ (d - c) := (Int.modEq_iff_dvd).mp h2
+
+  -- Build the goal as a divisibility statement.
+  apply (Int.modEq_iff_dvd).mpr
+
+  -- Extract explicit witnesses.
+  rcases h1' with ⟨x, hx⟩
+  rcases h2' with ⟨y, hy⟩
+
+  -- Use witness (x - y) for the difference.
+  use x - y
+
+  -- Algebra: (b - d) - (a - c) = (b - a) - (d - c) = n*(x - y).
+  grind
