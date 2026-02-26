@@ -534,8 +534,6 @@ theorem Int.ModEq.add_1
   exact h1.add h2
 
 
-import Mathlib
-
 theorem Int.ModEq.sub_1
   {n a b c d : ℤ}
   (h1 : a ≡ b [ZMOD n])
