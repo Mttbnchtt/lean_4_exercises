@@ -591,3 +591,17 @@ theorem
       rw [hx, hy]
       ring
     _        = n*(n*x*y + a*y + c*x)           := by ring
+
+theorem
+  Int.ModEq.mul_1
+  {n a b c d : ℤ}
+  (h1 : a ≡ b [ZMOD n])
+  (h2 : c ≡ d [ZMOD n]) :
+  a * c ≡ b * d [ZMOD n] := by
+  have h1' : n ∣ (b - a) := (Int.modEq_iff_dvd).mp h1
+  have h2' : n ∣ (d - c) := (Int.modEq_iff_dvd).mp h2
+  apply (Int.modEq_iff_dvd).mpr
+  rcases h1' with ⟨ x, hx ⟩
+  rcases h2' with ⟨ y, hy ⟩
+  use n*x*y + a*y + c*x
+  grind
