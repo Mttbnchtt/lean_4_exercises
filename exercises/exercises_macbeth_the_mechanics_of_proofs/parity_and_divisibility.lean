@@ -592,6 +592,7 @@ theorem
       ring
     _        = n*(n*x*y + a*y + c*x)           := by ring
 
+
 theorem
   Int.ModEq.mul_1
   {n a b c d : ℤ}
@@ -605,3 +606,12 @@ theorem
   rcases h2' with ⟨ y, hy ⟩
   use n*x*y + a*y + c*x
   grind
+
+
+theorem
+  Int.ModEq.mul_1
+  {n a b c d : ℤ}
+  (h1 : a ≡ b [ZMOD n])
+  (h2 : c ≡ d [ZMOD n]) :
+  a * c ≡ b * d [ZMOD n] := by
+  exact h1.mul h2
