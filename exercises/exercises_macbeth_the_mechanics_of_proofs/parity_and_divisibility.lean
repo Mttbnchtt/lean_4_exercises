@@ -634,3 +634,24 @@ theorem Int.ModEq.pow_two_1
   rcases h' with ⟨ k, hk ⟩
   use k*b + k*a
   grind
+
+
+theorem Int.ModEq.pow_two_1
+  (h : a ≡ b [ZMOD n])
+  : a ^ 2 ≡ b ^ 2 [ZMOD n] := by
+  have h' : n ∣ (b-a) := (Int.modEq_iff_dvd).mp h
+  apply (Int.modEq_iff_dvd).mpr
+  rcases h' with ⟨ k, hk ⟩
+  use k*b + k*a
+  calc
+    b^2 - a^2 = (b-a) * (b+a) := by ring
+    _         = n*k*(b + a) := by rw [hk]
+    _         = n*k*b + n*k*a := by ring
+    _         = n*(k*b + k*a) := by ring
+
+
+
+theorem Int.ModEq.pow_two_3
+  (h : a ≡ b [ZMOD n])
+  : a ^ 2 ≡ b ^ 2 [ZMOD n] := by
+  simpa [pow_two] using (Int.ModEq.mul h h)
