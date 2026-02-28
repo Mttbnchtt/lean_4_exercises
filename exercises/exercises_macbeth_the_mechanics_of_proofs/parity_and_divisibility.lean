@@ -624,3 +624,13 @@ theorem
   (h2 : c ≡ d [ZMOD n]) :
   a * c ≡ b * d [ZMOD n] := by
   exact Int.ModEq.mul h1 h2
+
+
+theorem Int.ModEq.pow_two_1
+  (h : a ≡ b [ZMOD n])
+  : a ^ 2 ≡ b ^ 2 [ZMOD n] := by
+  have h' : n ∣ (b-a) := (Int.modEq_iff_dvd).mp h
+  apply (Int.modEq_iff_dvd).mpr
+  rcases h' with ⟨ k, hk ⟩
+  use k*b + k*a
+  grind
