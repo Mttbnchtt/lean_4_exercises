@@ -655,3 +655,12 @@ theorem Int.ModEq.pow_two_3
   (h : a ≡ b [ZMOD n])
   : a ^ 2 ≡ b ^ 2 [ZMOD n] := by
   simpa [pow_two] using (Int.ModEq.mul h h)
+
+
+theorem
+  Int.ModEq.pow_three_1
+  (a b n : ℤ)
+  (h : a ≡ b [ZMOD n])
+  : a ^ 3 ≡ b ^ 3 [ZMOD n] := by
+  have p : a*a ≡ b*b [ZMOD n] := by simpa [pow_two] using (Int.ModEq.mul h h)
+  simpa [pow_three] using (Int.ModEq.mul h p)
