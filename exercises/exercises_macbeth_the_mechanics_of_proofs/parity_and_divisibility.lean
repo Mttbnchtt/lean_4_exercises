@@ -636,7 +636,7 @@ theorem Int.ModEq.pow_two_1
   grind
 
 
-theorem Int.ModEq.pow_two_1
+theorem Int.ModEq.pow_two_2
   (h : a ≡ b [ZMOD n])
   : a ^ 2 ≡ b ^ 2 [ZMOD n] := by
   have h' : n ∣ (b-a) := (Int.modEq_iff_dvd).mp h
