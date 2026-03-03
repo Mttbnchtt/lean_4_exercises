@@ -664,3 +664,9 @@ theorem
   : a ^ 3 ≡ b ^ 3 [ZMOD n] := by
   have p : a*a ≡ b*b [ZMOD n] := by simpa [pow_two] using (Int.ModEq.mul h h)
   simpa [pow_three] using (Int.ModEq.mul h p)
+
+
+theorem Int.ModEq.refl_1
+  (n a : ℤ)
+  : a ≡ a [ZMOD n] := by
+  dsimp [Int.ModEq] at *
