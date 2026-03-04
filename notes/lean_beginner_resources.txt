@@ -1,0 +1,114 @@
+LEAN BEGINNER CHEAT SHEET — CORE RESOURCES TO MEMORIZE
+
+================================
+1. Core proof-building primitives
+================================
+
+Tactics / commands:
+- intro, intros        : introduce hypotheses (→, ∀)
+- apply                : use an implication
+- exact                : finish goal with exact term
+- have                 : introduce intermediate lemma
+- refine               : exact with placeholders
+- constructor          : build And / Exists / structures
+- cases, rcases        : destruct hypotheses
+- by_cases h : P       : proof by cases
+
+================================
+2. Logical structures (by shape)
+================================
+
+And:
+  constructor
+  goals: ⊢ P, ⊢ Q
+
+Or:
+  left / right
+
+Exists:
+  refine ⟨witness, ?_⟩
+
+Iff:
+  h.1   (forward)
+  h.2   (backward)
+  h.mp / h.mpr
+
+False:
+  cases h
+
+================================
+3. Arithmetic & order automation
+================================
+
+- norm_num     : concrete arithmetic facts
+- linarith     : linear inequalities
+- nlinarith    : nonlinear inequalities
+- ring / nring : polynomial normalization
+- decide       : decidable propositions
+
+================================
+4. Integer / natural number basics
+================================
+
+Divisibility:
+- a ∣ b
+- dvd_add, dvd_sub, dvd_mul
+- Int.not_dvd_iff_lt_mul_succ
+
+Parity:
+- Even a, Odd a
+- Int.even_or_odd a
+- ha.add hb, ha.sub hb
+
+================================
+5. Rewriting and equality
+================================
+
+- rw [h], rw [← h]
+- simp, simp [h]
+- rfl
+- calc ... = ... := ...
+
+================================
+6. Pattern-matching helpers
+================================
+
+- rcases h with ⟨a, b⟩
+- obtain ⟨k, hk⟩ := h
+- cases h with | intro h1 h2 => ...
+
+================================
+7. Tactical idioms
+================================
+
+- by decide
+- by classical
+- by aesop
+
+================================
+8. Essential learning resources
+================================
+
+Documentation:
+- mathlib docs:
+  https://leanprover-community.github.io/mathlib4_docs/
+
+Community help:
+- Lean Zulip:
+  https://leanprover.zulipchat.com/
+
+Practice:
+- Natural Number Game:
+  https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/
+
+Books / courses:
+- Mathematics in Lean (Avigad et al.)
+- Theorem Proving in Lean 4 (official manual)
+- hrmacbeth Math 2001 notes
+
+================================
+9. Core mental rule
+================================
+
+Always ask:
+“What is the SHAPE of my goal, and which constructor or destructor matches it?”

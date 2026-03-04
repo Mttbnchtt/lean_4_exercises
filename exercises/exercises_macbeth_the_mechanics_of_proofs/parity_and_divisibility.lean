@@ -670,3 +670,23 @@ theorem Int.ModEq.refl_1
   (n a : ℤ)
   : a ≡ a [ZMOD n] := by
   dsimp [Int.ModEq] at *
+
+ import Mathlib
+
+
+example
+  {a b : ℤ}
+  (ha : a ≡ 2 [ZMOD 4])
+  : a * b ^ 2 + a ^ 2 * b + 3 * a ≡ 2 * b ^ 2 + 2 ^ 2 * b + 3 * 2 [ZMOD 4] := by
+  have ha' : 4 ∣ (2-a) := (Int.modEq_iff_dvd).mp ha
+  apply (Int.modEq_iff_dvd).mpr
+  rcases ha' with ⟨ k, hk ⟩
+  have h   : a = 2 - 4*k := by grind
+  -- use -(k*b*2) - (4*k^2) - (4*k*b) - (3*k)
+  use k*b^2 + 4*k*b + 4*k^2*b + 3*k
+  calc
+    2 * b ^ 2 + 2 ^ 2 * b + 3 * 2 - (a * b ^ 2 + a ^ 2 * b + 3 * a) = 2 * b ^ 2 + 2 ^ 2 * b + 3 * 2 - ((2-4*k)*b^2 + (2-4*k)^2*b + 3*(2 - 4*k)) := by rw [h]
+    _                                                               = 4*(k*b^2 + 4*k*b + 4*k^2*b + 3*k) := by
+      simp [pow_two]
+      ring_nf
+      -- grind
