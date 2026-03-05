@@ -690,3 +690,9 @@ example
       simp [pow_two]
       ring_nf
       -- grind
+
+
+example
+  : 34 ≡ 104 [ZMOD 5] := by
+  apply (Int.modEq_iff_dvd).mpr
+  grind
