@@ -696,3 +696,15 @@ example
   : 34 ≡ 104 [ZMOD 5] := by
   apply (Int.modEq_iff_dvd).mpr
   grind
+
+
+theorem
+  Int.ModEq.symm_1
+  (h : a ≡ b [ZMOD n])
+  : b ≡ a [ZMOD n] := by
+  have h1 : n ∣ (b-a) := (Int.modEq_iff_dvd).mp h
+  dsimp[· ∣ · ] at *
+  rcases h1 with ⟨ k, hk⟩
+  have h2 : n ∣ (a-b) := by
+    use -k
+    grind
