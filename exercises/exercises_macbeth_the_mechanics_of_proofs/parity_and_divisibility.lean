@@ -671,8 +671,6 @@ theorem Int.ModEq.refl_1
   : a ≡ a [ZMOD n] := by
   dsimp [Int.ModEq] at *
 
- import Mathlib
-
 
 example
   {a b : ℤ}
@@ -708,3 +706,10 @@ theorem
   have h2 : n ∣ (a-b) := by
     use -k
     grind
+
+
+theorem
+  Int.ModEq.symm_2
+  (h : a ≡ b [ZMOD n])
+  : b ≡ a [ZMOD n] := by
+  exact Int.ModEq.symm h
