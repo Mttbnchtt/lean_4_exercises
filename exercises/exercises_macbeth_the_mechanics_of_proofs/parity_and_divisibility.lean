@@ -726,3 +726,10 @@ theorem Int.ModEq.trans_1
   rcases h2' with ⟨ y, hy ⟩
   use x+y
   grind
+
+
+theorem Int.ModEq.trans_2
+  (h1 : a ≡ b [ZMOD n])
+  (h2 : b ≡ c [ZMOD n])
+  : a ≡ c [ZMOD n] := by
+  exact Int.ModEq.trans h1 h2
