@@ -733,3 +733,10 @@ theorem Int.ModEq.trans_2
   (h2 : b ≡ c [ZMOD n])
   : a ≡ c [ZMOD n] := by
   exact Int.ModEq.trans h1 h2
+
+example
+  : a + n * c ≡ a [ZMOD n] := by
+  apply (Int.modEq_iff_dvd).mpr
+  ring_nf
+  use -c
+  grind
