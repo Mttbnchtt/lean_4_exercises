@@ -713,3 +713,16 @@ theorem
   (h : a ≡ b [ZMOD n])
   : b ≡ a [ZMOD n] := by
   exact Int.ModEq.symm h
+
+
+theorem Int.ModEq.trans_1
+  (h1 : a ≡ b [ZMOD n])
+  (h2 : b ≡ c [ZMOD n])
+  : a ≡ c [ZMOD n] := by
+  have  h1' : n ∣ (b-a) := (Int.modEq_iff_dvd).mp h1
+  have  h2' : n ∣ (c-b) := (Int.modEq_iff_dvd).mp h2
+  apply (Int.modEq_iff_dvd).mpr
+  rcases h1' with ⟨ x, hx ⟩
+  rcases h2' with ⟨ y, hy ⟩
+  use x+y
+  grind
