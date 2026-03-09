@@ -755,3 +755,15 @@ example
   ring_nf
   use -c
   grind
+
+
+example
+  {a b : ℤ}
+  (h : a ≡ b [ZMOD 5])
+  : 2 * a + 3 ≡ 2 * b + 3 [ZMOD 5] := by
+  have h' : 5 ∣ b-a := (Int.modEq_iff_dvd).mp h
+  rcases h' with ⟨ k, hk ⟩
+  calc
+    2*b + 3 - 2*a - 3 = 2*b - 2*a := by ring
+    _                 = 2*(b-a)   := by ring
+    _                 = 2*5*k     := by rw [hk]
