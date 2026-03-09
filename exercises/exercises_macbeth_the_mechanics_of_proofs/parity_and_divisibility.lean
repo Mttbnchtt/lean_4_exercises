@@ -749,6 +749,7 @@ theorem Int.ModEq.trans_2
   : a ≡ c [ZMOD n] := by
   exact Int.ModEq.trans h1 h2
 
+
 example
   : a + n * c ≡ a [ZMOD n] := by
   apply (Int.modEq_iff_dvd).mpr
@@ -762,8 +763,13 @@ example
   (h : a ≡ b [ZMOD 5])
   : 2 * a + 3 ≡ 2 * b + 3 [ZMOD 5] := by
   have h' : 5 ∣ b-a := (Int.modEq_iff_dvd).mp h
+  apply (Int.modEq_iff_dvd).mpr
   rcases h' with ⟨ k, hk ⟩
-  calc
-    2*b + 3 - 2*a - 3 = 2*b - 2*a := by ring
-    _                 = 2*(b-a)   := by ring
-    _                 = 2*5*k     := by rw [hk]
+  have h1: 2*b + 3 - 2*a - 3 = 5*2*k := by
+    calc
+      2*b + 3 - 2*a - 3 = 2*b - 2*a := by ring
+      _                 = 2*(b-a)   := by ring
+      _                 = 2*5*k     := by grind
+      _                 = 5*2*k     := by ring
+  have h2 : 5 ∣ 2*b + 3 - 2*a - 3 := by grind
+  grind
