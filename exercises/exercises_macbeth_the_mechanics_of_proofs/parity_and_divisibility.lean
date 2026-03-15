@@ -788,3 +788,14 @@ example
       _                 = 5*2*k     := by ring
   have h2 : 5 ∣ 2*b + 3 - 2*a - 3 := by grind
   grind
+
+
+example
+  {a b : ℤ}
+  (h : a ≡ b [ZMOD 5])
+  : 2 * a + 3 ≡ 2 * b + 3 [ZMOD 5] := by
+  apply Int.ModEq.add
+  apply Int.ModEq.mul
+  apply Int.ModEq.refl
+  apply h
+  apply Int.ModEq.refl
