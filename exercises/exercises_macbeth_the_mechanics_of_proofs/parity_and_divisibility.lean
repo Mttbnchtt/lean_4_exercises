@@ -810,3 +810,17 @@ example
   apply Int.ModEq.refl
   apply h
   apply Int.ModEq.refl
+
+
+example
+  {k : ℤ}
+  (hb : k ≡ 3 [ZMOD 5])
+  : 4 * k + k ^ 3 + 3 ≡ 4 * 3 + 3 ^ 3 + 3 [ZMOD 5] := by
+  apply Int.ModEq.add
+  apply Int.ModEq.add
+  apply Int.ModEq.mul
+  apply Int.ModEq.refl
+  exact hb
+  apply Int.ModEq.pow
+  exact hb
+  apply Int.ModEq.refl
