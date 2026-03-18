@@ -824,3 +824,33 @@ example
   apply Int.ModEq.pow
   exact hb
   apply Int.ModEq.refl
+
+
+example
+  {a b : ℤ}
+  (ha : a ≡ 4 [ZMOD 5])
+  (hb : b ≡ 3 [ZMOD 5])
+  : a * b + b ^ 3 + 3 ≡ 2 [ZMOD 5] := by
+  have h1 : a * b + b ^ 3 + 3 ≡ 4 * b + b ^ 3 + 3 [ZMOD 5] := by
+    apply Int.ModEq.add
+    apply Int.ModEq.add
+    apply Int.ModEq.mul
+    exact ha
+    apply Int.ModEq.refl
+    apply Int.ModEq.pow
+    apply Int.ModEq.refl
+    apply Int.ModEq.refl
+  have h2: 4 * b + b ^ 3 + 3 ≡ 4*3 + 3^3 + 3 [ZMOD 5] := by
+    apply Int.ModEq.add
+    apply Int.ModEq.add
+    apply Int.ModEq.mul
+    apply Int.ModEq.refl
+    exact hb
+    apply Int.ModEq.pow
+    exact hb
+    apply Int.ModEq.refl
+  have h3: 4*3 + 3^3 + 3 ≡ 2 [ZMOD 5] := by
+    norm_num
+  have h4: a * b + b ^ 3 + 3 ≡ 2 [ZMOD 5] := by
+    apply Int.ModEq.trans h1 (Int.ModEq.trans h2 h3)
+  exact h4
