@@ -854,3 +854,9 @@ example
   have h4: a * b + b ^ 3 + 3 ≡ 2 [ZMOD 5] := by
     apply Int.ModEq.trans h1 (Int.ModEq.trans h2 h3)
   exact h4
+
+
+example
+  : ∃ a : ℤ, 6 * a ≡ 4 [ZMOD 11] := by
+  use 8
+  norm_num
