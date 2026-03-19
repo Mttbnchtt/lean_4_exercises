@@ -860,3 +860,8 @@ example
   : ∃ a : ℤ, 6 * a ≡ 4 [ZMOD 11] := by
   use 8
   norm_num
+
+example
+  {x : ℤ} : x ^ 3 ≡ x [ZMOD 3] := by
+  change x ^ 3 % 3 = x % 3
+  -- to complete
