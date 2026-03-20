@@ -862,6 +862,18 @@ example
   norm_num
 
 example
-  {x : ℤ} : x ^ 3 ≡ x [ZMOD 3] := by
-  change x ^ 3 % 3 = x % 3
-  -- to complete
+  {x : ℤ}
+  : x ^ 3 ≡ x [ZMOD 3] := by
+  mod_cases hx : x % 3
+  calc
+    x^3 ≡ 0^3 [ZMOD 3] := by rel [hx]
+    _   ≡ 0   [ZMOD 3] := by norm_num
+    _   ≡ x   [ZMOD 3] := by rel [hx]
+  calc
+    x^3 ≡ 1^3 [ZMOD 3] := by rel [hx]
+    _   ≡ 1   [ZMOD 3]   := by norm_num
+    _   ≡ x   [ZMOD 3]   := by rel [hx]
+  calc
+    x^3 ≡ 2^3 [ZMOD 3] := by rel [hx]
+    _   ≡ 2 [ZMOD 3]   := by norm_num
+    _   ≡ x [ZMOD 3]   := by rel [hx]
