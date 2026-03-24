@@ -877,3 +877,17 @@ example
     x^3 ≡ 2^3 [ZMOD 3] := by rel [hx]
     _   ≡ 2 [ZMOD 3]   := by norm_num
     _   ≡ x [ZMOD 3]   := by rel [hx]
+
+
+example
+  {n : ℤ}
+  (hn : n ≡ 1 [ZMOD 3])
+  : n ^ 3 + 7 * n ≡ 2 [ZMOD 3] := by
+  change n ^ 3 + 7 * n ≡ 1^3 + 1*1 [ZMOD 3]
+  apply Int.ModEq.add
+  apply Int.ModEq.pow
+  apply hn
+  apply Int.ModEq.mul
+  have g1: 7 ≡ 1 [ZMOD 3] := by norm_num
+  apply g1
+  apply hn
