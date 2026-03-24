@@ -891,3 +891,14 @@ example
   have g1: 7 ≡ 1 [ZMOD 3] := by norm_num
   apply g1
   apply hn
+
+
+example
+  {n : ℤ}
+  (hn : n ≡ 1 [ZMOD 3])
+  : n ^ 3 + 7 * n ≡ 2 [ZMOD 3] := by
+  have g1: 7 ≡ 1 [ZMOD 3] := by norm_num
+  calc
+    n ^ 3 + 7 * n ≡ n^3 + 1*n [ZMOD 3] := by rel [g1]
+    _            ≡  1^3 + 1*1 [ZMOD 3] := by rel [hn]
+    _            ≡ 2 [ZMOD 3]          := by norm_num
