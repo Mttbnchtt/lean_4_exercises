@@ -902,3 +902,29 @@ example
     n ^ 3 + 7 * n ≡ n^3 + 1*n [ZMOD 3] := by rel [g1]
     _            ≡  1^3 + 1*1 [ZMOD 3] := by rel [hn]
     _            ≡ 2 [ZMOD 3]          := by norm_num
+
+
+example
+  {n : ℤ}
+  (hn : n ≡ 1 [ZMOD 3])
+  : n ^ 3 + 7 * n ≡ 2 [ZMOD 3] := by
+  dsimp [Int.ModEq]
+  have h: (n ^ 3 + 7 * n)% 3 = (n % 3)^3 + (7%3)*(n%3) := by sorry
+  rewrite [h]
+  rewrite [hn]
+  norm_num
+
+
+example
+  {a : ℤ}
+  (ha : a ≡ 3 [ZMOD 4])
+  : a ^ 3 + 4 * a ^ 2 + 2 ≡ 1 [ZMOD 4] := by
+  have h : a ^ 3 + 4 * a ^ 2 + 2 ≡ 3^3 + 4*3^2 + 2 [ZMOD 4] := by rel [ha]
+  exact h
+
+example
+  {a : ℤ}
+  (ha : a ≡ 3 [ZMOD 4])
+  : a ^ 3 + 4 * a ^ 2 + 2 ≡ 1 [ZMOD 4] := by
+  calc
+    a ^ 3 + 4 * a ^ 2 + 2 ≡ 3^3 + 4*3^2 + 2 [ZMOD 4] := by rel [ha]
