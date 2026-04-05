@@ -928,3 +928,46 @@ example
   : a ^ 3 + 4 * a ^ 2 + 2 ≡ 1 [ZMOD 4] := by
   calc
     a ^ 3 + 4 * a ^ 2 + 2 ≡ 3^3 + 4*3^2 + 2 [ZMOD 4] := by rel [ha]
+
+
+example
+  (a b : ℤ)
+  : (a + b) ^ 3 ≡ a ^ 3 + b ^ 3 [ZMOD 3] := by
+  rw [Int.modEq_iff_dvd]
+  refine ⟨-(a * b * (a + b)), ?_⟩
+  ring
+
+example
+  (a b : ℤ)
+  : (a + b) ^ 3 ≡ a ^ 3 + b ^ 3 [ZMOD 3] := by
+  apply (Int.modEq_iff_dvd).mpr
+  use a*b*(-b-a)
+  ring
+
+
+example
+  : ∃ a : ℤ, 4 * a ≡ 1 [ZMOD 7] := by
+  use 2
+  apply (Int.modEq_iff_dvd).mpr
+  norm_num
+
+
+example
+  : ∃ k : ℤ, 5 * k ≡ 6 [ZMOD 8] := by
+  use 6
+  apply (Int.modEq_iff_dvd).mpr
+  norm_num
+
+
+example
+  (n : ℤ)
+  : 5 * n ^ 2 + 3 * n + 7 ≡ 1 [ZMOD 2] := by
+  mod_cases hn : n % 2
+  calc
+    5 * n ^ 2 + 3 * n + 7 ≡ 5*0^2 + 3*0 + 7 [ZMOD 2] := by rel [hn]
+    _                     = 7                        := by ring
+    _                     ≡ 1               [ZMOD 2] := by decide
+  calc
+    5 * n ^ 2 + 3 * n + 7 ≡ 5*1^2 + 3*1 + 7 [ZMOD 2] := by rel [hn]
+    _                     = 15                       := by ring
+    _                     ≡ 1               [ZMOD 2] := by norm_num
