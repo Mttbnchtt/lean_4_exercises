@@ -971,3 +971,34 @@ example
     5 * n ^ 2 + 3 * n + 7 ≡ 5*1^2 + 3*1 + 7 [ZMOD 2] := by rel [hn]
     _                     = 15                       := by ring
     _                     ≡ 1               [ZMOD 2] := by norm_num
+
+
+import Mathlib
+
+example
+  {x : ℤ}
+  : x ^ 5 ≡ x [ZMOD 5] := by
+  mod_cases hn : x % 5
+  calc
+    x ^ 5 ≡ 0 ^5 [ZMOD 5] := by rel [hn]
+    _     = 0             := by ring
+    _     ≡ x    [ZMOD 5] := by rel [hn]
+  calc
+    x ^ 5 ≡ 1 ^5 [ZMOD 5] := by rel [hn]
+    _     = 1             := by ring
+    _     ≡ x    [ZMOD 5] := by rel [hn]
+  calc
+    x ^ 5 ≡ 2 ^5 [ZMOD 5] := by rel [hn]
+    _     = 32            := by ring
+    _     ≡ 2    [ZMOD 5] := by decide
+    _     ≡ x    [ZMOD 5] := by rel [hn]
+  calc
+    x ^ 5 ≡ 3 ^5 [ZMOD 5] := by rel [hn]
+    _     = 243            := by ring
+    _     ≡ 3    [ZMOD 5] := by decide
+    _     ≡ x    [ZMOD 5] := by rel [hn]
+  calc
+    x ^ 5 ≡ 4 ^5 [ZMOD 5] := by rel [hn]
+    _     = 1024            := by ring
+    _     ≡ 4    [ZMOD 5] := by decide
+    _     ≡ x    [ZMOD 5] := by rel [hn]
