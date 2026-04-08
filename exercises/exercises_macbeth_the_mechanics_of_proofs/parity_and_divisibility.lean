@@ -1015,3 +1015,28 @@ example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
 example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
   have hcop : IsCoprime (8 : ℤ) 5 := by norm_num
   exact hcop.dvd_of_dvd_mul_left hn
+
+
+example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
+  have hbez : IsCoprime (5 : ℤ) 8 := by norm_num
+  rcases hbez with ⟨a, b, hab⟩
+  rcases hn with ⟨k, hk⟩
+  use a * k + b * n
+  calc
+    n = (a * 5 + b * 8) * n := by rw [hab, one_mul]
+    _ = a * (5 * n) + 8 * (b * n) := by ring
+    _ = a * (8 * k) + 8 * (b * n) := by rw [hk]
+    _ = 8 * (a * k + b * n) := by ring
+
+
+example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
+  have hab : ∃ a b : ℤ, 1 = 5 * a + 8 * b := by
+    refine ⟨-3, 2, by norm_num⟩
+  rcases hab with ⟨a, b, hab⟩
+  rcases hn with ⟨k, hk⟩
+  use a * k + b * n
+  calc
+    n = (5 * a + 8 * b) * n := by rw [← hab, one_mul]
+    _ = a * (5 * n) + 8 * (b * n) := by ring
+    _ = a * (8 * k) + 8 * (b * n) := by rw [hk]
+    _ = 8 * (a * k + b * n) := by ring
