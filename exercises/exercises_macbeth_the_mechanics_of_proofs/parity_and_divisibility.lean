@@ -1002,3 +1002,16 @@ example
     _     = 1024            := by ring
     _     ≡ 4    [ZMOD 5] := by decide
     _     ≡ x    [ZMOD 5] := by rel [hn]
+
+
+example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
+  rcases hn with ⟨ a, ha ⟩
+  use -3 * a + 2 * n
+  calc
+    n = -3 * (5 * n) + 16 * n := by ring
+    _ = -3 * (8 * a) + 16 * n := by rw [ha]
+    _ = 8 * (-3 * a + 2 * n) := by ring
+
+example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
+  have hcop : IsCoprime (8 : ℤ) 5 := by norm_num
+  exact hcop.dvd_of_dvd_mul_left hn
