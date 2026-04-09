@@ -1040,3 +1040,20 @@ example {n : ℤ} (hn : 8 ∣ 5 * n) : 8 ∣ n := by
     _ = a * (5 * n) + 8 * (b * n) := by ring
     _ = a * (8 * k) + 8 * (b * n) := by rw [hk]
     _ = 8 * (a * k + b * n) := by ring
+
+
+example
+  {n x y : ℤ}
+  (hxy : Int.gcd x y = 1)
+  (hn : y ∣ n * x)
+  : y ∣ n := by
+  have h_bez : 1 = x * (Int.gcdA x y) + y * (Int.gcdB x y) := by
+    simpa [hxy] using (Int.gcd_eq_gcd_ab x y)
+  rcases hn with ⟨k, hk⟩
+  use (Int.gcdA x y) * k + (Int.gcdB x y) * n
+  calc
+    n = n * 1 := by ring
+    _ = n * (x * (Int.gcdA x y) + y * (Int.gcdB x y) )       := by rw [h_bez]
+    _ = (n * x) * (Int.gcdA x y) + y * ( (Int.gcdB x y) * n) := by ring
+    _ = (y * k) * (Int.gcdA x y) + y * ( (Int.gcdB x y) * n) := by rw [hk]
+    _ = y * ( (Int.gcdA x y) * k + (Int.gcdB x y) * n)       := by ring
