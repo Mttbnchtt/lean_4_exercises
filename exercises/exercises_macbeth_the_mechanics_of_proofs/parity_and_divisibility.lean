@@ -1057,3 +1057,28 @@ example
     _ = (n * x) * (Int.gcdA x y) + y * ( (Int.gcdB x y) * n) := by ring
     _ = (y * k) * (Int.gcdA x y) + y * ( (Int.gcdB x y) * n) := by rw [hk]
     _ = y * ( (Int.gcdA x y) * k + (Int.gcdB x y) * n)       := by ring
+
+theorem bezout_equalities
+  {n x y : ℤ}
+  (hxy : Int.gcd x y = 1)
+  (hn : y ∣ n * x)
+  : y ∣ n := by
+  have h_bez : 1 = x * (Int.gcdA x y) + y * (Int.gcdB x y) := by
+    simpa [hxy] using (Int.gcd_eq_gcd_ab x y)
+  rcases hn with ⟨k, hk⟩
+  use (Int.gcdA x y) * k + (Int.gcdB x y) * n
+  calc
+    n = n * 1 := by ring
+    _ = n * (x * (Int.gcdA x y) + y * (Int.gcdB x y) )       := by rw [h_bez]
+    _ = (n * x) * (Int.gcdA x y) + y * ( (Int.gcdB x y) * n) := by ring
+    _ = (y * k) * (Int.gcdA x y) + y * ( (Int.gcdB x y) * n) := by rw [hk]
+    _ = y * ( (Int.gcdA x y) * k + (Int.gcdB x y) * n)       := by ring
+
+example
+  {n : ℤ}
+  (h1 : 5 ∣ 3 * n)
+  : 5 ∣ n := by
+  have hxy : Int.gcd 3 5 = 1 := by
+    norm_num
+  apply bezout_equalities hxy
+  simpa [mul_comm] using h1
