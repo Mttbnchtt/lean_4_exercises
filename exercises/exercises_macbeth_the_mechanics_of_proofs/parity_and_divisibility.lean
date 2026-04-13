@@ -1109,3 +1109,12 @@ example
     _ = 8 * (Int.gcdA 8 5)*(5*v) + 5 * (Int.gcdB 8 5)*(8*u) := by rw [hu]
     _ = 8*5 * (Int.gcdA 8 5)*v + 8*5 * (Int.gcdB 8 5)*u     := by ring
     _ = 40*((Int.gcdA 8 5)*v + (Int.gcdB 8 5)*u)            := by ring
+
+
+example
+  {n : ℤ}
+  (hn : 6 ∣ 11 * n)
+  : 6 ∣ n := by
+  have coprimes_11_6 : Int.gcd 11 6 = 1:= by norm_num
+  apply bezout_equalities coprimes_11_6
+  simpa [mul_comm] using hn
