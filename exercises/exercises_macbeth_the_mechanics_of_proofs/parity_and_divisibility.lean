@@ -1127,3 +1127,30 @@ example
   have coprimes : Int.gcd 5 7 = 1:= by norm_num
   apply bezout_equalities coprimes
   simpa [mul_comm] using ha
+
+
+example
+  {m : ℤ}
+  (h1 : 8 ∣ m)
+  (h2 : 5 ∣ m)
+  : 40 ∣ m := by
+  -- outline of the proof
+  -- 1 = 8*x + 5*y [by Bezout's theorem]
+  -- m = (8*x + 5*y) m
+  -- m = 8*x*m + 5*y*m
+  -- m = 8*x*5*k + 5*y*8*k' [because m= 8*k and m = 5*k' for some k and k', by h1 and h2]
+  -- m = 40*(x*k + y*k')
+  have coprimes_8_5 : Int.gcd 8 5 = 1:= by norm_num
+  have h_bez : 1 = 8 * (Int.gcdA 8 5) + 5 * (Int.gcdB 8 5) := by
+    simpa [coprimes_8_5] using (Int.gcd_eq_gcd_ab 8 5)
+  rcases h1 with ⟨u, hu⟩
+  rcases h2 with ⟨v, hv⟩
+  use (Int.gcdA 8 5)*v + (Int.gcdB 8 5)*u
+  calc
+    m = 1*m                                                 := by ring
+    _ = (8 * (Int.gcdA 8 5) + 5 * (Int.gcdB 8 5))*m         := by rw [h_bez]
+    _ = 8 * (Int.gcdA 8 5)*m + 5 * (Int.gcdB 8 5)*m         := by ring
+    _ = 8 * (Int.gcdA 8 5)*(5*v) + 5 * (Int.gcdB 8 5)*m     := by rw [hv]
+    _ = 8 * (Int.gcdA 8 5)*(5*v) + 5 * (Int.gcdB 8 5)*(8*u) := by rw [hu]
+    _ = 8*5 * (Int.gcdA 8 5)*v + 8*5 * (Int.gcdB 8 5)*u     := by ring
+    _ = 40*((Int.gcdA 8 5)*v + (Int.gcdB 8 5)*u)            := by ring
