@@ -1118,3 +1118,12 @@ example
   have coprimes_11_6 : Int.gcd 11 6 = 1:= by norm_num
   apply bezout_equalities coprimes_11_6
   simpa [mul_comm] using hn
+
+
+example
+  {a : ℤ}
+  (ha : 7 ∣ 5 * a)
+  : 7 ∣ a := by
+  have coprimes : Int.gcd 5 7 = 1:= by norm_num
+  apply bezout_equalities coprimes
+  simpa [mul_comm] using ha
