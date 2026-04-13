@@ -1087,7 +1087,8 @@ example
 example
   {m : ℤ}
   (h1 : 8 ∣ m)
-  (h2 : 5 ∣ m) : 40 ∣ m := by
+  (h2 : 5 ∣ m)
+  : 40 ∣ m := by
   -- outline of the proof
   -- 1 = 8*x + 5*y [by Bezout's theorem]
   -- m = (8*x + 5*y) m
