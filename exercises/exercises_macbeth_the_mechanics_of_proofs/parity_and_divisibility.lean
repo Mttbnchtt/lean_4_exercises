@@ -1154,3 +1154,46 @@ example
     _ = 8 * (Int.gcdA 8 5)*(5*v) + 5 * (Int.gcdB 8 5)*(8*u) := by rw [hu]
     _ = 8*5 * (Int.gcdA 8 5)*v + 8*5 * (Int.gcdB 8 5)*u     := by ring
     _ = 40*((Int.gcdA 8 5)*v + (Int.gcdB 8 5)*u)            := by ring
+
+
+example
+  {n : ℤ}
+  (h1 : 7 ∣ n)
+  (h2 : 9 ∣ n) : 63 ∣ n := by
+  -- 1 = 7a + 9b
+  -- n = 7an + 9bn
+  -- n = 7*9*a*x + 7*9*b*y
+  -- n = 63*(a*x+b*y)
+  have coprimes : Int.gcd 7 9 = 1:= by norm_num
+  have h_bez : 1 = 7 * (Int.gcdA 7 9) + 9 * (Int.gcdB 7 9) := by
+    simpa [coprimes] using (Int.gcd_eq_gcd_ab 7 9)
+  rcases h1 with ⟨x, hx⟩
+  rcases h2 with ⟨y, hy⟩
+  use (Int.gcdA 7 9)*y + (Int.gcdB 7 9)*x
+  calc
+    n = 1*n := by ring
+    _ = (7 * (Int.gcdA 7 9) + 9 * (Int.gcdB 7 9))*n := by rw [h_bez]
+    _ = 7 * (Int.gcdA 7 9)*n + 9 * (Int.gcdB 7 9)*n := by ring
+    _ = 7 * (Int.gcdA 7 9)*(9*y) + 9 * (Int.gcdB 7 9)*n := by rw [hy]
+    _ = 7 * (Int.gcdA 7 9)*(9*y) + 9 * (Int.gcdB 7 9)*(7*x) := by rw [hx]
+    _ = 63 * ((Int.gcdA 7 9)*y + (Int.gcdB 7 9)*x) := by ring
+
+
+example
+  {n : ℤ}
+  (h1 : 5 ∣ n)
+  (h2 : 13 ∣ n)
+  : 65 ∣ n := by
+  have coprimes : Int.gcd 5 13 = 1 := by norm_num
+  have h_bez : 1 = 5 * (Int.gcdA 5 13) + 13 * (Int.gcdB 5 13) := by
+    simpa [coprimes] using (Int.gcd_eq_gcd_ab 5 13)
+  rcases h1 with ⟨x, hx⟩
+  rcases h2 with ⟨y, hy⟩
+  use (Int.gcdA 5 13)*y + (Int.gcdB 5 13)*x
+  calc
+    n = 1*n := by ring
+    _ = (5 * (Int.gcdA 5 13) + 13 * (Int.gcdB 5 13))*n := by rw [h_bez]
+    _ = 5 * (Int.gcdA 5 13)*n + 13 * (Int.gcdB 5 13)*n := by ring
+    _ = 5 * (Int.gcdA 5 13)*(13*y) + 13 * (Int.gcdB 5 13)*n := by rw [hy]
+    _ = 5 * (Int.gcdA 5 13)*(13*y) + 13 * (Int.gcdB 5 13)*(5*x) := by rw [hx]
+    _ = 65 * ( (Int.gcdA 5 13)*y + (Int.gcdB 5 13)*x ) := by ring
