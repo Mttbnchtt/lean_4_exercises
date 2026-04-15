@@ -1287,14 +1287,3 @@ example
   calc
     a ≤ 1 ^ 2 - 2 * 1 := by apply h
     _ = -1            := by ring
-
-
-example
-  {n : ℕ}
-  (hn : ∀ m, n ∣ m)
-  : n = 1 := by
-  have g0 : n ∣ 1 := by apply hn
-  have g1 : 0 < 1 := by grind
-  apply Nat.le_antisymm
-  · apply Nat.le_of_dvd g1 g0
-  · apply Nat.pos_of_dvd_of_pos g0 g1
