@@ -34,3 +34,51 @@ theorem div_2
   : ∃m, (¬ (n∣ m)) ∨ n=1 := by
   -- “For every n, either n=1, or there is some m that n does not divide”
   sorry
+
+
+theorem div_iff
+  {n : ℕ} :
+  ((∀ m : ℕ, n ∣ m) → n = 1) ↔ ((∃ m : ℕ, (¬ (n ∣ m))) ∨ n = 1) := by
+  constructor
+
+  -- case 1: ((∀ m : ℕ, n ∣ m) → n = 1) → (∃ m : ℕ, (¬ (n ∣ m)) ∨ n = 1))
+  -- assume: (∀ m : ℕ, n ∣ m) → n = 1)
+  -- show: ∃ m : ℕ, (¬ (n ∣ m)) ∨ n = 1)
+  -- proof:
+  -- ¬ (∀ m : N, n ∣ m) ∨ n = 1 [by A→B ↔ ¬A∨B]
+  -- (∃ m : ℕ, ¬ (n ∣ m)) ∨ n = 1 [by ¬∀ φ ↔ ∃ ¬ φ]
+  case mp =>
+    intro h     -- assume: (∀ m : ℕ, n ∣ m) → n = 1
+    classical
+    have h': (¬ (∀ m : ℕ, n ∣ m)) ∨ n = 1 := by
+      exact imp_iff_not_or.mp h
+    have h'': ((∃ m : ℕ, (¬ (n ∣ m))) ∨ n = 1) := by
+
+      -- case split on a disjunction:
+      -- if h' was proved by the left side of ∨, call that proof h_not_all
+      -- if h' was proved by the right side of ∨, call that proof h1
+      -- S, Lean creates two branches
+      -- rcases h' with h_not_all ∣ h1 -- case split on a disjunction
+      cases h' with
+      | inl h_not_all =>
+        left
+        push Not at h_not_all
+        exact h_not_all
+      | inr h1 =>
+        right
+        exact h1
+
+  -- case 2: (∃ m : ℕ, (¬ (n ∣ m)) ∨ n = 1)) → ((∀ m : ℕ, n ∣ m) → n = 1)
+  -- assume: (∃ m : ℕ, (¬ (n ∣ m)) ∨ n = 1))
+  -- show: ((∀ m : ℕ, n ∣ m) → n = 1)
+  -- proof:
+  -- (¬ ∃ m : ℕ, (¬ (n ∣ m)) → n = 1)) [by definition of →]
+  -- (∀ m : ℕ, (n ∣ m) → n = 1)) [by definition of ¬∃¬]
+  case mpr =>
+    intro h   -- assume: (∃ m : ℕ, (¬ (n ∣ m))) ∨ n = 1
+    classical
+    have h': (¬(∃ m : ℕ, (¬ (n ∣ m)))) → n = 1 := by
+      exact or_iff_not_imp_left.mp h
+    have h'': (∃ m : ℕ, (¬¬ (n ∣ m))) → n = 1 := by
+      push Not at h'
+    -- exact not_not.mp h''
