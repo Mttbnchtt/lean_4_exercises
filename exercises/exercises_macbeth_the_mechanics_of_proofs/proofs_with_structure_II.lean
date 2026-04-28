@@ -79,6 +79,7 @@ theorem div_iff
     classical
     have h': (¬(∃ m : ℕ, (¬ (n ∣ m)))) → n = 1 := by
       exact or_iff_not_imp_left.mp h
-    have h'': (∃ m : ℕ, (¬¬ (n ∣ m))) → n = 1 := by
+    have h'': (∀ m : ℕ, (n ∣ m)) → n = 1 := by
       push Not at h'
-    -- exact not_not.mp h''
+      exact h'
+    exact h''
