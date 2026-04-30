@@ -82,3 +82,35 @@ theorem div_iff
       push Not at h'
       exact h'
     exact h''
+
+
+example
+  {a b : ℝ}
+  (h : ∀ x, x ≥ a ∨ x ≤ b)
+  : a ≤ b := by
+  by_cases h1 : (a+b)/2 ≥ a
+
+  -- case 1: (a+b)/2 ≥ a
+  -- by contradiction: suppose that a > b
+  -- therefore, (a+b)/2 < 2a/a = a
+  -- ⟂
+  case pos =>
+    by_contra
+    have g1 : (a+b)/2 < a := by
+      nlinarith
+    grind
+
+  -- case 2: (a+b)/2 < a
+  -- therefore, by h, (a+b)/2 ≤ b
+  -- by contradiction: suppose that a > b
+  -- (a+b)/2 < 2b/2 = b < a
+  -- ⟂
+  case neg =>
+    have g2 : (a+b) / 2 ≤ b := by
+      grind
+    by_contra
+    have g3 : b < a:= by
+      apply (Std.not_le).mp this
+    have g4 : a < a := by
+      grind
+    grind
