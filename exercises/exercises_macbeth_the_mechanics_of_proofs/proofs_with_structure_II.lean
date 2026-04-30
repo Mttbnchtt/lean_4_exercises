@@ -49,7 +49,6 @@ theorem div_iff
   -- (∃ m : ℕ, ¬ (n ∣ m)) ∨ n = 1 [by ¬∀ φ ↔ ∃ ¬ φ]
   case mp =>
     intro h     -- assume: (∀ m : ℕ, n ∣ m) → n = 1
-    classical
     have h': (¬ (∀ m : ℕ, n ∣ m)) ∨ n = 1 := by
       exact imp_iff_not_or.mp h
     have h'': ((∃ m : ℕ, (¬ (n ∣ m))) ∨ n = 1) := by
@@ -67,6 +66,7 @@ theorem div_iff
       | inr h1 =>
         right
         exact h1
+      exact h''
 
   -- case 2: (∃ m : ℕ, (¬ (n ∣ m)) ∨ n = 1)) → ((∀ m : ℕ, n ∣ m) → n = 1)
   -- assume: (∃ m : ℕ, (¬ (n ∣ m)) ∨ n = 1))
