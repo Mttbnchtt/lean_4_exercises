@@ -76,7 +76,6 @@ theorem div_iff
   -- (∀ m : ℕ, (n ∣ m) → n = 1)) [by definition of ¬∃¬]
   case mpr =>
     intro h   -- assume: (∃ m : ℕ, (¬ (n ∣ m))) ∨ n = 1
-    classical
     have h': (¬(∃ m : ℕ, (¬ (n ∣ m)))) → n = 1 := by
       exact or_iff_not_imp_left.mp h
     have h'': (∀ m : ℕ, (n ∣ m)) → n = 1 := by
