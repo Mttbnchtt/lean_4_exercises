@@ -114,3 +114,24 @@ example
     have g4 : a < a := by
       grind
     grind
+
+
+theorem maximal_element
+  (a b : ℝ)
+  (ha1 : a^2 ≤ 2)
+  (ha2 : ∀x, x^2 ≤ 2 → x ≤ a)
+  (hb1 : b^2 ≤ 2)
+  (hb2 : ∀x, x^2 ≤ 2 → x ≤ b)
+  : a = b := by
+  -- since b^2 ≤ 2, then b ≤ a
+  have g1: b ≤ a := by
+    apply ha2
+    apply hb1
+
+  -- since a^2, then a ≤ b
+  have g2 : a ≤ b := by
+    apply hb2
+    apply ha1
+
+  -- therefore, a = b
+  grind
