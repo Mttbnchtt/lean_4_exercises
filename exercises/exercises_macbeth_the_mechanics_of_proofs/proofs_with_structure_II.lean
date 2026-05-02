@@ -135,3 +135,12 @@ theorem maximal_element
 
   -- therefore, a = b
   grind
+
+
+example
+  : ∃ b : ℝ, ∀ x : ℝ, b ≤ x ^ 2 - 2 * x := by
+  use -1
+  intro x
+  have h1 : 0 ≤ (x-1)^2 := by nlinarith
+  have h2 : -1 ≤ x^2 - 2*x := by grind
+  exact h2
