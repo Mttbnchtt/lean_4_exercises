@@ -144,3 +144,37 @@ example
   have h1 : 0 ≤ (x-1)^2 := by nlinarith
   have h2 : -1 ≤ x^2 - 2*x := by grind
   exact h2
+
+
+import Mathlib
+
+theorem circle_line_lower_bound
+  : ∀ k : ℝ, ∃ c : ℝ, ∀ x y, ( (x^2 + y^2 ≤ k) → (x + y ≥ c) ) := by
+  intro k
+  use -2 * (√k)
+  intro x y h
+  -- x^2 ≤ k
+  have h1 : x^2 ≤ k := by
+    nlinarith
+
+  -- x ≥ -√k
+  have h2 : x ≥ -√k := by
+    by_contra g
+    simp at g
+    have g' : x^2 > k : by
+      Real.le_sqrt
+      sorry
+    nlinarith
+
+  -- y^2 ≤ k
+  have h3 : y^2 ≤ k := by
+    nlinarith
+
+  -- y ≥ -√k
+  have h4 : y ≥ -√k := by
+    sorry
+
+  -- x + y ≥ -2*(√k)
+  have h5 :  x + y ≥ -2*√k := by
+    sorry
+  exact h5
