@@ -146,35 +146,35 @@ example
   exact h2
 
 
-import Mathlib
-
 theorem circle_line_lower_bound
-  : ∀ k : ℝ, ∃ c : ℝ, ∀ x y, ( (x^2 + y^2 ≤ k) → (x + y ≥ c) ) := by
+  : ∀ k : ℝ, ∃ c : ℝ, ∀ x y, ( (x^2 + y^2 ≤ k^2) → (x + y ≥ c) ) := by
+  -- 1. Distinguish two cases: k ≠ 0 and k = 0.
+  -- 2. CASE 1. Assume first that k ≠ 0.
+  -- 3. x^2 + y^2 ≤ k^2 describes the closed disc centered at the origin with radius |k|.
+  -- 4. For each real number c, the equation x + y = c describes a straight line of slope -1. These lines are all parallel.
+  -- 5. We seek the greatest real number c such that every point (x, y) in the disc satisfies x + y ≥ c.
+  -- 6. As the line x + y = c is moved toward the third quadrant, the last such line meeting the disc is tangent to the boundary circle x^2 + y^2 = k^2.
+  -- 7. Let (A, B) be the point of tangency. Since the tangent line is perpendicular to the radius joining the origin to (A, B), and since the unique line through the origin perpendicular to x + y = c is y = x, the point (A, B) lies on y = x. Therefore A = B.
+  -- 8. Because this is the minimizing tangency point, it lies in the third quadrant, so A = B < 0.
+  -- 9. Since (A, B) lies on the circle, A^2 + B^2 = k^2. Using A = B, we obtain 2A^2 = k^2. So A = -|k| / √2.
+  -- 10. Therefore
+  --     c = A + B
+  --       = -2|k| / √2
+  --       = -√2 * |k|
+  --       = -√(2 * k^2).
+  -- 11. CASE 2. Assume k = 0. The disc consists only of the point (0, 0), and the greatest lower bound is c = 0, which agrees with the same formula.
+  -- 12. CONCLUSION: the sharp bound is: x^2 + y^2 ≤ k^2  →  x + y ≥ -√(2 * k^2).
   intro k
-  use -2 * (√k)
+  use -√(2*k^2)
   intro x y h
-  -- x^2 ≤ k
-  have h1 : x^2 ≤ k := by
+  have h1: 0 ≤ (x-y)^2 := by
     nlinarith
-
-  -- x ≥ -√k
-  have h2 : x ≥ -√k := by
-    by_contra g
-    simp at g
-    have g' : x^2 > k : by
-      Real.le_sqrt
-      sorry
+  have h2 : (x-y)^2 = 2*(x^2+y^2) - (x+y)^2 := by
     nlinarith
-
-  -- y^2 ≤ k
-  have h3 : y^2 ≤ k := by
-    nlinarith
-
-  -- y ≥ -√k
-  have h4 : y ≥ -√k := by
-    sorry
-
-  -- x + y ≥ -2*(√k)
-  have h5 :  x + y ≥ -2*√k := by
-    sorry
+  have h3 : (x+y)^2 ≤ 2*(x^2 + y^2) := by
+    nlinarith [h2]
+  have h4 : (x+y)^2 ≤ 2*k^2 := by
+    nlinarith [h3]
+  have h5 : -√(2*k^2) ≤ x + y := by
+    exact Real.neg_sqrt_le_of_sq_le h4
   exact h5
