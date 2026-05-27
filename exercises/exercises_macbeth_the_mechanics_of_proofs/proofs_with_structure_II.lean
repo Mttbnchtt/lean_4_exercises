@@ -178,3 +178,27 @@ theorem circle_line_lower_bound
   have h5 : -√(2*k^2) ≤ x + y := by
     exact Real.neg_sqrt_le_of_sq_le h4
   exact h5
+
+
+example
+  {a b : ℝ}
+  (ha1 : a ^ 2 ≤ 2)
+  (hb1 : b ^ 2 ≤ 2)
+  (ha2 : ∀ y, y ^ 2 ≤ 2 → y ≤ a)
+  (hb2 : ∀ y, y ^ 2 ≤ 2 → y ≤ b)
+  : a = b := by
+  -- show: a ≤ b
+  -- by hb2
+  have g1 : a ≤ b := by
+    specialize hb2 a
+    apply hb2 ha1
+    -- exact hb2 ha1 (possible alternative)
+
+  -- show: b ≤ a
+  -- by hb1
+  have g2 : b ≤ a := by
+    specialize ha2 b
+    apply ha2 hb1
+
+  -- therefore a = b
+  nlinarith
