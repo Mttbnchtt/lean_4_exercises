@@ -208,3 +208,21 @@ example
   use -2
   intro x
   nlinarith
+
+
+example
+  : ∃ c : ℝ, ∀ x y, x ^ 2 + y ^ 2 ≤ 4 → x + y ≥ c := by
+  use -3
+  intro x y h
+  have g1 : (x+y)^2 ≤ 3^2 := by
+    calc
+      (x+y)^2 ≤ (x+y)^2 + (x-y)^2 := by nlinarith
+      _       = 2*(x^2 + y^2)     := by linarith
+      _       ≤ 2*4               := by rel [h]
+      _       ≤ 3^2               := by linarith
+  have g2 : (0 : ℝ) ≤ 3 := by
+    nlinarith
+  have g3 : -3 ≤ (x+y) ∧ (x+y) ≤ 3 := by
+    apply abs_le_of_sq_le_sq' g1 g2
+  obtain ⟨conj1, conj2⟩ := g3
+  exact conj1
