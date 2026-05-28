@@ -202,3 +202,9 @@ example
 
   -- therefore a = b
   nlinarith
+
+example
+  : ∃ b : ℝ, ∀ x : ℝ, b ≤ x ^ 2 - 2 * x := by
+  use -2
+  intro x
+  nlinarith
