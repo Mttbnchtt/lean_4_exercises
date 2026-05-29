@@ -285,3 +285,14 @@ example
       _ = 4 + 5*b       := by rw [h1]
       _ = 4 + 5*1       := by rw [g1]
       _ = 9             := by ring
+
+
+example
+  {a b : ℝ}
+  (h1 : a ^ 2 + b ^ 2 = 0)
+  : a = 0 ∧ b = 0 := by
+  constructor
+  case left =>
+    nlinarith
+  case right =>
+    nlinarith
