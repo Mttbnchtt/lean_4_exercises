@@ -296,3 +296,16 @@ example
     nlinarith
   case right =>
     nlinarith
+
+
+example
+  {a b : ℚ}
+  (H : a ≤ 1 ∧ a + b ≤ 3)
+  : 2 * a + b ≤ 4 := by
+  rcases H with ⟨ha, hb⟩
+  calc
+    2*a + b ≤ a + a + b    := by nlinarith
+    _       = a + (a + b)  := by ring
+    _       ≤ 1 + (a + b)  := by rel [ha]
+    _       ≤ 1 + 3        := by rel [hb]
+    _       = 4            := by ring
