@@ -226,3 +226,9 @@ example
     apply abs_le_of_sq_le_sq' g1 g2
   obtain ⟨conj1, conj2⟩ := g3
   exact conj1
+
+example
+  {p : ℚ}
+  (hp : p ^ 2 ≤ 8)
+  : p ≥ -5 := by
+  nlinarith
