@@ -232,3 +232,17 @@ example
   (hp : p ^ 2 ≤ 8)
   : p ≥ -5 := by
   nlinarith
+
+example
+  {p : ℚ}
+  (hp : p ^ 2 ≤ 8)
+  : p ≥ -5 := by
+  have g1 : (0 : ℚ) ≤ 3^2 := by
+    nlinarith
+  have g2 : p^2 ≤ 3^2 := by
+    nlinarith
+  have g3 : -3 ≤ p ∧ p ≤ 3 := by
+    apply abs_le_of_sq_le_sq' g2 g1
+  calc
+    p ≥ -3 := by nlinarith [g3]
+    _ ≥ -5 := by nlinarith
