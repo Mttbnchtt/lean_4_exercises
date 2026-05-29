@@ -309,3 +309,16 @@ example
     _       ≤ 1 + (a + b)  := by rel [ha]
     _       ≤ 1 + 3        := by rel [hb]
     _       = 4            := by ring
+
+
+example
+  {r s : ℝ}
+  (H : r + s ≤ 1 ∧ r - s ≤ 5)
+  : 2 * r ≤ 6 := by
+  rcases H with ⟨h1, h2⟩
+  calc
+    2*r = r + r         := by ring
+    _   = r + r + s -s  := by ring
+    _   = (r+s) + (r-s) := by ring
+    _   ≤ 1 + 5         := by rel [h1, h2]
+    _   = 6             := by ring
