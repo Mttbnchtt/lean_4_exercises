@@ -322,3 +322,43 @@ example
     _   = (r+s) + (r-s) := by ring
     _   ≤ 1 + 5         := by rel [h1, h2]
     _   = 6             := by ring
+
+
+
+example
+  {m n : ℤ}
+  (H : n ≤ 8 ∧ m + 5 ≤ n)
+  : m ≤ 3 := by
+  rcases H with ⟨h1, h2⟩
+  calc
+    m = m+ 5 -5 := by ring
+    _ ≤ n - 5 := by rel [h2]
+    _ ≤ 8-5 := by rel [h1]
+    _ = 3 := by ring
+
+
+example
+  {p : ℤ}
+  (hp : p + 2 ≥ 9)
+  : p ^ 2 ≥ 49 ∧ 7 ≤ p := by
+  have g1 : p ≥ 7 := by nlinarith [hp]
+  constructor
+  case left =>
+    calc
+      p^2 = p*p := by ring
+      _   ≥ 7*7 := by rel [g1]
+      _   = 49  := by ring
+  case right =>
+    exact g1
+
+
+  example
+    {a : ℚ}
+    (h : a - 1 ≥ 5)
+    : a ≥ 6 ∧ 3 * a ≥ 10 := by
+    have g1 : a ≥ 6 := by nlinarith [h]
+    constructor
+    case left =>
+      exact g1
+    case right =>
+      nlinarith [g1]
