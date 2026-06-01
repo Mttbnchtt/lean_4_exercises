@@ -362,3 +362,110 @@ example
       exact g1
     case right =>
       nlinarith [g1]
+
+
+example
+  {a b : ℝ}
+  (h1 : a * b = a)
+  (h2 : a * b = b)
+  : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+  grind
+
+example
+  {a b : ℝ}
+  (h1 : a * b = a)
+  (h2 : a * b = b)
+  : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+  -- a*b - a = a*(b-1) = 0 [from h1]
+  -- a*b -b = b*(a-1) = 0 [from h2]
+  -- therefore either a=0 or b=1
+  -- therefore either b=0 or a=1
+  -- therefore (a=0 ∨ b=1)∧ (b=0 ∨ a=1)
+  -- therefore ((a=0 ∨ b=1)∧ b=0) ∨  ((a=0∨ b=1)∧ a=1)
+  -- therefore (a=0∧ b=1) ∨ (b=1∧ b=0) ∨ (a=0∧ a=1) ∨ (b=1∧ a=1)
+  -- therefore (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1)
+  have g1 : a*(b-1) = 0 := by
+    grind -- from h1
+  have g2 : a = 0 ∨ b = 1 := by
+    grind -- from g1
+  have g3 : b*(a-1) = 0 := by
+    grind -- from h2
+  have g4 : b = 0 ∨ a = 1 := by
+    grind -- from g3
+  have g5 : (a = 0 ∨ b = 1) ∧ (b = 0 ∨ a = 1) := by
+    exact ⟨g2, g4⟩
+    -- alternatives (each is enough to prove g5):
+    -- aesop
+    -- grind
+    -- tauto
+    -- itauto
+  -- have g6 : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+  --   aesop
+  -- grind
+  have g6 : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+    -- g2 : a = 0 ∨ b = 1
+    -- g4 : b = 0 ∨ a = 1
+    -- Split both disjunctions into four cases.
+    cases g2 with
+    -- Case: a = 0
+    | inl ha0 =>
+        cases g4 with
+        -- Subcase: b = 0
+        | inl hb0 =>
+            apply Or.inl
+            exact ⟨ha0, hb0⟩
+        -- Subcase: a = 1, contradicting a = 0
+        | inr ha1 =>
+            rw [ha0] at ha1
+            norm_num at ha1
+    -- Case: b = 1
+    | inr hb1 =>
+        cases g4 with
+        -- Subcase: b = 0, contradicting b = 1
+        | inl hb0 =>
+            rw [hb1] at hb0
+            norm_num at hb0
+        -- Subcase: a = 1
+        | inr ha1 =>
+            apply Or.inr
+            exact ⟨ha1, hb1⟩
+  exact g6
+
+
+example
+  {a b : ℝ}
+  (h1 : a * b = a)
+  (h2 : a * b = b)
+  : (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1) := by
+
+  -- From h1, obtain: a * (b - 1) = 0.
+  -- Therefore either a = 0 or b - 1 = 0.
+  cases mul_eq_zero.mp (show a * (b - 1) = 0 by nlinarith [h1]) with
+
+  -- Case: a = 0
+  | inl ha0 =>
+      apply Or.inl
+
+      -- From h2 and a = 0, obtain b = 0.
+      exact ⟨ha0, by simpa [ha0] using h2.symm⟩
+
+  -- Case: b - 1 = 0
+  | inr hb1 =>
+      apply Or.inr
+
+      -- From b - 1 = 0, obtain b = 1.
+      -- Substituting b = 1 into h2 gives a = 1.
+      exact ⟨
+        by simpa [sub_eq_zero.mp hb1] using h2,
+        sub_eq_zero.mp hb1
+      ⟩
+
+  -- strategy by contradiction
+  -- suppose ¬ ((a = 0 ∧ b = 0) ∨ (a = 1 ∧ b = 1))
+  -- therefore ¬ ((a = 0 ∧ b = 0)) and ¬ (a = 1 ∧ b = 1)
+  -- therefore (a≠ 0 ∨ b≠ 0) and (a≠ 1 ∨ b≠ 1).
+  -- therefore we have four alternative cases:
+  -- 1. a≠0 and a≠ 1
+  -- 2. a≠ 0 and b≠ 1
+  -- 3. b≠ 0 and a≠ 1
+  -- 4. b≠ 0 and b≠ 1.
