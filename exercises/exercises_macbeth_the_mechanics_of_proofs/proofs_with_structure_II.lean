@@ -469,3 +469,11 @@ example
   -- 2. a≠ 0 and b≠ 1
   -- 3. b≠ 0 and a≠ 1
   -- 4. b≠ 0 and b≠ 1.
+
+
+example
+  {a : ℝ}
+  (h : ∀ x, a ≤ x ^ 2 - 2 * x)
+  : a ≤ -1 := by
+  specialize h 1
+  nlinarith
