@@ -29,6 +29,27 @@ theorem div_1
   · apply Nat.le_of_dvd g1 g0 -- n ≤ 1
   · apply Nat.pos_of_dvd_of_pos g0 g1 -- 0 < n (Lean infers 1≤ n)
 
+example
+  {n : ℕ}
+  (hn : ∀ m, n ∣ m)
+  : n = 1 := by
+  -- n | 1
+  -- (n | m and m ≠ 0) → n ≤ m
+  -- therefore n ∈ {0, 1}
+  -- ¬ (0 ∣ 1)
+  -- therefore n = 1
+  have g0 : n ∣ 1 := by apply hn
+  have g1 : 0 < 1 := by grind
+  have g2 : n ≤ 1 := by exact Nat.le_of_dvd g1 g0
+  have g3 : n = 0 ∨ n = 1 := by exact (Nat.le_one_iff_eq_zero_or_eq_one).mp g2
+  have g4 : ¬ (0 ∣ 1) := by grind
+  have g5: n ≠ 0 := by
+    by_contra gn0
+    have gn1 : 0 ∣ 1 := by simpa [gn0] using g0
+    contradiction
+  have g6 : n = 1 := by exact Or.resolve_left g3 g5
+  exact g6
+
 theorem div_2
   {n : ℕ}
   : ∃m, (¬ (n∣ m)) ∨ n=1 := by
