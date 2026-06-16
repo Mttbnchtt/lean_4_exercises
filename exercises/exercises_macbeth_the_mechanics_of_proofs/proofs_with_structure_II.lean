@@ -136,6 +136,28 @@ example
       grind
     grind
 
+example
+  {a b : ℝ}
+  (h : ∀ x, x ≥ a ∨ x ≤ b)
+  : a ≤ b := by
+  -- suppose b < a
+  -- let x = (a+b)/2
+  -- b < (a+b)/2 < a.
+  -- by h, either a ≤ (a+b)/2 or  (a+b)/2 ≤ b
+  -- suppose a ≤ (a+b)/2: ⟂
+  -- suppose (a+b)/2 ≤ b: ⟂
+  -- therefore a ≤ b.
+  let x : ℝ := (a+b)/2
+  by_contra hab
+  push Not at hab
+  have g1: b < x := by grind
+  have g2 : x < a := by grind
+  have g3: x ≥ a ∨ x ≤ b := by apply h
+  cases g3
+  case inl hxa =>
+    nlinarith
+  case inr hxb =>
+    nlinarith
 
 theorem maximal_element
   (a b : ℝ)
