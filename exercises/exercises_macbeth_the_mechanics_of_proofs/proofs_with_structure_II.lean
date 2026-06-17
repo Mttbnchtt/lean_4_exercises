@@ -520,3 +520,44 @@ example
   : a ≤ -1 := by
   specialize h 1
   nlinarith
+
+
+import Mathlib
+
+
+example
+  : ∃ N : ℤ, ∀ n : ℤ, (N ≤ n → (n ^ 3 ≥ 4 * n ^ 2 + 7)) := by
+  use 5
+  intro n hn
+  nlinarith
+
+
+example
+  : ∃ N : ℤ, ∀ n : ℤ, (N ≤ n → (n ^ 3 ≥ 4 * n ^ 2 + 7)) := by
+  use 5
+  intro n hn
+  calc
+    n ^ 3 = n * n ^ 2 := by ring
+    _ ≥ 5 * n ^ 2 := by rel [hn]
+    _ = 4 * n ^ 2 + n ^ 2 := by ring
+    _ ≥ 4 * n ^ 2 + 5 ^ 2 := by rel [hn]
+    _ = 4 * n ^ 2 + 7 + 18 := by ring
+    _ ≥ 4 * n ^ 2 + 7 := by nlinarith
+
+
+syntax "forall_sufficiently_large " ident " : " term ", " term : term
+
+macro_rules
+  | `(forall_sufficiently_large $x:ident : $α:term, $p:term) =>
+      `(∃ C : $α, ∀ $x : $α, C ≤ $x → $p)
+
+example : forall_sufficiently_large n : ℤ, n ^ 3 ≥ 4 * n ^ 2 + 7 := by
+  use 5
+  intro n hn
+  calc
+    n ^ 3 = n * n ^ 2 := by ring
+    _ ≥ 5 * n ^ 2 := by rel [hn]
+    _ = 4 * n ^ 2 + n ^ 2 := by ring
+    _ ≥ 4 * n ^ 2 + 5 ^ 2 := by rel [hn]
+    _ = 4 * n ^ 2 + 7 + 18 := by ring
+    _ ≥ 4 * n ^ 2 + 7 := by nlinarith
