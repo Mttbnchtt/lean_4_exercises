@@ -561,3 +561,25 @@ example : forall_sufficiently_large n : ℤ, n ^ 3 ≥ 4 * n ^ 2 + 7 := by
     _ ≥ 4 * n ^ 2 + 5 ^ 2 := by rel [hn]
     _ = 4 * n ^ 2 + 7 + 18 := by ring
     _ ≥ 4 * n ^ 2 + 7 := by nlinarith
+
+example
+  : ¬ Prime 6 := by
+  -- From Nat.prime_def, it follows that 6 is prime if and only if, if m ∣ 6, then m=1 or m=6
+  -- However, 2 ∣ 6 and 2 ≠ 1 and 2 ≠ 6
+  -- so 6 is not prime
+  have bridge: Prime 6 → Nat.Prime 6 := by
+    intro h
+    exact (Nat.prime_iff).mpr h
+  have g1 : (Prime 6) → (∀ (m : ℕ), m ∣ 6 → m = 1 ∨ m = 6) := by
+    intro h1
+    have nat_prime_6 : Nat.Prime 6 := by apply bridge h1
+    exact (Nat.prime_def.mp nat_prime_6).2
+  have g2 : 2 ∣ 6 := by grind
+  have g3 : ¬ (∀ (m : ℕ), m ∣ 6 → m = 1 ∨ m = 6) := by
+    intro h
+    have h2 : 2 = 1 ∨ 2 = 6 := by
+      apply h 2 g2
+    grind
+  have g4 : ¬ (Prime 6) := by
+    grind
+  exact g4
