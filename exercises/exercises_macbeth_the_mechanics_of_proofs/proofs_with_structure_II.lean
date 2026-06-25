@@ -622,3 +622,66 @@ example
   intro hPrime6
   apply g3
   exact g1 hPrime6
+
+
+example
+  : Nat.Prime 2   := by
+  exact Nat.prime_two
+
+example
+  : Nat.Prime 2 := by
+  -- use Nat.prime_def
+  --  show that 2 ≤ 2
+  -- show that, if m | 2, then m ≤ 2
+  -- therefore m=1 ∨ m=0
+  -- since ¬ 0 | 2, then m=1
+  -- therefore, if m|2, then m=1 ∨ m=2
+  -- therefore, by Nat.prime_def, 2 is prime
+  have g1 : 2 ≤ 2 := by nlinarith
+  have g2 : ∀ (m : ℕ), (((0 ≤ m) ∧ (m ∣ 2)) → (m ≤ 2)) := by
+    intro m hm
+    rcases hm with ⟨hma, hmb⟩
+    apply Nat.le_of_dvd
+    case h =>
+      norm_num
+    case a =>
+      exact hmb
+  have g3 : ∀ (m : ℕ), ((m < 2) → (m=0 ∨ m=1)) := by
+    intro m hm
+    grind
+  have g4 : ¬ (0 ∣ 2) := by grind
+  have g5: 1 ∣ 2 := by grind
+  have g6 : ∀ (m : ℕ), ((m < 2 ∧ m ∣ 2) → (m=1)) := by
+    intro m hm
+    rcases hm with ⟨hma, hmb⟩
+    cases g3 m hma
+    case inl hm0 =>
+      exfalso
+      apply g4
+      simpa [hm0] using hmb
+    case inr hm1 =>
+      exact hm1
+  have g7 : 2 ∣ 2 := by grind
+  have g8 : ∀ (m : ℕ), ((m ∣ 2) → (m=1 ∨ m=2)) := by
+    -- since m|2, then m≤ 2
+    -- therefore either m <2 or m=2
+    -- suppose m=2; then m=1 ∨ m=2
+    -- suppose m=<1, then m=0 or m=1
+    -- since ¬ m∣2, then m=1
+    -- therefore m=1 ∨ m=2
+    intro m hm
+    have hm1 : m ≤ 2 := by
+      apply g2 m
+      constructor
+      case left =>
+        exact Nat.zero_le m
+      case right =>
+        exact hm
+    cases lt_or_eq_of_le hm1
+    case inl hlt =>
+      apply Or.inl
+      exact g6 m ⟨hlt, hm⟩
+    case inr heq =>
+      apply Or.inr
+      exact heq
+  exact (Nat.prime_def).mpr ⟨  by norm_num, g8 ⟩
