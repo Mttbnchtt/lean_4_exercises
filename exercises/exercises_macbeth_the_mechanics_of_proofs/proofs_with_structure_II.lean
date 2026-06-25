@@ -583,3 +583,42 @@ example
   have g4 : ¬ (Prime 6) := by
     grind
   exact g4
+
+
+example
+  : ¬ Prime 6 := by
+  have bridge: Prime 6 → Nat.Prime 6 := by
+    intro h
+    exact (Nat.prime_iff).mpr h
+  have g1 : (Prime 6) → (∀ (m : ℕ), m ∣ 6 → m = 1 ∨ m = 6) := by
+    intro h1
+    have nat_prime_6 : Nat.Prime 6 := by apply bridge h1
+    exact (Nat.prime_def.mp nat_prime_6).2
+  have g2 : 2 ∣ 6 := by grind
+  have g3 : ¬ (∀ (m : ℕ), m ∣ 6 → m = 1 ∨ m = 6) := by
+    intro h
+    have h2 : 2 = 1 ∨ 2 = 6 := by
+      apply h 2 g2
+    grind
+  intro hPrime6
+  apply g3
+  exact g1 hPrime6
+
+
+example
+  : ¬ Prime 6 := by
+  have bridge: Prime 6 → Nat.Prime 6 := by
+    intro h
+    exact (Nat.prime_iff).mpr h
+  have g1 : (Prime 6) → (∀ (m : ℕ), m ∣ 6 → m = 1 ∨ m = 6) := by
+    intro h1
+    exact (Nat.prime_def.mp (bridge h1)).2
+  have g2 : 2 ∣ 6 := by grind
+  have g3 : ¬ (∀ (m : ℕ), m ∣ 6 → m = 1 ∨ m = 6) := by
+    intro h
+    have h2 : 2 = 1 ∨ 2 = 6 := by
+      apply h 2 g2
+    grind
+  intro hPrime6
+  apply g3
+  exact g1 hPrime6
